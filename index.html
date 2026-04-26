@@ -370,19 +370,19 @@
     /* STICKY SECTION EYEBROW — persistent label that updates on scroll */
     .sticky-eyebrow {
       position: fixed;
-      top: 72px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-12px);
-      z-index: 90;
-      display: inline-flex;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
       background: rgba(10, 10, 15, 0.88);
       backdrop-filter: blur(12px) saturate(140%);
       -webkit-backdrop-filter: blur(12px) saturate(140%);
-      border: 1px solid var(--rule);
-      border-radius: 999px;
+      border-bottom: 1px solid var(--rule);
       font-family: var(--font-mono);
       font-size: var(--type-micro);
       color: var(--text-muted);
@@ -390,11 +390,12 @@
       text-transform: uppercase;
       opacity: 0;
       pointer-events: none;
+      transform: translateY(-100%);
       transition: opacity 300ms var(--ease), transform 300ms var(--ease);
     }
     .sticky-eyebrow.is-visible {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateY(0);
     }
     .sticky-eyebrow-dot {
       width: 6px;
