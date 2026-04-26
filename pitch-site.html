@@ -1,0 +1,4062 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Out of Phone: Commerce</title>
+  <meta name="description" content="A pitch document. Concept prototype. Not affiliated with or endorsed by TikTok, Frasers Group, Boots, or Vusion." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-elevated: #12121b;
+      --bg-card: #1a1a26;
+      --bg-card-hover: #20202e;
+
+      --text: #f2f2f4;
+      --text-muted: #9494a0;
+      --text-quiet: #56565e;
+      --text-subtle: #36363e;
+
+      --rule: rgba(255, 255, 255, 0.07);
+      --rule-strong: rgba(255, 255, 255, 0.14);
+      --rule-bright: rgba(255, 255, 255, 0.32);
+
+      --accent-pink: #fe2c55;
+      --accent-cyan: #25f4ee;
+      --accent-warm: #efe1c0;
+
+      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+      --font-body: "Inter", system-ui, -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+      --type-mega: clamp(2.5rem, 8.5vw, 7.5rem);
+      --type-display: clamp(2rem, 4.8vw, 4rem);
+      --type-h1: clamp(1.625rem, 3.2vw, 2.625rem);
+      --type-h2: clamp(1.35rem, 2.4vw, 1.95rem);
+      --type-h3: clamp(1.125rem, 1.6vw, 1.45rem);
+      --type-lead: clamp(1.075rem, 1.4vw, 1.3rem);
+      --type-body: 1.0625rem;
+      --type-small: 0.9375rem;
+      --type-micro: 0.8125rem;
+      --type-mono: 0.8125rem;
+
+      --space-1: 0.5rem;
+      --space-2: 1rem;
+      --space-3: 1.5rem;
+      --space-4: 2rem;
+      --space-5: 2.5rem;
+      --space-6: 3rem;
+      --space-8: 4rem;
+      --space-10: 5rem;
+      --space-12: 6rem;
+      --space-16: 8rem;
+      --space-20: 10rem;
+      --space-24: 12rem;
+      --space-32: 16rem;
+
+      --max-w: 1280px;
+      --reading-w: 68ch;
+      --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(254, 44, 85, 0.05), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 110%, rgba(37, 244, 238, 0.03), transparent 60%),
+        var(--bg);
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+    /* Footnote links */
+    a.fn {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 500;
+      font-feature-settings: "sups" 1;
+      vertical-align: super;
+      font-size: 0.7em;
+      margin-left: 1px;
+      letter-spacing: 0;
+      transition: opacity 200ms var(--ease);
+    }
+    a.fn:hover { opacity: 0.7; }
+
+    /* TYPOGRAPHY */
+    .display, h1, h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      line-height: 1.02;
+      letter-spacing: -0.022em;
+      color: var(--text);
+    }
+    .display-mega {
+      font-family: var(--font-display);
+      font-weight: 350;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-size: var(--type-mega);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+    }
+    h1 { font-size: var(--type-display); }
+    h2 { font-size: var(--type-h1); }
+    h3 {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--type-h3);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--text);
+    }
+    p { margin: 0 0 var(--space-3); }
+    .lead {
+      font-size: var(--type-lead);
+      line-height: 1.5;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .small { font-size: var(--type-small); color: var(--text-muted); }
+    .micro {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .mono {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      letter-spacing: 0;
+      color: var(--text-muted);
+    }
+    em { font-style: italic; color: var(--accent-warm); font-family: var(--font-display); }
+
+    /* LAYOUT */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+    .container-narrow { max-width: 880px; }
+    .reading { max-width: var(--reading-w); }
+
+    section {
+      position: relative;
+      padding-top: var(--space-24);
+      padding-bottom: var(--space-24);
+    }
+    @media (max-width: 720px) {
+      section {
+        padding-top: var(--space-16);
+        padding-bottom: var(--space-16);
+      }
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+    .section-eyebrow::before {
+      content: "";
+      width: 2.5rem;
+      height: 1px;
+      background: var(--rule-bright);
+    }
+    .section-eyebrow .micro { color: var(--text-muted); }
+
+    .section-divider {
+      border-top: 1px solid var(--rule);
+      margin-top: 0;
+    }
+
+    /* SOURCES BLOCK */
+    .sources {
+      margin-top: var(--space-10);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--rule);
+      max-width: var(--reading-w);
+    }
+    .sources-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: var(--space-2);
+    }
+    .sources ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: src;
+    }
+    .sources li {
+      counter-increment: src;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--text-quiet);
+      padding: 4px 0;
+      position: relative;
+      padding-left: 1.6em;
+    }
+    .sources li::before {
+      content: counter(src);
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+      font-weight: 500;
+    }
+    .sources li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--text-subtle);
+      transition: color 200ms var(--ease), border-color 200ms var(--ease);
+    }
+    .sources li a:hover {
+      color: var(--text);
+      border-bottom-color: var(--rule-bright);
+    }
+
+    /* NAV */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-3) var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 15, 0.94);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border-bottom: 1px solid var(--rule);
+      transition: transform 250ms var(--ease);
+    }
+    .site-nav.is-hidden { transform: translateY(-100%); }
+    .site-nav-brand {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .site-nav-brand::before {
+      content: "";
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      border-radius: 50%;
+    }
+    .site-nav-meta {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      color: var(--text-quiet);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 640px) { .site-nav-meta { display: none; } }
+
+    /* AUTHOR TILE — persistent, screenshot-safe attribution */
+    .site-nav-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .site-nav-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px 6px 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 200ms var(--ease), border-color 200ms var(--ease), transform 200ms var(--ease);
+    }
+    .site-nav-author:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--rule-bright);
+      transform: translateY(-1px);
+    }
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      padding: 1.5px;
+    }
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+    .author-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      max-width: 200px;
+    }
+    .author-name {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .author-tagline {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 860px) {
+      .author-meta { display: none; }
+      .site-nav-author { padding: 4px; }
+    }
+
+    /* STICKY SECTION EYEBROW — persistent label that updates on scroll */
+    .sticky-eyebrow {
+      position: fixed;
+      top: 72px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-12px);
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(10, 10, 15, 0.88);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+    }
+    .sticky-eyebrow.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .sticky-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      flex-shrink: 0;
+    }
+    .sticky-eyebrow-label {
+      color: var(--text);
+      font-weight: 500;
+    }
+    @media (max-width: 640px) {
+      .sticky-eyebrow { font-size: 9px; padding: 5px 10px; }
+    }
+
+    /* SURFACE MARKER — section opening structural element */
+    .surface-marker {
+      position: relative;
+      padding-top: var(--space-8);
+      margin-bottom: var(--space-6);
+    }
+    .surface-marker::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-pink) 0%, var(--accent-cyan) 100%);
+      opacity: 0.7;
+    }
+    .surface-marker-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: var(--space-3);
+    }
+    .surface-marker-eyebrow .marker-num {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .surface-marker-eyebrow .marker-divider {
+      width: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+      display: inline-block;
+    }
+    .surface-marker-eyebrow .marker-title {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .surface-marker::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      bottom: -8px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--accent-pink) 0%, transparent 100%);
+      opacity: 0.4;
+    }
+
+    /* HEADLINE ACCENT STROKE — vertical pink-cyan stroke on the left of section h2s */
+    .has-accent-stroke {
+      position: relative;
+      padding-left: var(--space-4);
+    }
+    .has-accent-stroke::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-pink) 0%, var(--accent-cyan) 100%);
+      border-radius: 2px;
+    }
+
+    /* GRADIENT RULE — replaces solid 1px rules between major content blocks */
+    .gradient-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent-pink) 30%, var(--accent-cyan) 70%, transparent 100%);
+      opacity: 0.6;
+      margin: var(--space-8) 0;
+      border: 0;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: var(--space-24);
+      padding-bottom: var(--space-12);
+      position: relative;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+      opacity: 0;
+      animation: fadeInUp 700ms var(--ease-out) 200ms forwards;
+    }
+    .hero-eyebrow .micro { color: var(--text); }
+    .hero-eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-pink);
+      animation: pulse 2.4s var(--ease-in-out) infinite;
+    }
+    .hero-headline {
+      max-width: 22ch;
+      margin: 0 0 var(--space-6);
+      opacity: 0;
+      animation: fadeInUp 900ms var(--ease-out) 350ms forwards;
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-weight: 350;
+      font-size: clamp(2rem, 5.2vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+    .hero-headline .quiet { color: var(--text-muted); }
+    .hero-product {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--accent-warm);
+    }
+    .hero-lead {
+      max-width: 60ch;
+      margin: 0 0 var(--space-8);
+      opacity: 0;
+      animation: fadeInUp 900ms var(--ease-out) 600ms forwards;
+      color: var(--text-muted);
+    }
+    .hero-meta {
+      display: flex;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeInUp 900ms var(--ease-out) 800ms forwards;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-meta-item .micro { color: var(--text-quiet); }
+    .hero-meta-item .value {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 96;
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+    .hero-scroll-cue {
+      position: absolute;
+      bottom: var(--space-6);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-1);
+      opacity: 0;
+      animation: fadeIn 1500ms var(--ease-out) 1500ms forwards;
+    }
+    .hero-scroll-cue .line {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(180deg, transparent, var(--rule-bright));
+      animation: scrollHint 2.5s var(--ease-in-out) infinite;
+    }
+
+    /* INVERSION */
+    .inversion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    @media (max-width: 860px) {
+      .inversion-grid { grid-template-columns: 1fr; }
+    }
+    .inversion-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: var(--space-5);
+      position: relative;
+      overflow: hidden;
+    }
+    .inversion-card-today { opacity: 0.86; }
+    .inversion-card-pitch {
+      border-color: var(--rule-strong);
+      background: linear-gradient(180deg, var(--bg-elevated), var(--bg-card));
+    }
+    .inversion-card-pitch::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+    }
+    .inversion-card .micro { color: var(--text-quiet); margin-bottom: var(--space-2); }
+    .inversion-card h3 { margin-bottom: var(--space-3); }
+    .inversion-card p { color: var(--text-muted); font-size: var(--type-small); margin-bottom: var(--space-3); }
+    .inversion-card p:last-child { margin-bottom: 0; }
+
+    .inversion-flow { margin-top: var(--space-3); }
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: var(--type-small);
+    }
+    .flow-row:last-child { border-bottom: 0; }
+    .flow-source { color: var(--text); flex: 0 0 auto; }
+    .flow-arrow {
+      flex: 1 1 auto;
+      height: 1px;
+      background: var(--rule-strong);
+      position: relative;
+    }
+    .flow-arrow::after {
+      content: "";
+      position: absolute;
+      right: -1px; top: 50%;
+      width: 0; height: 0;
+      border-left: 6px solid var(--rule-bright);
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      transform: translateY(-50%);
+    }
+    .flow-target { color: var(--text); flex: 0 0 auto; }
+    .inversion-card-pitch .flow-arrow { background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan)); }
+
+    /* SURFACES */
+    .surface-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+      max-width: 64ch;
+    }
+    .surface-counter {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.08em;
+      color: var(--text-quiet);
+      text-transform: uppercase;
+    }
+
+    /* PDP MOCKUP */
+    .mockup-frame {
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    }
+    .mockup-frame-header {
+      background: #ffffff;
+      color: #111;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .mockup-frame-traffic {
+      display: flex;
+      gap: 6px;
+    }
+    .mockup-frame-traffic span {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: #e0e0e0;
+    }
+    .mockup-frame-traffic span:first-child { background: #ff5f56; }
+    .mockup-frame-traffic span:nth-child(2) { background: #ffbd2e; }
+    .mockup-frame-traffic span:nth-child(3) { background: #27c93f; }
+    .mockup-frame-url {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #555;
+      background: #f3f3f3;
+      padding: 4px 10px;
+      border-radius: 4px;
+      flex: 1;
+    }
+    .mockup-frame-body {
+      background: #ffffff;
+      color: #1a1a1a;
+      min-height: 600px;
+    }
+    .mockup-frame-body .pdp-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid #eaeaea;
+    }
+    .mockup-frame-body .pdp-logo-slot {
+      width: 140px; height: 28px;
+      display: flex; align-items: center;
+      font-family: var(--font-body); font-weight: 800;
+      font-size: 16px; letter-spacing: -0.02em;
+      color: #00204a;
+    }
+    .mockup-frame-body .pdp-logo-slot[data-brand="flannels"]::before {
+      content: "[ Flannels logo ]";
+      font-family: var(--font-mono);
+      font-weight: 400;
+      font-size: 11px;
+      color: #999;
+      border: 1px dashed #ccc;
+      padding: 4px 8px;
+      border-radius: 3px;
+    }
+    .mockup-frame-body .pdp-nav-links {
+      display: flex; gap: 20px;
+      font-size: 13px; color: #444;
+    }
+    .pdp-content {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 32px;
+      padding: 32px 24px;
+    }
+    @media (max-width: 720px) {
+      .pdp-content { grid-template-columns: 1fr; gap: 24px; padding: 20px 16px; }
+    }
+    .pdp-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pdp-gallery-main {
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, #f5f5f7, #e8e8ec);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pdp-product-shape {
+      width: 70%; height: 60%;
+      position: relative;
+    }
+    .product-svg { width: 100%; height: 100%; opacity: 0.85; }
+    .pdp-gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .pdp-gallery-thumb {
+      aspect-ratio: 1 / 1;
+      background: #f0f0f3;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #888;
+    }
+    .pdp-gallery-thumb.is-active { border-color: #1a1a1a; }
+    .pdp-gallery-thumb.is-tiktok {
+      background: linear-gradient(135deg, #fe2c55, #25f4ee);
+      color: white;
+      font-weight: 600;
+    }
+    .pdp-gallery-thumb.is-tiktok::after {
+      content: "▶";
+      font-size: 9px;
+      margin-left: 2px;
+    }
+
+    .pdp-info { display: flex; flex-direction: column; gap: 16px; }
+    .pdp-breadcrumb { font-size: 12px; color: #777; }
+    .pdp-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 26px;
+      color: #1a1a1a;
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .pdp-rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555; }
+    .pdp-stars { color: #f5a623; letter-spacing: 1px; }
+    .pdp-price-row { display: flex; align-items: baseline; gap: 12px; }
+    .pdp-price { font-size: 28px; font-weight: 700; color: #00204a; }
+    .pdp-price-was { font-size: 14px; color: #999; text-decoration: line-through; }
+    .pdp-cta-row { display: flex; gap: 12px; margin-top: 8px; }
+    .pdp-cta {
+      flex: 1; padding: 14px 18px;
+      background: #00204a; color: white;
+      border-radius: 4px;
+      font-size: 14px; font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .pdp-cta-secondary { flex: 0 0 auto; background: white; color: #1a1a1a; border: 1px solid #ccc; padding: 14px 16px; }
+
+    .pdp-tiktok-module {
+      margin-top: 20px;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #fafafa, #ffffff);
+    }
+    .pdp-tiktok-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .pdp-tiktok-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+    }
+    .pdp-tiktok-logo-slot {
+      width: 22px; height: 22px;
+      background: linear-gradient(135deg, #fe2c55, #25f4ee);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .pdp-tiktok-logo-slot::after { content: "♪"; }
+    .pdp-tiktok-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #777;
+      background: #f3f3f3;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+    /* Single video, larger, centered */
+    .pdp-tiktok-video-wrap {
+      padding: 14px;
+      display: flex;
+      justify-content: center;
+    }
+    .pdp-tiktok-video {
+      aspect-ratio: 9 / 16;
+      max-width: 220px;
+      width: 100%;
+      background: #1a1a1a;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .pdp-tiktok-video::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(254, 44, 85, 0.4), transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(37, 244, 238, 0.3), transparent 50%),
+        #1a1a1a;
+    }
+    .pdp-tiktok-video-creator {
+      position: absolute;
+      bottom: 12px; left: 12px; right: 12px;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 2;
+    }
+    .pdp-tiktok-video-handle { font-family: var(--font-mono); font-size: 11px; opacity: 0.85; }
+    .pdp-tiktok-video::after {
+      content: "▶";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      padding-left: 3px;
+    }
+    .pdp-tiktok-video-controls {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 0 14px 12px;
+    }
+    .pdp-tiktok-video-controls span {
+      width: 28px;
+      height: 4px;
+      border-radius: 2px;
+      background: #d8d8d8;
+    }
+    .pdp-tiktok-video-controls span.active { background: #1a1a1a; }
+
+    /* PDP video click-to-play animation: scroll-triggered */
+    .pdp-tiktok-video.is-playing::after {
+      animation: playButtonPress 800ms var(--ease-out) forwards;
+    }
+    .pdp-tiktok-video::before {
+      transition: opacity 600ms var(--ease-out) 800ms;
+    }
+    .pdp-tiktok-video.is-playing::before {
+      opacity: 0.3;
+    }
+    .pdp-video-progress {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+      z-index: 3;
+      transition: width 8000ms linear;
+    }
+    .pdp-tiktok-video.is-playing .pdp-video-progress {
+      width: 100%;
+    }
+    .pdp-video-cursor {
+      position: absolute;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.95);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+      top: 70%; left: 80%;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .pdp-tiktok-video.is-playing .pdp-video-cursor {
+      animation: cursorMoveAndClick 1600ms var(--ease-out) forwards;
+    }
+    @keyframes cursorMoveAndClick {
+      0% { opacity: 0; top: 78%; left: 82%; transform: translate(-50%, -50%) scale(1); }
+      15% { opacity: 1; }
+      55% { opacity: 1; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1); }
+      70% { opacity: 1; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.7); }
+      85% { opacity: 1; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.2); }
+    }
+    @keyframes playButtonPress {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      55% { transform: translate(-50%, -50%) scale(0.85); opacity: 1; }
+      75% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.4; }
+      100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+    }
+    .pdp-tiktok-replace-note {
+      padding: 10px 14px;
+      border-top: 1px dashed #d9d9d9;
+      background: #fafafa;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #888;
+      letter-spacing: 0.04em;
+    }
+
+    /* PDP V2 — FLANNELS PDP REPLICA */
+    .pdp2-scroll-container {
+      background: #fff;
+      color: #111;
+      font-family: var(--font-body);
+      max-height: 820px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+    .pdp2-scroll-container::-webkit-scrollbar { width: 6px; }
+    .pdp2-scroll-container::-webkit-scrollbar-track { background: #fafafa; }
+    .pdp2-scroll-container::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 3px; }
+
+    .pdp2-banner {
+      position: sticky;
+      top: 0;
+      z-index: 6;
+    }
+    .pdp2-masthead {
+      position: sticky;
+      top: 36px;
+      z-index: 5;
+    }
+    .pdp2-secondary-nav-sticky {
+      position: sticky;
+      top: 100px;
+      z-index: 4;
+    }
+    .pdp2-breadcrumb-row {
+      padding: 12px 24px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .pdp2-breadcrumb {
+      font-size: 11px;
+      color: #777;
+      letter-spacing: 0.02em;
+    }
+    .pdp2-breadcrumb .back-link {
+      color: #000;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .pdp2-breadcrumb .back-link::before {
+      content: "‹ ";
+    }
+    .pdp2-breadcrumb .crumb {
+      color: #777;
+      text-transform: uppercase;
+      margin: 0 6px;
+    }
+    .pdp2-breadcrumb .current {
+      color: #000;
+      text-transform: uppercase;
+    }
+
+    /* Two-column layout: gallery left (scrolls), info right (sticky) */
+    .pdp2-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 0;
+      padding: 0;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .pdp2-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Gallery: 2-column inner grid of square items */
+    .pdp2-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      padding: 4px;
+      background: #fff;
+    }
+    .pdp2-gallery-item {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f3f3f3;
+      position: relative;
+      overflow: hidden;
+      display: block;
+    }
+    .pdp2-gallery-item.is-fullwidth {
+      grid-column: span 1;
+      aspect-ratio: 1 / 1;
+    }
+    .pdp2-gallery-item.is-tall {
+      grid-row: span 2;
+      aspect-ratio: 1 / 2;
+    }
+    .pdp2-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Flannels MP4 product video */
+    .pdp2-gallery-item.is-product-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* TikTok creator video gallery item */
+    .pdp2-gallery-item.is-tiktok {
+      background: #000;
+      position: relative;
+    }
+    .pdp2-tiktok-caption {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      background: #fff;
+      color: #000;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 5px 9px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pdp2-tiktok-caption::before {
+      content: "";
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fe2c55, #25f4ee);
+    }
+    .pdp2-tiktok-embed-wrap {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform-origin: top center;
+      transform: translateX(-50%) scale(var(--pdp-embed-scale, 1));
+      width: 325px;
+      height: auto;
+    }
+    .pdp2-tiktok-embed-wrap blockquote.tiktok-embed {
+      max-width: 325px !important;
+      min-width: 325px !important;
+      margin: 0 !important;
+      width: 325px !important;
+    }
+    .pdp2-tiktok-embed-wrap iframe {
+      max-width: 325px !important;
+      width: 325px !important;
+      border: 0;
+      display: block;
+    }
+
+    /* Info column — sticky on scroll */
+    .pdp2-info {
+      padding: 28px 32px 48px;
+      background: #fff;
+      position: sticky;
+      top: 140px;
+      align-self: start;
+      max-height: calc(820px - 140px);
+      overflow-y: auto;
+    }
+    .pdp2-info::-webkit-scrollbar { width: 4px; }
+    .pdp2-info::-webkit-scrollbar-thumb { background: #ddd; }
+    .pdp2-brand {
+      font-size: 18px;
+      font-weight: 800;
+      color: #000;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .pdp2-title {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+      margin: 0 0 18px;
+      letter-spacing: 0;
+    }
+    .pdp2-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 16px;
+    }
+    .pdp2-frasers-plus {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .pdp2-frasers-plus-logo {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #4a1a8a, #d4f500);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .pdp2-frasers-plus-logo::after { content: "+"; }
+    .pdp2-frasers-plus-text {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #4a1a8a;
+      font-weight: 700;
+    }
+    .pdp2-frasers-plus-text .read-more {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .pdp2-colour-block {
+      margin-bottom: 16px;
+    }
+    .pdp2-colour-label {
+      font-size: 11px;
+      color: #000;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .pdp2-colour-label strong { font-weight: 700; }
+    .pdp2-colour-row {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .pdp2-colour-swatch {
+      width: 44px; height: 32px;
+      border: 1px solid #d5d5d5;
+      cursor: pointer;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+    .pdp2-colour-swatch.is-active {
+      border: 1.5px solid #000;
+      box-shadow: inset 0 0 0 1px #fff;
+    }
+
+    .pdp2-stock-notice {
+      padding: 11px 14px;
+      background: #f5f5f5;
+      font-size: 11px;
+      font-weight: 700;
+      color: #c00;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    .pdp2-stock-notice .stock-detail {
+      color: #444;
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .pdp2-cta-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .pdp2-cta-primary {
+      flex: 1;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 16px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+    .pdp2-cta-icon {
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d5d5d5;
+      font-size: 16px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    /* Expandable sections */
+    .pdp2-accordion {
+      border-top: 1px solid #e5e5e5;
+    }
+    .pdp2-accordion-section {
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .pdp2-accordion-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      color: #000;
+      text-align: left;
+    }
+    .pdp2-accordion-icon {
+      font-size: 16px;
+      font-weight: 400;
+      color: #000;
+      width: 16px;
+      text-align: center;
+      transition: transform 240ms var(--ease);
+    }
+    .pdp2-accordion-section.is-open .pdp2-accordion-icon {
+      transform: rotate(45deg);
+    }
+    .pdp2-accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 320ms var(--ease);
+    }
+    .pdp2-accordion-section.is-open .pdp2-accordion-body {
+      max-height: 1200px;
+    }
+    .pdp2-accordion-body-inner {
+      padding: 0 0 18px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .pdp2-accordion-body-inner p {
+      margin: 0 0 10px;
+    }
+    .pdp2-accordion-body-inner p:last-child { margin-bottom: 0; }
+    .pdp2-product-code {
+      color: #888;
+      font-size: 11px;
+      margin-top: 10px;
+    }
+
+    /* REV-SHARE BLOCK with animated dynamic split */
+    .revshare-block {
+      margin-top: var(--space-8);
+      padding: var(--space-5);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+    }
+    .revshare-block-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: var(--space-3);
+    }
+    .revshare-block h3 {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0 0 var(--space-3);
+    }
+    .revshare-intro {
+      color: var(--text-muted);
+      font-size: var(--type-small);
+      line-height: 1.6;
+      max-width: 64ch;
+      margin: 0 0 var(--space-5);
+    }
+    .revshare-bar {
+      display: flex;
+      width: 100%;
+      height: 88px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      margin-bottom: var(--space-3);
+    }
+    .revshare-segment {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      gap: 4px;
+      transition: width 1800ms cubic-bezier(0.65, 0, 0.35, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .revshare-segment.is-tiktok {
+      background: #fe2c55;
+      width: 50%;
+    }
+    .revshare-segment.is-creator {
+      background: #25f4ee;
+      color: #00404e;
+      width: 20%;
+    }
+    .revshare-segment.is-merchant {
+      background: #1f1f2e;
+      width: 30%;
+    }
+    .revshare-segment-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+    .revshare-segment-pct {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 96;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .revshare-state-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+    @media (max-width: 720px) {
+      .revshare-state-row { grid-template-columns: 1fr; }
+    }
+    .revshare-state {
+      padding: var(--space-3);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: var(--bg-card);
+      transition: border-color 600ms var(--ease), background 600ms var(--ease);
+    }
+    .revshare-state.is-active {
+      border-color: var(--accent-cyan);
+      background: linear-gradient(180deg, var(--bg-card), rgba(37, 244, 238, 0.06));
+    }
+    .revshare-state-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      transition: color 600ms var(--ease);
+    }
+    .revshare-state.is-active .revshare-state-label { color: var(--accent-cyan); }
+    .revshare-state-detail {
+      font-size: var(--type-small);
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* CALLOUTS */
+    .surface-callouts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .surface-callouts.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 720px) {
+      .surface-callouts, .surface-callouts.cols-2 { grid-template-columns: 1fr; }
+    }
+    .callout {
+      padding: var(--space-3) 0;
+      border-top: 1px solid var(--rule-strong);
+    }
+    .callout .stat {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-size: clamp(1.85rem, 3.6vw, 2.7rem);
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: var(--space-1);
+      letter-spacing: -0.02em;
+    }
+    .callout .stat-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-2);
+    }
+    .callout p {
+      font-size: var(--type-small);
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* BRAND SAFETY SUB-BLOCK */
+    .safety-block {
+      margin-top: var(--space-8);
+      padding: var(--space-5);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+    }
+    .safety-block-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: var(--space-3);
+    }
+    .safety-block h3 {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2vw, 1.7rem);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin: 0 0 var(--space-3);
+    }
+    .safety-block p {
+      color: var(--text-muted);
+      font-size: var(--type-small);
+      line-height: 1.6;
+      max-width: 64ch;
+    }
+    .safety-block p:last-child { margin-bottom: 0; }
+    .safety-block strong { color: var(--text); font-weight: 600; }
+
+    /* SEARCH MOCKUP — FLANNELS STYLING */
+    .flannels-mockup {
+      background: white;
+      color: #111;
+      font-family: var(--font-body);
+    }
+    .flannels-banner {
+      background: #d4f500;
+      color: #000;
+      padding: 8px 16px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .flannels-banner .apr {
+      font-weight: 400;
+    }
+    .flannels-masthead {
+      background: #000;
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .flannels-wordmark {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .flannels-search-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-bottom: 1px solid #d4f500;
+      color: #fff;
+      font-size: 13px;
+    }
+    .flannels-search-bar .magnifier {
+      color: #d4f500;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .flannels-search-bar .query-text {
+      color: #fff;
+      flex: 1;
+    }
+    .flannels-masthead-icons {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      color: #fff;
+    }
+    .flannels-masthead-icons .icon {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .flannels-masthead-icons .gbp {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+    }
+    .flannels-masthead-icons .gbp::after {
+      content: "🇬🇧";
+      font-size: 12px;
+    }
+    .flannels-secondary-nav {
+      background: #000;
+      border-top: 1px solid #1a1a1a;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+    .flannels-secondary-nav .nav-item.is-outlet { color: #d4f500; }
+    .flannels-content {
+      background: #fff;
+      padding: 20px 20px 28px;
+    }
+    .flannels-breadcrumb {
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .flannels-breadcrumb .current {
+      color: #888;
+    }
+    .flannels-search-heading {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 20px;
+      color: #000;
+      letter-spacing: 0.04em;
+      margin: 0 0 6px;
+    }
+    .flannels-search-found {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 18px;
+    }
+    .flannels-search-found strong {
+      font-weight: 700;
+      color: #000;
+    }
+    .flannels-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 720px) {
+      .flannels-layout { grid-template-columns: 1fr; }
+    }
+    .flannels-filters {
+      border-right: 1px solid #e5e5e5;
+      padding-right: 16px;
+    }
+    @media (max-width: 720px) {
+      .flannels-filters { display: none; }
+    }
+    .flannels-filters-heading {
+      font-weight: 700;
+      font-size: 13px;
+      color: #000;
+      margin-bottom: 14px;
+    }
+    .flannels-filter-section {
+      border-top: 1px solid #e5e5e5;
+      padding: 12px 0;
+    }
+    .flannels-filter-section .label {
+      font-weight: 700;
+      font-size: 12px;
+      color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .flannels-filter-section .chev { font-size: 10px; color: #555; }
+    .flannels-filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .flannels-filter-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #444;
+    }
+    .flannels-filter-option .radio {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 1px solid #999;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .flannels-filter-option.is-checked .radio { border-color: #000; }
+    .flannels-filter-option.is-checked .radio::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      background: #000;
+      border-radius: 50%;
+    }
+    .flannels-results-count {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 14px;
+    }
+    .flannels-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 720px) {
+      .flannels-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .flannels-product {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .flannels-product-image {
+      aspect-ratio: 4 / 5;
+      background: #eeeeee;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flannels-product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .flannels-product-image .preorder-tag {
+      position: absolute;
+      top: 0; left: 0;
+      background: #000;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+    }
+    .flannels-product-brand {
+      font-weight: 800;
+      font-size: 11px;
+      color: #000;
+      letter-spacing: 0.04em;
+      margin-top: 6px;
+    }
+    .flannels-product-name {
+      font-size: 11px;
+      color: #444;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .flannels-product-price {
+      font-size: 12px;
+      font-weight: 700;
+      color: #c40000;
+      margin-top: 4px;
+    }
+    .flannels-product-price.is-full {
+      color: #000;
+    }
+    .flannels-product-price .was {
+      color: #888;
+      font-weight: 400;
+      text-decoration: line-through;
+      margin-left: 4px;
+      font-size: 11px;
+    }
+
+    /* Sponsored TikTok card: video fills the ENTIRE card area including the
+       text-area portion of regular product cards. Brand/product/price text
+       overlays on top of the video at the bottom with a dark gradient. */
+    .flannels-product.is-sponsored {
+      grid-row: span 1;
+      align-self: stretch;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .flannels-product.is-sponsored .flannels-product-image {
+      aspect-ratio: auto;
+      flex: 1 1 auto;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      display: block;
+      min-height: 100%;
+    }
+    .flannels-product.is-sponsored .tiktok-embed-wrap {
+      position: absolute;
+      inset: 0;
+      width: 325px;
+      height: auto;
+      transform-origin: top left;
+      transform: scale(var(--embed-scale, 0.7));
+    }
+    .flannels-product.is-sponsored .tiktok-embed-wrap blockquote.tiktok-embed {
+      max-width: 325px !important;
+      min-width: 325px !important;
+      margin: 0 !important;
+      width: 325px !important;
+    }
+    .flannels-product.is-sponsored .tiktok-embed-wrap iframe {
+      max-width: 325px !important;
+      width: 325px !important;
+      border: 0;
+      display: block;
+    }
+    .flannels-product.is-sponsored .sponsored-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      background: #000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 10;
+    }
+    .flannels-product.is-sponsored .sponsored-overlay::before {
+      content: "";
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fe2c55, #25f4ee);
+    }
+    /* Brand/product/price text overlay at the bottom of the video */
+    .flannels-product.is-sponsored .sponsored-text-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 32px 12px 12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,0.95) 100%);
+      z-index: 9;
+      pointer-events: none;
+    }
+    .flannels-product.is-sponsored .sponsored-text-overlay .flannels-product-brand {
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+    .flannels-product.is-sponsored .sponsored-text-overlay .flannels-product-name {
+      color: rgba(255,255,255,0.85);
+      font-size: 11px;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .flannels-product.is-sponsored .sponsored-text-overlay .flannels-product-price {
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* Annotation callouts pointing at the sponsored card */
+    .flannels-mockup-annotation {
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-left: 2px solid var(--accent-cyan);
+      border-radius: 4px;
+      font-size: var(--type-small);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      letter-spacing: 0.02em;
+    }
+    .flannels-mockup-annotation strong {
+      color: var(--accent-cyan);
+      font-family: var(--font-body);
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      margin-right: 8px;
+    }
+
+    /* IN-STORE — VENDOR INTRO BLOCK */
+    .vendor-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+    @media (max-width: 720px) {
+      .vendor-intro { grid-template-columns: 1fr; }
+    }
+    .vendor-card {
+      padding: var(--space-4);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+    }
+    .vendor-card .vendor-name {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-weight: 400;
+      font-size: 1.3rem;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: var(--space-1);
+    }
+    .vendor-card .vendor-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: var(--space-3);
+    }
+    .vendor-card p {
+      font-size: var(--type-small);
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* IN-STORE — STAKEHOLDER BENEFITS BLOCK */
+    .stakeholders {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+    @media (max-width: 860px) {
+      .stakeholders { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .stakeholders { grid-template-columns: 1fr; }
+    }
+    .stakeholder {
+      padding: var(--space-4) 0;
+      border-top: 1px solid var(--rule-strong);
+    }
+    .stakeholder .label {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: var(--space-2);
+    }
+    .stakeholder .heading {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-weight: 400;
+      font-size: 1.15rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: var(--space-2);
+    }
+    .stakeholder p {
+      font-size: var(--type-small);
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* IN-STORE — COMMERCIAL MODEL COMPARISON */
+    .commercial-models {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    @media (max-width: 720px) {
+      .commercial-models { grid-template-columns: 1fr; }
+    }
+    .model-card {
+      padding: var(--space-4);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+    }
+    .model-card .surface-name {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: var(--space-2);
+    }
+    .model-card .mechanic {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: var(--space-2);
+    }
+    .model-card .mechanic .accent {
+      color: var(--accent-warm);
+      font-style: italic;
+    }
+    .model-card p {
+      font-size: var(--type-small);
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* IN-STORE ANIMATION */
+    .instore-stage {
+      position: relative;
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(180deg, #1a1a26 0%, #0f0f17 100%);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    .instore-svg { width: 100%; height: 100%; }
+    .instore-controls {
+      display: flex;
+      gap: var(--space-2);
+      justify-content: center;
+      margin-top: var(--space-4);
+    }
+    .instore-replay {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 999px;
+      transition: color 200ms var(--ease), border-color 200ms var(--ease);
+    }
+    .instore-replay:hover { color: var(--text); border-color: var(--rule-bright); }
+
+    .actor-shopper { animation: shopperWalk 14s var(--ease-in-out) infinite; }
+    .actor-arm { animation: shopperPickup 14s var(--ease-in-out) infinite; transform-origin: 60px 95px; }
+    .actor-shoe { animation: shoePickup 14s var(--ease-in-out) infinite; }
+    .actor-camera-beam { animation: cameraDetect 14s linear infinite; }
+    .actor-screen { animation: screenContent 14s linear infinite; }
+    .actor-screen-content { animation: screenContent 14s linear infinite; opacity: 0; }
+    .actor-loyalty { animation: loyaltyMoment 14s linear infinite; opacity: 0; }
+    .actor-attribution-line { animation: attributionDraw 14s linear infinite; stroke-dasharray: 200; stroke-dashoffset: 200; }
+
+    @keyframes shopperWalk {
+      0% { transform: translateX(-180px); }
+      18% { transform: translateX(0); }
+      82% { transform: translateX(0); }
+      100% { transform: translateX(180px); }
+    }
+    @keyframes shopperPickup {
+      0%, 25% { transform: rotate(0deg); }
+      32%, 42% { transform: rotate(-55deg); }
+      50%, 75% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes shoePickup {
+      0%, 32% { transform: translate(0, 0); opacity: 1; }
+      40%, 75% { transform: translate(-12px, -45px); opacity: 1; }
+      78%, 100% { transform: translate(-12px, -45px); opacity: 1; }
+    }
+    @keyframes cameraDetect {
+      0%, 32% { opacity: 0; }
+      35%, 50% { opacity: 0.85; }
+      55%, 100% { opacity: 0.15; }
+    }
+    @keyframes screenContent {
+      0%, 45% { opacity: 0; }
+      50%, 78% { opacity: 1; }
+      82%, 100% { opacity: 0.3; }
+    }
+    @keyframes loyaltyMoment {
+      0%, 80% { opacity: 0; }
+      85%, 95% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    @keyframes attributionDraw {
+      0%, 80% { stroke-dashoffset: 200; }
+      85%, 100% { stroke-dashoffset: 0; }
+    }
+
+    /* RETAILERS */
+    .retailers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    @media (max-width: 860px) {
+      .retailers-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+    }
+    .retailer-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      position: relative;
+    }
+    .retailer-card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .retailer-card-name {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-weight: 400;
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0;
+    }
+    .retailer-card-tag {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+    }
+    .retailer-card p {
+      color: var(--text-muted);
+      font-size: var(--type-small);
+      line-height: 1.55;
+      margin: 0 0 var(--space-2);
+    }
+    .retailer-card p:last-of-type { margin-bottom: 0; }
+    .retailer-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3) var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--rule);
+      margin-top: auto;
+    }
+    .retailer-stat .figure {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-weight: 350;
+      font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      line-height: 1;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-1);
+    }
+    .retailer-stat .figure .unit {
+      font-size: 0.55em;
+      color: var(--text-muted);
+      margin-left: 1px;
+    }
+    .retailer-stat .label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .retailer-card-contacts {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      color: var(--text-quiet);
+      letter-spacing: 0.02em;
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--rule);
+    }
+    .retailer-card-contacts .label-line {
+      color: var(--text-quiet);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 10px;
+      margin-bottom: 4px;
+    }
+
+    /* INFRASTRUCTURE DIAGRAM */
+    .infra-diagram {
+      margin-top: var(--space-8);
+      padding: var(--space-6);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+    }
+    .infra-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+    .infra-row:last-of-type { margin-bottom: 0; }
+    @media (max-width: 720px) {
+      .infra-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    .infra-row-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+      margin-bottom: var(--space-2);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--rule);
+    }
+    .infra-row-label:first-of-type { padding-top: 0; border-top: 0; }
+    .infra-cell {
+      padding: var(--space-3) var(--space-2);
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .infra-cell.is-existing { opacity: 0.7; }
+    .infra-cell.is-new {
+      border-color: var(--accent-cyan);
+      background: linear-gradient(180deg, var(--bg-card), rgba(37, 244, 238, 0.06));
+    }
+    .infra-cell .name {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--type-small);
+      color: var(--text);
+      line-height: 1.25;
+    }
+    .infra-cell .status {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .infra-cell .detail {
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--text-muted);
+      margin-top: 4px;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+    }
+    .infra-cell.is-new .status { color: var(--accent-cyan); }
+    .infra-cell.is-new .detail { color: var(--text); }
+    .infra-legend {
+      display: flex;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--rule);
+      flex-wrap: wrap;
+    }
+    .infra-legend-item {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: var(--type-micro);
+      letter-spacing: 0.04em; color: var(--text-muted);
+    }
+    .infra-legend-swatch {
+      width: 14px; height: 14px; border-radius: 3px;
+      background: var(--bg-card); border: 1px solid var(--rule);
+    }
+    .infra-legend-swatch.is-new {
+      border-color: var(--accent-cyan);
+      background: linear-gradient(180deg, var(--bg-card), rgba(37, 244, 238, 0.1));
+    }
+
+    /* PILOT */
+    .pilot-summary {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: var(--space-6);
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pilot-summary:last-child { border-bottom: 0; }
+    @media (max-width: 720px) {
+      .pilot-summary { grid-template-columns: 1fr; gap: var(--space-2); }
+    }
+    .pilot-summary .micro { color: var(--text-muted); padding-top: 4px; }
+    .pilot-summary .body { color: var(--text); font-size: var(--type-body); }
+    .pilot-summary .body strong { font-weight: 600; }
+    .pilot-summary .body em { color: var(--accent-warm); font-style: italic; }
+
+    .pilot-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+    @media (max-width: 720px) {
+      .pilot-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .pilot-kpi {
+      padding: var(--space-3);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+    }
+    .pilot-kpi .name {
+      font-size: var(--type-small);
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+    .pilot-kpi .target {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent-warm);
+      margin-bottom: 2px;
+    }
+    .pilot-kpi .kill {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      color: var(--text-quiet);
+      letter-spacing: 0.04em;
+    }
+    .pilot-kpi .kill::before { content: "kill < "; opacity: 0.6; }
+
+    /* BEYOND */
+    .beyond-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-8);
+    }
+    @media (max-width: 860px) {
+      .beyond-grid { grid-template-columns: 1fr; }
+    }
+    .beyond-tier {
+      padding: var(--space-4);
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .beyond-tier-marker {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-quiet);
+    }
+    .beyond-tier-title {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144;
+      font-weight: 400;
+      font-size: 1.4rem;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      line-height: 1.15;
+    }
+    .beyond-tier p {
+      color: var(--text-muted);
+      font-size: var(--type-small);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .beyond-tier-3 {
+      border-color: var(--rule-strong);
+      background: linear-gradient(180deg, var(--bg-elevated), var(--bg-card));
+    }
+    .beyond-tier-3 .beyond-tier-marker { color: var(--accent-cyan); }
+
+    /* SHARE BLOCK */
+    .share-frame {
+      max-width: 720px;
+      padding: var(--space-8) 0;
+    }
+    .share-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+      padding: var(--space-3) var(--space-5);
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      color: #0a0a0f;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .share-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(254, 44, 85, 0.25), 0 6px 16px rgba(37, 244, 238, 0.15);
+    }
+    .share-cta-arrow {
+      transition: transform 200ms var(--ease);
+    }
+    .share-cta:hover .share-cta-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Copy-to-clipboard fallback for mailto */
+    .share-fallback {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: var(--space-3);
+      padding: 6px 14px;
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      color: var(--text-muted);
+      transition: border-color 200ms var(--ease), color 200ms var(--ease);
+    }
+    .share-fallback:hover {
+      border-color: var(--rule-bright);
+      color: var(--text);
+    }
+    .share-fallback-label {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .share-fallback-email {
+      color: var(--text);
+    }
+    .share-fallback-icon {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+    .share-fallback-toast {
+      display: inline-block;
+      margin-left: var(--space-3);
+      padding: 4px 10px;
+      background: var(--accent-cyan);
+      color: #00404e;
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 200ms var(--ease);
+      pointer-events: none;
+    }
+    .share-fallback-toast.is-visible {
+      opacity: 1;
+    }
+    .share-meta {
+      padding: var(--space-4);
+      border: 1px solid var(--rule-strong);
+      border-radius: 6px;
+      background: var(--bg-elevated);
+    }
+    .share-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+    }
+    .share-meta-row:last-child { border-bottom: 0; }
+    .share-meta-label {
+      color: var(--text-quiet);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: var(--type-micro);
+    }
+    .share-meta-value {
+      color: var(--text);
+    }
+
+    /* FOOTER */
+    footer.site-footer {
+      padding: var(--space-12) var(--gutter) var(--space-6);
+      border-top: 1px solid var(--rule);
+      margin-top: var(--space-12);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: var(--space-6);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    @media (max-width: 720px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    .footer-disclaimer {
+      font-size: var(--type-small);
+      color: var(--text-muted);
+      max-width: 60ch;
+    }
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: var(--type-micro);
+      color: var(--text-quiet);
+      letter-spacing: 0.04em;
+    }
+    .footer-meta-row { padding: 4px 0; }
+
+    /* MOTION & SCROLL REVEALS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+    }
+    .reveal-stagger.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+    .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+    .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+    .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+    .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+    .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.9); }
+    }
+    @keyframes scrollHint {
+      0% { transform: translateY(-12px); opacity: 0; }
+      40% { opacity: 1; }
+      100% { transform: translateY(12px); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    ::selection {
+      background: var(--accent-pink);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Primary">
+    <div class="site-nav-brand">
+      <span>Out of Phone: Commerce</span>
+    </div>
+    <div class="site-nav-right">
+      <div class="site-nav-meta">Confidential</div>
+      <a class="site-nav-author" href="https://www.linkedin.com/in/ohiggs/" target="_blank" rel="noopener noreferrer" aria-label="Olly Higgs on LinkedIn">
+        <div class="author-avatar">
+          <img src="assets/headshot.jpg" alt="Olly Higgs" />
+        </div>
+        <div class="author-meta">
+          <div class="author-name">Olly Higgs</div>
+          <div class="author-tagline">Driving Business Growth with Data and Marketing Expertise</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Sticky section eyebrow: updates as scroll progresses -->
+  <div class="sticky-eyebrow" id="sticky-eyebrow" aria-hidden="true">
+    <span class="sticky-eyebrow-dot" aria-hidden="true"></span>
+    <span class="sticky-eyebrow-label" id="sticky-eyebrow-label">Out of Phone: Commerce</span>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="micro">Out of Phone: Commerce — pitch document</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Every TikTok retail media partnership today flows retailer data into TikTok ad inventory. Out of Phone today amplifies TikTok content onto external screens. <span class="hero-product">Out of Phone: Commerce</span> bridges the gap.
+        </h1>
+
+        <p class="lead hero-lead">
+          TikTok creator content placed natively on a merchant's own website. Search, then product page. A new monetisation route for creator content beyond the platform, with attribution per creator and per stock-keeping unit (SKU), funded by brands and merchants who already invest in retail media.
+        </p>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="micro">Pilot retailers</span>
+            <span class="value">Frasers Group · Boots</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="micro">Mechanic</span>
+            <span class="value">Closed-loop · per creator, per SKU</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span class="micro" style="color: var(--text-quiet)">Scroll</span>
+        <span class="line"></span>
+      </div>
+    </section>
+
+
+    <!-- 01 — INVERSION -->
+    <section id="inversion" class="section-divider">
+      <div class="container">
+        <div class="section-eyebrow reveal">
+          <span class="micro">01 — Where Commerce sits in the family</span>
+        </div>
+
+        <h2 class="display reveal" style="max-width: 26ch;">
+          A new model, alongside two existing TikTok product families.
+        </h2>
+
+        <p class="lead reveal reading" style="margin-top: var(--space-4); color: var(--text-muted);">
+          TikTok already runs commerce on platform via TikTok Shop and GMV Max. The retail media partnerships, Walmart Connect, Instacart and others, bring first-party retailer data into Ads Manager for targeting and attribution.<a href="#fn-inversion-1" class="fn">¹</a> Out of Phone takes TikTok content the other direction onto billboards, cinemas and OOH screens. Out of Phone: Commerce extends that family by placing TikTok creator content on the merchant's store, with creators rewarded for driving online and offline conversions.
+        </p>
+
+        <div class="inversion-grid reveal-stagger">
+
+          <div class="inversion-card inversion-card-today">
+            <div class="micro">Today's retail media partnerships</div>
+            <h3>Retailer data → TikTok</h3>
+            <p>The existing partnerships flow first-party retailer signals into TikTok Ads Manager. Brands buy TikTok ad inventory, retailer data improves the targeting, and conversion is measured on the retailer through clean-room match-back.</p>
+            <div class="inversion-flow">
+              <div class="flow-row">
+                <span class="flow-source mono">Walmart</span>
+                <span class="flow-arrow"></span>
+                <span class="flow-target mono">TikTok ads</span>
+              </div>
+              <div class="flow-row">
+                <span class="flow-source mono">Instacart</span>
+                <span class="flow-arrow"></span>
+                <span class="flow-target mono">TikTok ads</span>
+              </div>
+              <div class="flow-row">
+                <span class="flow-source mono">Ulta · UB Media</span>
+                <span class="flow-arrow"></span>
+                <span class="flow-target mono">TikTok ads</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="inversion-card inversion-card-pitch">
+            <div class="micro" style="color: var(--accent-cyan);">Out of Phone: Commerce</div>
+            <h3>TikTok content → merchant store</h3>
+            <p>Creator content placed natively on a merchant's own website. Brand-funded ad inventory on search results pages. Merchant-curated creator content in product description page galleries. Creator share tied to per-SKU off-platform conversion. The architectural patterns are proven inside TikTok. This product extends them.</p>
+            <div class="inversion-flow">
+              <div class="flow-row">
+                <span class="flow-source mono">TikTok content</span>
+                <span class="flow-arrow"></span>
+                <span class="flow-target mono">Search</span>
+              </div>
+              <div class="flow-row">
+                <span class="flow-source mono">TikTok content</span>
+                <span class="flow-arrow"></span>
+                <span class="flow-target mono">Product page</span>
+              </div>
+              <div class="flow-row">
+                <span class="flow-source mono">TikTok content</span>
+                <span class="flow-arrow"></span>
+                <span class="flow-target mono">In-store retail media</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-inversion-1"><a href="https://newsroom.tiktok.com/en-us/instacart-and-tiktok-launch-the-first-end-to-end-retail-media-solution-natively-on-tiktok" target="_blank" rel="noopener noreferrer">TikTok &amp; Instacart launch retail media partnership, October 2025</a> · <a href="https://digiday.com/marketing/walmart-snap-tiktok-clean-rooms-deterministic-measurement/" target="_blank" rel="noopener noreferrer">Walmart Connect &amp; TikTok deterministic measurement partnership</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SURFACE 1 — PDP -->
+    <section id="surface-pdp" class="section-divider">
+      <div class="container">
+        <div class="surface-marker reveal">
+          <div class="surface-marker-eyebrow">
+            <span class="marker-num">Surface 01</span>
+            <span class="marker-divider"></span>
+            <span class="marker-title">The product description page</span>
+          </div>
+        </div>
+        <div class="surface-header reveal">
+          <span class="surface-counter">Surface 01 of 02</span>
+          <h2 class="display has-accent-stroke">The product description page (PDP).</h2>
+          <p class="lead" style="color: var(--text-muted);">
+            Indistinguishable from how shoppers already browse the merchant. The TikTok creator video sits as one of the product gallery images, marked with a small "as styled on TikTok" caption. The merchant curates which creator content runs against each SKU. Scroll the mockup to see it as a customer would.
+          </p>
+        </div>
+
+        <div class="mockup-frame reveal">
+          <div class="mockup-frame-header">
+            <div class="mockup-frame-traffic">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mockup-frame-url">https://www.flannels.com/bottega-veneta-andiamo-clutch-834727</div>
+          </div>
+
+          <!-- Scrollable PDP body -->
+          <div class="pdp2-scroll-container">
+
+            <!-- Yellow Flannels promotional banner -->
+            <div class="flannels-banner pdp2-banner">
+              20% Off Full Price* | Use Code: FF20<br/>
+              <span class="apr">T&amp;Cs Apply | Shop Now</span>
+            </div>
+
+            <!-- Black masthead -->
+            <div class="flannels-masthead pdp2-masthead">
+              <div class="flannels-wordmark">FLANNELS</div>
+              <div class="flannels-search-bar">
+                <span class="magnifier">⌕</span>
+                <span class="query-text" style="color: #888;">Shop by product or designer</span>
+              </div>
+              <div class="flannels-masthead-icons">
+                <span class="gbp">£ GBP</span>
+                <span class="icon">👤</span>
+                <span class="icon">♡</span>
+                <span class="icon">🛍</span>
+              </div>
+            </div>
+
+            <!-- Black secondary nav -->
+            <div class="flannels-secondary-nav pdp2-secondary-nav-sticky">
+              <span class="nav-item">New</span>
+              <span class="nav-item">Beauty</span>
+              <span class="nav-item">Men</span>
+              <span class="nav-item">Women</span>
+              <span class="nav-item">Junior</span>
+              <span class="nav-item">Home</span>
+              <span class="nav-item">Designers</span>
+              <span class="nav-item">Gifting</span>
+              <span class="nav-item is-outlet">Outlet</span>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="pdp2-breadcrumb-row">
+              <div class="pdp2-breadcrumb">
+                <span class="back-link">BACK</span>
+                <span class="crumb">&gt; HOME</span>
+                <span class="crumb">&gt; OCCASIONWEAR</span>
+                <span class="crumb">&gt; OCCASIONWEAR WOMENS</span>
+                <span class="crumb">&gt; <span class="current">BOTTEGA VENETA ANDIAMO CLUTCH</span></span>
+              </div>
+            </div>
+
+            <!-- Two-column layout: gallery (2-col grid) left, sticky info right -->
+            <div class="pdp2-layout">
+
+              <!-- Gallery: 2-column grid of square items, like real Flannels -->
+              <div class="pdp2-gallery">
+                <!-- Row 1 -->
+                <div class="pdp2-gallery-item">
+                  <img src="https://www.flannels.com/images/imgzoom/83/83472771_xxl_a1.jpg" alt="Bottega Veneta Andiamo Clutch — main view" loading="lazy" />
+                </div>
+                <div class="pdp2-gallery-item">
+                  <img src="https://www.flannels.com/images/imgzoom/83/83472771_xxl_a2.jpg" alt="Bottega Veneta Andiamo Clutch — side angle" loading="lazy" />
+                </div>
+
+                <!-- Row 2 -->
+                <!-- Flannels' own product video (MP4 from Amplience) -->
+                <div class="pdp2-gallery-item is-product-video">
+                  <video
+                    src="https://cdn.media.amplience.net/v/frasersdev/83472771/mp4_480p"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    aria-label="Bottega Veneta Andiamo Clutch — product video">
+                  </video>
+                </div>
+                <div class="pdp2-gallery-item">
+                  <img src="https://www.flannels.com/images/imgzoom/83/83472771_xxl_a4.jpg" alt="Bottega Veneta Andiamo Clutch — model styled" loading="lazy" />
+                </div>
+
+                <!-- Row 3 -->
+                <div class="pdp2-gallery-item">
+                  <img src="https://www.flannels.com/images/imgzoom/83/83472771_xxl_a5.jpg" alt="Bottega Veneta Andiamo Clutch — interior detail" loading="lazy" />
+                </div>
+                <!-- TIKTOK CREATOR VIDEO — spans 2 rows, tall to fit the player naturally -->
+                <div class="pdp2-gallery-item is-tiktok is-tall" id="pdp-tiktok-gallery-item">
+                  <div class="pdp2-tiktok-caption">As styled on TikTok</div>
+                  <div class="pdp2-tiktok-embed-wrap">
+                    <blockquote class="tiktok-embed"
+                      cite="https://www.tiktok.com/@anastasiagerrans/video/7533325759784439095"
+                      data-video-id="7533325759784439095">
+                      <section>
+                        <a target="_blank" title="@anastasiagerrans" href="https://www.tiktok.com/@anastasiagerrans?refer=embed">@anastasiagerrans</a>
+                      </section>
+                    </blockquote>
+                  </div>
+                </div>
+
+                <!-- Row 4: walking model shot bottom-left, TikTok continues right (because is-tall) -->
+                <div class="pdp2-gallery-item is-fullwidth">
+                  <img src="https://www.flannels.com/images/imgzoom/83/83472771_xxl_a6.jpg" alt="Bottega Veneta Andiamo Clutch — full styled" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Info column: sticky on scroll -->
+              <div class="pdp2-info">
+                <div class="pdp2-brand">BOTTEGA VENETA</div>
+                <h3 class="pdp2-title">Andiamo Clutch</h3>
+                <div class="pdp2-price">£2,480</div>
+
+                <!-- Frasers Plus instalment block -->
+                <div class="pdp2-frasers-plus">
+                  <div class="pdp2-frasers-plus-logo"></div>
+                  <div class="pdp2-frasers-plus-text">
+                    £0 today, then 3 instalments of £826.66, interest free when you choose a 3 month plan. <span class="read-more">Read More</span>
+                  </div>
+                </div>
+
+                <!-- Colour swatches matching the real PDP (7 colours, Sea Salt selected) -->
+                <div class="pdp2-colour-block">
+                  <div class="pdp2-colour-label"><strong>Colour</strong>&nbsp;&nbsp;Sea Salt</div>
+                  <div class="pdp2-colour-row">
+                    <div class="pdp2-colour-swatch" style="background: #2a1f1f;" title="Mocha"></div>
+                    <div class="pdp2-colour-swatch" style="background: #0a0a0a;" title="Black"></div>
+                    <div class="pdp2-colour-swatch is-active" style="background: #ddd2bb;" title="Sea Salt"></div>
+                    <div class="pdp2-colour-swatch" style="background: #6b0e0e;" title="Burgundy"></div>
+                    <div class="pdp2-colour-swatch" style="background: #1a3158;" title="Navy"></div>
+                    <div class="pdp2-colour-swatch" style="background: #d8c890;" title="Champagne"></div>
+                    <div class="pdp2-colour-swatch" style="background: #8b5a3c;" title="Caramel"></div>
+                  </div>
+                </div>
+
+                <!-- Stock notice -->
+                <div class="pdp2-stock-notice">
+                  RUNNING LOW <span class="stock-detail">- Less than 10 available</span>
+                </div>
+
+                <!-- CTA -->
+                <div class="pdp2-cta-row">
+                  <div class="pdp2-cta-primary">Add To Bag</div>
+                  <div class="pdp2-cta-icon">♡</div>
+                </div>
+
+                <!-- Accordion sections -->
+                <div class="pdp2-accordion">
+                  <div class="pdp2-accordion-section is-open">
+                    <button class="pdp2-accordion-header">
+                      <span>Product Description</span>
+                      <span class="pdp2-accordion-icon">−</span>
+                    </button>
+                    <div class="pdp2-accordion-body">
+                      <div class="pdp2-accordion-body-inner">
+                        <p>Bottega Veneta's Andiamo Clutch stands as a masterpiece of Italian artistry in premium accessories. This exclusive women's handbag showcases the house's signature Intrecciato weave in supple lambskin leather, perfect for evening events or adding refined style to daily looks.</p>
+                        <p><strong>Product Highlights:</strong></p>
+                        <p>- Meticulously made in Italy using the iconic Intrecciato weaving technique, demonstrating Bottega Veneta's renowned leather expertise</p>
+                        <p>- Distinctive brass-finish knot closure on the front, paired with a practical top handle for versatile carrying options</p>
+                        <p>- Interior features six card slots and an additional pocket, lined in luxurious calfskin leather for organisation</p>
+                        <p>- Includes a protective dustbag and requires cleaning with a soft, dry cloth to maintain its pristine condition</p>
+                        <p class="pdp2-product-code">Product code: 834727</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pdp2-accordion-section">
+                    <button class="pdp2-accordion-header">
+                      <span>Product Specifications</span>
+                      <span class="pdp2-accordion-icon">+</span>
+                    </button>
+                    <div class="pdp2-accordion-body">
+                      <div class="pdp2-accordion-body-inner">
+                        <p>Material: 100% lambskin leather. Lining: 100% calfskin leather. Hardware: brass-finish.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pdp2-accordion-section">
+                    <button class="pdp2-accordion-header">
+                      <span>Delivery</span>
+                      <span class="pdp2-accordion-icon">+</span>
+                    </button>
+                    <div class="pdp2-accordion-body">
+                      <div class="pdp2-accordion-body-inner">
+                        <p>Free Standard Delivery on orders over £100. Next Day Delivery available.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pdp2-accordion-section">
+                    <button class="pdp2-accordion-header">
+                      <span>Returns</span>
+                      <span class="pdp2-accordion-icon">+</span>
+                    </button>
+                    <div class="pdp2-accordion-body">
+                      <div class="pdp2-accordion-body-inner">
+                        <p>Free 28 Day Returns on most items. See full Returns Policy for details.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Annotation explaining the integration -->
+        <div class="flannels-mockup-annotation reveal">
+          <strong>Native to the gallery</strong>
+          Scroll the mockup. The TikTok video sits between Flannels' own interior shot and the full-width styling image, paired with the product video that already runs on the live page. The customer encounters creator content as part of the gallery, not as a separate placement. The merchant chooses which content to display per SKU from the Spark Ads authorisation pool, and the creator is paid on conversion.
+        </div>
+
+        <div class="surface-callouts reveal-stagger">
+          <div class="callout">
+            <div class="stat">132%<a href="#fn-pdp-1" class="fn">¹</a></div>
+            <div class="stat-label">Spark Ads completion lift</div>
+            <p>Higher completion than standard in-feed ads. The mechanic that makes creator content outperform brand creative — authentic, attention-holding, made by people the audience already trusts.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">SKU level</div>
+            <div class="stat-label">Closed-loop attribution</div>
+            <p>Pixel and Events API on the merchant domain, matched in a clean room. Per creator, per product. Deterministic where identity is bridged via loyalty or hashed contact, modelled where it isn't.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">Dwell + rank</div>
+            <div class="stat-label">Search visibility on the merchant page</div>
+            <p>Embedded TikTok content lifts on-page dwell time, a known signal for Google ranking. Separately, TikTok content has been surfacing in Google's video carousel since 2021.<a href="#fn-pdp-2" class="fn">²</a> The same PDP can rank twice.</p>
+          </div>
+        </div>
+
+        <hr class="gradient-rule reveal" />
+
+        <!-- REV-SHARE BLOCK with animated dynamic split -->
+        <div class="revshare-block reveal">
+          <div class="revshare-block-label">Revenue share · example split</div>
+          <h3>50% TikTok. 20% Creator. 30% Merchant.</h3>
+          <p class="revshare-intro">
+            On the PDP, every completed TikTok video view and converted SKU triggers a creator payment. The creator's revenue share inversely scales with sales volume: higher reward on lower-volume products to incentivise content creation, lower share on high-volume products where TikTok takes more.
+          </p>
+
+          <div class="revshare-bar" id="revshare-bar" aria-label="Animated revenue share split">
+            <div class="revshare-segment is-tiktok">
+              <div class="revshare-segment-label">TikTok</div>
+              <div class="revshare-segment-pct" data-counter-target="50">50%</div>
+            </div>
+            <div class="revshare-segment is-creator">
+              <div class="revshare-segment-label">Creator</div>
+              <div class="revshare-segment-pct" data-counter-target="20">20%</div>
+            </div>
+            <div class="revshare-segment is-merchant">
+              <div class="revshare-segment-label">Merchant</div>
+              <div class="revshare-segment-pct">30%</div>
+            </div>
+          </div>
+
+          <div class="revshare-state-row">
+            <div class="revshare-state is-active" data-state="high-volume">
+              <div class="revshare-state-label">High-volume product</div>
+              <div class="revshare-state-detail">TikTok takes more. Creator share lower.</div>
+            </div>
+            <div class="revshare-state" data-state="low-volume">
+              <div class="revshare-state-label">Low-volume product</div>
+              <div class="revshare-state-detail">Creator earns more. Incentive to create.</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="gradient-rule reveal" />
+
+        <div class="safety-block reveal">
+          <div class="safety-block-label">Brand safety &amp; approval</div>
+          <h3>Two layers of approval, on infrastructure that already exists.</h3>
+          <p>
+            Every piece of TikTok creator content placed on a merchant's surface has been pre-cleared by the creator and the brand through the existing Spark Ads authorisation flow. That flow is already live, already used by brands daily, and already understood by creators. Out of Phone: Commerce uses the same authorisation pool. Nothing in the underlying brand-safety mechanism is invented for this product.
+          </p>
+          <p>
+            On top of Spark Ads, two surface-specific approval routes apply:
+          </p>
+          <p>
+            <strong>On the search results page</strong>, the unit is a brand-funded ad placement, so the <strong>brand approves</strong> which creator content runs against which query and SKU. Approval can be by individual asset (human-reviewed) or by automated rules where the brand has set those up (e.g. pre-authorised creator lists, content quality thresholds).
+          </p>
+          <p>
+            <strong>On the product description page</strong>, the unit is real estate the merchant owns, so the <strong>merchant approves</strong> which Spark-authorised creator content appears in their product gallery. Same approval mechanic, different approver, because a different party owns the surface.
+          </p>
+          <p style="font-size: var(--type-micro); color: var(--text-quiet); margin-top: var(--space-3);">
+            Either party can revoke at any time. Creators retain takedown rights on their own content, as today.
+          </p>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-pdp-1"><a href="https://www.tiktok.com/business/en/blog/spark-ads-supercharging-tiktok-marketing" target="_blank" rel="noopener noreferrer">TikTok for Business — Spark Ads performance benchmarks</a></li>
+            <li id="fn-pdp-2"><a href="https://blog.google/products/search/tiktok-instagram-search-results/" target="_blank" rel="noopener noreferrer">Google — short videos in Search results, including TikTok content (since 2021)</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SURFACE 2 — SEARCH -->
+    <section id="surface-search" class="section-divider">
+      <div class="container">
+        <div class="surface-marker reveal">
+          <div class="surface-marker-eyebrow">
+            <span class="marker-num">Surface 02</span>
+            <span class="marker-divider"></span>
+            <span class="marker-title">The product search page</span>
+          </div>
+        </div>
+        <div class="surface-header reveal">
+          <span class="surface-counter">Surface 02 of 02</span>
+          <h2 class="display has-accent-stroke">In-merchant search.</h2>
+          <p class="lead" style="color: var(--text-muted);">
+            New ad inventory on the merchant's search results page. A sponsored creator content card slotted into the SERP, brand-funded, ranked by an auction the brand bids into. 64% of Gen Z search-first on TikTok in beauty, fashion, food and fitness.<a href="#fn-search-1" class="fn">¹</a> The same shopper, on the merchant's site, gets matched creator content where intent is highest. Commercially, this mirrors Criteo's Sponsored Products, with TikTok creator content as the creative unit.
+          </p>
+        </div>
+
+        <div class="mockup-frame reveal">
+          <div class="mockup-frame-header">
+            <div class="mockup-frame-traffic"><span></span><span></span><span></span></div>
+            <div class="mockup-frame-url">https://www.flannels.com/searchresults?descriptionfilter=Cocktail%20dress</div>
+          </div>
+          <div class="flannels-mockup">
+
+            <!-- Yellow Frasers Plus banner -->
+            <div class="flannels-banner">
+              Frasers Plus: Buy Now, Pay in 3 For Interest Free<br/>
+              <span class="apr">Representative APR 29.9% (Variable)</span>
+            </div>
+
+            <!-- Black masthead with FLANNELS wordmark, search bar, currency + icons -->
+            <div class="flannels-masthead">
+              <div class="flannels-wordmark">FLANNELS</div>
+              <div class="flannels-search-bar">
+                <span class="magnifier">⌕</span>
+                <span class="query-text">Cocktail dress</span>
+              </div>
+              <div class="flannels-masthead-icons">
+                <span class="gbp">£ GBP</span>
+                <span class="icon">👤</span>
+                <span class="icon">♡</span>
+                <span class="icon">🛍</span>
+              </div>
+            </div>
+
+            <!-- Black secondary nav -->
+            <div class="flannels-secondary-nav">
+              <span class="nav-item">New</span>
+              <span class="nav-item">Beauty</span>
+              <span class="nav-item">Men</span>
+              <span class="nav-item">Women</span>
+              <span class="nav-item">Junior</span>
+              <span class="nav-item">Home</span>
+              <span class="nav-item">Designers</span>
+              <span class="nav-item">Gifting</span>
+              <span class="nav-item is-outlet">Outlet</span>
+            </div>
+
+            <!-- Content -->
+            <div class="flannels-content">
+              <div class="flannels-breadcrumb">
+                HOME &gt; <span class="current">BROWSE</span>
+              </div>
+              <h3 class="flannels-search-heading">SEARCH RESULTS</h3>
+              <p class="flannels-search-found">We found 106 products for <strong>Cocktail dress</strong></p>
+
+              <div class="flannels-layout">
+
+                <!-- Filter sidebar -->
+                <div class="flannels-filters">
+                  <div class="flannels-filters-heading">Filter &amp; Sort</div>
+                  <div class="flannels-filter-section">
+                    <div class="label">Sort By <span class="chev">▾</span></div>
+                    <div class="flannels-filter-options">
+                      <div class="flannels-filter-option is-checked"><span class="radio"></span><span>Most Popular</span></div>
+                      <div class="flannels-filter-option"><span class="radio"></span><span>New In</span></div>
+                      <div class="flannels-filter-option"><span class="radio"></span><span>Discount £ (High To Low)</span></div>
+                      <div class="flannels-filter-option"><span class="radio"></span><span>Price (Low To High)</span></div>
+                      <div class="flannels-filter-option"><span class="radio"></span><span>Brand (A To Z)</span></div>
+                    </div>
+                  </div>
+                  <div class="flannels-filter-section">
+                    <div class="label">Gender <span class="chev">▾</span></div>
+                  </div>
+                </div>
+
+                <!-- Product grid -->
+                <div>
+                  <div class="flannels-results-count">106 products</div>
+                  <div class="flannels-grid">
+
+                    <!-- Position 1: Loveshackfancy red ball gown -->
+                    <div class="flannels-product">
+                      <div class="flannels-product-image">
+                        <img src="https://www.flannels.com/images/products/65389608_h_a1.jpg" alt="Loveshackfancy Women's Ellietta Ball Gown" loading="lazy" />
+                      </div>
+                      <div class="flannels-product-brand">LOVESHACKFANCY</div>
+                      <div class="flannels-product-name">Women's Ellietta Ball Gown</div>
+                      <div class="flannels-product-price">£629 <span class="was">£895</span></div>
+                    </div>
+
+                    <!-- Position 2: SPONSORED TIKTOK CARD (@wearecruella, official TikTok blockquote embed) -->
+                    <div class="flannels-product is-sponsored" id="sponsored-tiktok-card">
+                      <div class="flannels-product-image">
+                        <div class="sponsored-overlay">Sponsored · TikTok</div>
+                        <div class="tiktok-embed-wrap">
+                          <blockquote class="tiktok-embed"
+                            cite="https://www.tiktok.com/@wearecruella/video/7426884095038246149"
+                            data-video-id="7426884095038246149">
+                            <section>
+                              <a target="_blank" title="@wearecruella" href="https://www.tiktok.com/@wearecruella?refer=embed">@wearecruella</a>
+                            </section>
+                          </blockquote>
+                        </div>
+                      </div>
+                      <div class="sponsored-text-overlay">
+                        <div class="flannels-product-brand">CRUELLA</div>
+                        <div class="flannels-product-name">Fresia Cocktail Dress</div>
+                        <div class="flannels-product-price">As styled on TikTok</div>
+                      </div>
+                    </div>
+
+                    <!-- Position 3: DKNY orange swing dress -->
+                    <div class="flannels-product">
+                      <div class="flannels-product-image">
+                        <span class="preorder-tag">PREORDER</span>
+                        <img src="https://www.flannels.com/images/products/65109412_h_a1.jpg" alt="DKNY Women's Swing Dress" loading="lazy" />
+                      </div>
+                      <div class="flannels-product-brand">DKNY</div>
+                      <div class="flannels-product-name">Women's Swing Dress</div>
+                      <div class="flannels-product-price">£132 <span class="was">£189</span></div>
+                    </div>
+
+                    <!-- Position 4: Versace bronze slinky dress -->
+                    <div class="flannels-product">
+                      <div class="flannels-product-image">
+                        <img src="https://www.flannels.com/images/products/65560105_h_a1.jpg" alt="Versace Women's Liquid Cocktail Slinky Dress" loading="lazy" />
+                      </div>
+                      <div class="flannels-product-brand">VERSACE</div>
+                      <div class="flannels-product-name">Women's Liquid Cocktail Slinky Dress</div>
+                      <div class="flannels-product-price is-full">£2,960</div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Annotation: why position 2 -->
+        <div class="flannels-mockup-annotation reveal">
+          <strong>Why position two</strong>
+          The sponsored creator card sits in the second slot rather than the first. Eye-tracking research consistently shows attention reset to the centre of the screen after initial scan, so position 2 collects higher dwell on retailer search grids than the lead position. Native rather than dominant.
+        </div>
+
+        <div class="surface-callouts reveal-stagger">
+          <div class="callout">
+            <div class="stat">CPC + CPA</div>
+            <div class="stat-label">New brand-funded inventory</div>
+            <p>The Criteo model, with creator content as the creative. First-price auction at SKU or category. Brands bid; closed loop measures. The card is a new sponsored unit, not a re-skin of organic results.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">9:16 native</div>
+            <div class="stat-label">Vertical creative</div>
+            <p>The format that already works on TikTok works on the merchant's search results page. No reformatting; no extra production cost for the brand.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">Brand-approved</div>
+            <div class="stat-label">Spark-authorised pool</div>
+            <p>Eligible content is gated to creator UGC the brand has authorised through Spark Ads. The brand owns the approval here because the brand owns the spend.</p>
+          </div>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-search-1"><a href="https://blog.adobe.com/en/publish/2024/04/02/social-media-search-rises-as-genz-millennial-search-tool" target="_blank" rel="noopener noreferrer">Adobe — Gen Z search behaviour on social platforms</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 02 — RETAILERS -->
+    <section id="retailers" class="section-divider">
+      <div class="container">
+        <div class="section-eyebrow reveal">
+          <span class="micro">02 — Frasers Group and Boots</span>
+        </div>
+
+        <h2 class="display reveal" style="max-width: 26ch;">
+          Frasers Group and Boots.
+        </h2>
+
+        <p class="lead reveal reading" style="margin-top: var(--space-4); color: var(--text-muted);">
+          Outside the grocery sector, two UK retail media networks have the infrastructure to run this. Frasers Group's Elevate launched in May 2025.<a href="#fn-ret-1" class="fn">¹</a> Boots Media Group has been running since 2021.<a href="#fn-ret-2" class="fn">²</a> Each is profiled below.
+        </p>
+
+        <div class="retailers-grid reveal-stagger">
+
+          <div class="retailer-card">
+            <div class="retailer-card-header">
+              <h3 class="retailer-card-name">Frasers Group · Elevate</h3>
+              <span class="retailer-card-tag">Phase 1 · Pilot lead</span>
+            </div>
+            <p>
+              Elevate launched in May 2025 as a multi-banner retail media network across Sports Direct, Flannels and Frasers, plus Everlast Gyms and Frasers-owned shopping centres. Powered by Zitcha as the platform layer, with Sports Direct loyalty live since February 2025.<a href="#fn-ret-3" class="fn">³</a>
+            </p>
+            <p>
+              CCO David Clark has publicly described Elevate as targeting the broadest, deepest and most insightful network outside grocery and pure play. What every retail media network is competing on right now is creative that holds attention. Culturally relevant, fresh, made by real people. TikTok creator content is exactly that.
+            </p>
+            <p>
+              The integration target is Zitcha. The data is first-party. The screens are deployed. The newer of the two networks, and the one most actively buying content supply now.
+            </p>
+            <div class="retailer-stats">
+              <div class="retailer-stat">
+                <div class="figure">31<span class="unit">M</span></div>
+                <div class="label">Customer records</div>
+              </div>
+              <div class="retailer-stat">
+                <div class="figure">750<span class="unit">+</span></div>
+                <div class="label">UK stores, multi-banner</div>
+              </div>
+              <div class="retailer-stat">
+                <div class="figure">May 2025</div>
+                <div class="label">Network launch</div>
+              </div>
+              <div class="retailer-stat">
+                <div class="figure">Zitcha</div>
+                <div class="label">Platform partner</div>
+              </div>
+            </div>
+            <div class="retailer-card-contacts">
+              <div class="label-line">Named exec sponsor</div>
+              David Clark · CCO, Frasers Group
+            </div>
+          </div>
+
+          <div class="retailer-card">
+            <div class="retailer-card-header">
+              <h3 class="retailer-card-name">Boots · Boots Media Group</h3>
+              <span class="retailer-card-tag">Phase 1 · Parallel</span>
+            </div>
+            <p>
+              Boots Media Group, founded 2021 with SMG, runs closed-loop attribution across online and offline through a Criteo and LiveRamp partnership.<a href="#fn-ret-4" class="fn">⁴</a> Advantage Card data combines with offline transaction data in a clean-room environment, giving brands omni-ROAS reporting on retail media spend. Initial integration analysis showed a 22% ROAS uplift when integrating online and offline sales versus online only, on the top 50 brands investing in Boots over a five-week period.<a href="#fn-ret-4" class="fn">⁴</a> 600+ in-store digital screens are deployed across 450 stores, with a roadmap to 88% UK population reach via digital signage.<a href="#fn-ret-5" class="fn">⁵</a>
+            </p>
+            <p>
+              Boots Media Group already runs TikTok creator activations within brand campaigns.<a href="#fn-ret-6" class="fn">⁶</a> Out of Phone: Commerce sits in line with that direction, adding closed-loop creator attribution and a structured supply route for TikTok content into Boots' existing retail media surfaces.
+            </p>
+            <p>
+              Boots, the more established of the two networks, is already operating at scale.
+            </p>
+            <div class="retailer-stats">
+              <div class="retailer-stat">
+                <div class="figure">17<span class="unit">M</span></div>
+                <div class="label">Advantage Card members</div>
+              </div>
+              <div class="retailer-stat">
+                <div class="figure">600<span class="unit">+</span></div>
+                <div class="label">In-store screens, 450 stores</div>
+              </div>
+              <div class="retailer-stat">
+                <div class="figure">2021</div>
+                <div class="label">Network launch</div>
+              </div>
+              <div class="retailer-stat">
+                <div class="figure">SMG</div>
+                <div class="label">Platform partner</div>
+              </div>
+            </div>
+            <div class="retailer-card-contacts">
+              <div class="label-line">Named exec sponsors</div>
+              Ollie Shayer · Omni-Media Director, Boots UK<br/>
+              Rosie Houston · MD, Boots Media Group
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-ret-1"><a href="https://www.retail-week.com/marketing/frasers-group-launches-retail-media-network-elevate/7050287.article" target="_blank" rel="noopener noreferrer">Frasers Group launches Elevate retail media network, May 2025</a></li>
+            <li id="fn-ret-2"><a href="https://www.marketingweek.com/boots-media-agency/" target="_blank" rel="noopener noreferrer">Boots Media Group launch, September 2021</a></li>
+            <li id="fn-ret-3"><a href="https://www.zitcha.com/news/zitcha-and-frasers-group-launch-elevate" target="_blank" rel="noopener noreferrer">Zitcha and Frasers Group launch Elevate</a></li>
+            <li id="fn-ret-4"><a href="https://internetretailing.net/boots-boosts-retail-media-offering-with-closed-loop-attribution-in-data-partnership-with-criteo-and-liveramp/" target="_blank" rel="noopener noreferrer">Boots, Criteo and LiveRamp closed-loop attribution partnership, November 2024</a></li>
+            <li id="fn-ret-5"><a href="https://p2pi.com/seen-heard-retail-media-summit-2024" target="_blank" rel="noopener noreferrer">Boots in-store digital signage rollout, Retail Media Summit 2024</a></li>
+            <li id="fn-ret-6"><a href="https://uk.linkedin.com/company/boots-media-group" target="_blank" rel="noopener noreferrer">Boots Media Group LinkedIn — TikTok influencer activations</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 03 — INFRASTRUCTURE -->
+    <section id="infrastructure" class="section-divider">
+      <div class="container">
+        <div class="section-eyebrow reveal">
+          <span class="micro">03 — The infrastructure</span>
+        </div>
+
+        <h2 class="display reveal" style="max-width: 26ch;">
+          The architectural patterns are proven inside TikTok. This product extends them.
+        </h2>
+
+        <p class="lead reveal reading" style="color: var(--text-muted); margin-top: var(--space-3);">
+          Out of Phone for off-platform reach. GMV Max for closed-loop optimisation across organic, paid and affiliate. The Pixel and Events API stack for cross-domain conversion measurement. Spark Ads for creator authorisation. On the retailer side, the data platforms, clean rooms and loyalty identity bridges are also operating. The new work is the bridge between them, plus the per-creator attribution and surface-specific approval layers on top.
+        </p>
+
+        <div class="infra-diagram reveal">
+
+          <div class="infra-row-label">Existing — TikTok side</div>
+          <div class="infra-row">
+            <div class="infra-cell is-existing">
+              <div class="name">Out of Phone</div>
+              <div class="status">Live · 2023+</div>
+              <div class="detail">Extends TikTok content onto external screens. The product family this module joins.</div>
+            </div>
+            <div class="infra-cell is-existing">
+              <div class="name">GMV Max</div>
+              <div class="status">Live · TikTok Shop</div>
+              <div class="detail">Optimises across organic, paid and affiliate signals to a single ROI target.</div>
+            </div>
+            <div class="infra-cell is-existing">
+              <div class="name">Pixel + Events API</div>
+              <div class="status">Live · cross-domain</div>
+              <div class="detail">Measures conversions on third-party domains. The mechanism for closing the loop.</div>
+            </div>
+            <div class="infra-cell is-existing">
+              <div class="name">Spark Ads + auth</div>
+              <div class="status">Live · creator pool</div>
+              <div class="detail">Brand-and-creator authorisation flow. The pre-cleared content pool.</div>
+            </div>
+            <div class="infra-cell is-existing">
+              <div class="name">Clean rooms</div>
+              <div class="status">Live · AWS / Habu</div>
+              <div class="detail">Privacy-safe data matching with retailers. AWS and LiveRamp's Habu.</div>
+            </div>
+          </div>
+
+          <div class="infra-row-label">Existing — retailer side</div>
+          <div class="infra-row">
+            <div class="infra-cell is-existing">
+              <div class="name">Frasers Elevate · Zitcha</div>
+              <div class="status">Live · May 2025</div>
+              <div class="detail">Frasers' retail media network. The integration target for the pilot.</div>
+            </div>
+            <div class="infra-cell is-existing">
+              <div class="name">Boots Media Group · SMG</div>
+              <div class="status">Live · 2021</div>
+              <div class="detail">Boots' retail media network. The activation layer for parallel deployment.</div>
+            </div>
+            <div class="infra-cell is-existing">
+              <div class="name">Criteo + LiveRamp loop</div>
+              <div class="status">Live at Boots</div>
+              <div class="detail">Online-to-offline closed-loop attribution running today at Boots.</div>
+            </div>
+            <div class="infra-cell is-existing">
+              <div class="name">Loyalty identity bridge</div>
+              <div class="status">Live · both retailers</div>
+              <div class="detail">Sports Direct loyalty, Advantage Card. Identity match at the till.</div>
+            </div>
+          </div>
+
+          <div class="infra-row-label">Integration work — Out of Phone: Commerce</div>
+          <div class="infra-row">
+            <div class="infra-cell is-new">
+              <div class="name">Merchant SDK</div>
+              <div class="status">Integration work</div>
+              <div class="detail">Drop-in JavaScript on the merchant site. PDP gallery and search slots.</div>
+            </div>
+            <div class="infra-cell is-new">
+              <div class="name">Search ad-unit auction</div>
+              <div class="status">Integration work</div>
+              <div class="detail">First-price auction for sponsored creator content cards. Brand-funded.</div>
+            </div>
+            <div class="infra-cell is-new">
+              <div class="name">Per-creator bounty engine</div>
+              <div class="status">Integration work</div>
+              <div class="detail">Calculates the creator's share per completed video view and converted SKU.</div>
+            </div>
+            <div class="infra-cell is-new">
+              <div class="name">Surface approval layer</div>
+              <div class="status">Integration work</div>
+              <div class="detail">Brand approves on search; merchant approves on PDP. Spark-authorised content only.</div>
+            </div>
+          </div>
+
+          <div class="infra-legend">
+            <div class="infra-legend-item">
+              <div class="infra-legend-swatch"></div>
+              <span>Already running</span>
+            </div>
+            <div class="infra-legend-item">
+              <div class="infra-legend-swatch is-new"></div>
+              <span>Integration work for Commerce</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 04 — SCALE / BEYOND PILOT RETAILERS -->
+    <section id="scale" class="section-divider">
+      <div class="container">
+        <div class="section-eyebrow reveal">
+          <span class="micro">04 — Beyond the pilot retailers</span>
+        </div>
+
+        <h2 class="display reveal" style="max-width: 28ch;">
+          What works for Frasers and Boots can work for everyone.
+        </h2>
+
+        <p class="lead reveal reading" style="color: var(--text-muted); margin-top: var(--space-3);">
+          The product is architected so the heavy lifting stays on TikTok's side. Content matching, creator authorisation, brand safety, attribution, optimisation. The merchant integration is light: a content delivery layer plus event firing on existing commerce events, deployed via a plugin for SMBs or a lightweight SDK for larger retailers. Which means the same mechanic that runs at Frasers and Boots can run for mid-market retailers, and eventually for any independent business that sells online.
+        </p>
+
+        <div class="beyond-grid reveal-stagger">
+
+          <div class="beyond-tier">
+            <div class="beyond-tier-marker">Tier 1</div>
+            <div class="beyond-tier-title">The pilot retailers</div>
+            <p>Frasers Group and Boots, anchor partnerships across an established network. Bespoke integrations and mutually beneficial commercial terms prove the concept for expansion.</p>
+          </div>
+
+          <div class="beyond-tier">
+            <div class="beyond-tier-marker">Tier 2</div>
+            <div class="beyond-tier-title">Mid-market retailers</div>
+            <p>£100m to £1bn revenue specialists. Lookfantastic, Cult Beauty, End Clothing, AllSaints. Hundreds in the UK. Most don't operate retail media networks today. With a lightweight self-serve onramp, they can.</p>
+          </div>
+
+          <div class="beyond-tier beyond-tier-3">
+            <div class="beyond-tier-marker">Tier 3</div>
+            <div class="beyond-tier-title">SMBs and independents</div>
+            <p>Shopify merchants, indie DTC brands, high-street independents, specialist retailers. Tens of thousands of them in the UK alone. Plugins for Shopify and other e-commerce platforms make deployment a one-click install. Retail media, democratised. Accessible to businesses of any size.</p>
+          </div>
+
+        </div>
+
+        <p class="reveal" style="margin-top: var(--space-6); max-width: 60ch; color: var(--text-muted); font-size: var(--type-small);">
+          The strategic shape. TikTok is one of the few platforms with operational SMB-fluency at scale through Smart+, TikTok Shop SMB sellers, and the long tail of the creator economy. The DNA exists. Out of Phone: Commerce fits the existing operating model.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- 05 — IN-STORE RETAIL MEDIA (Phase 2) -->
+    <section id="surface-instore" class="section-divider">
+      <div class="container">
+        <div class="surface-marker reveal">
+          <div class="surface-marker-eyebrow">
+            <span class="marker-num">Surface 03</span>
+            <span class="marker-divider"></span>
+            <span class="marker-title">In-store retail media</span>
+          </div>
+        </div>
+        <div class="section-eyebrow reveal">
+          <span class="micro">05 — In-store retail media</span>
+        </div>
+
+        <h2 class="display reveal has-accent-stroke" style="max-width: 28ch;">
+          The same logic, in store.
+        </h2>
+
+        <p class="lead reveal reading" style="color: var(--text-muted); margin-top: var(--space-3);">
+          In-store retail media is the fastest-scaling part of the category. WARC forecasts global retail media spend at $196.7bn in 2026,<a href="#fn-instore-1" class="fn">¹</a> with European spend growing at double the rate of the broader digital advertising market.<a href="#fn-instore-1" class="fn">¹</a> European retail media specifically reached €13.7bn in 2024 (21.1% YoY) and is forecast to hit €20.8bn in 2026 and €28.8bn by 2028.<a href="#fn-instore-2" class="fn">²</a> The screens are being deployed; the budgets are flowing; what's missing is creative supply that holds attention better than what's playing today.
+        </p>
+
+        <p class="lead reveal reading" style="color: var(--text-muted);">
+          The proposition for in-store is the same as it is for the web. TikTok creator content, brand-approved, matched to the SKU, played on screens already running brand-funded retail media. The mechanic carries across surfaces; the commercial model adjusts because the attribution chain in-store is different.
+        </p>
+
+        <div class="stakeholders reveal-stagger">
+          <div class="stakeholder">
+            <div class="label">For the customer</div>
+            <div class="heading">Useful, recognisable, native</div>
+            <p>The same creator content style they engage with on TikTok, surfaced where the buying decision happens. Not an advert that interrupts; content that informs.</p>
+          </div>
+          <div class="stakeholder">
+            <div class="label">For the retailer</div>
+            <div class="heading">Better-performing inventory</div>
+            <p>More engaging creative on screens the retailer is already operating. Better-performing inventory, no extra hardware.</p>
+          </div>
+          <div class="stakeholder">
+            <div class="label">For the brand</div>
+            <div class="heading">No incremental production</div>
+            <p>Creative the brand already authorises through Spark Ads now reaches in-store moments. One creator video, three surfaces. No reformatting, no extra production.</p>
+          </div>
+          <div class="stakeholder">
+            <div class="label">For TikTok</div>
+            <div class="heading">A new creator revenue line</div>
+            <p>Creators paid CPM for verified in-store impressions of their authorised content. A new monetisation route, on inventory that already exists.</p>
+          </div>
+        </div>
+
+        <p class="lead reveal reading" style="color: var(--text-muted);">
+          Per-creator deterministic attribution holds on the web because identity is bridged via Pixel and Events API. In-store, that chain breaks: multiple creators rotate on the same screen, multiple shoppers pass the same content, and matching a specific till purchase to a specific impression isn't reliable. The honest commercial model is therefore CPM, not CPA. The brand pays per thousand verified impressions of their creator's content on in-store screens; the creator earns a share of that CPM.
+        </p>
+
+        <div class="commercial-models reveal-stagger">
+          <div class="model-card">
+            <div class="surface-name">Search · brand-funded</div>
+            <div class="mechanic"><span class="accent">CPC + CPA</span></div>
+            <p>Brand bids in an auction for the sponsored slot. Creator earns a share of the resulting conversion, deterministically attributed via Pixel and Events API.</p>
+          </div>
+          <div class="model-card">
+            <div class="surface-name">PDP · merchant-curated</div>
+            <div class="mechanic"><span class="accent">Conversion-share</span></div>
+            <p>Merchant places the creator content in their existing gallery. Creator earns a share of resulting conversion per completed video view and converted SKU.</p>
+          </div>
+          <div class="model-card">
+            <div class="surface-name">In-store · brand-funded</div>
+            <div class="mechanic"><span class="accent">CPM</span></div>
+            <p>Brand pays per thousand verified impressions on in-store screens. Creator earns a share of that CPM. Attribution is impression-based, not conversion-based.</p>
+          </div>
+        </div>
+
+        <h3 class="reveal" style="margin-top: var(--space-12); font-family: var(--font-display); font-weight: 400; font-variation-settings: 'opsz' 144; font-size: clamp(1.4rem, 2.2vw, 1.8rem); line-height: 1.2; letter-spacing: -0.015em; color: var(--text); max-width: 32ch;">
+          The technology that enables this already exists in market. Vusion's existing technology is a working example.
+        </h3>
+
+        <p class="reveal reading" style="color: var(--text-muted); margin-top: var(--space-3); font-size: var(--type-small);">
+          The architecture is vendor-neutral. Vusion's particular combination of products is one credible path; SES, Pricer and Hanshow operate adjacent infrastructure. The integration described here has not been tested.
+        </p>
+
+        <div class="vendor-intro reveal-stagger">
+          <div class="vendor-card">
+            <div class="vendor-name">Vusion Group</div>
+            <div class="vendor-tag">Listed European retail-tech</div>
+            <p>Formerly SES-imagotag. Publicly listed on Euronext Paris. Operates electronic shelf-edge labels and an in-store retail media platform deployed across European grocery and convenience retailers.</p>
+          </div>
+          <div class="vendor-card">
+            <div class="vendor-name">Captana</div>
+            <div class="vendor-tag">Computer-vision shelf cameras</div>
+            <p>Wireless mini-cameras at the shelf edge, used today for stock detection, planogram compliance and shelf-event monitoring. Deployed across 100+ Monoprix stores and rolling out at Carrefour. The cameras watch shelves, not faces.<a href="#fn-instore-3" class="fn">³</a></p>
+          </div>
+          <div class="vendor-card">
+            <div class="vendor-name">Engage</div>
+            <div class="vendor-tag">In-store retail media platform</div>
+            <p>Vusion's retail media product. Runs digital content on screens across deployed estates today, taking brand spend and reporting on impressions. Already operating; this is the surface a TikTok creator content supply could feed into.</p>
+          </div>
+        </div>
+
+        <p class="lead reveal reading" style="color: var(--text-muted);">
+          In-store retail screens become more engaging with TikTok creator content as the creative supply. Shelf interaction technology makes the next step possible: when a shopper picks up a product, the nearest retail media screen surfaces relevant creator content for that exact SKU. Targeted, informational, in the moment of decision.
+        </p>
+
+        <div class="instore-stage reveal" id="instore-stage" aria-label="Indicative animation: shopper picks up product, in-store sensor fires, screen activates with TikTok content, loyalty card scan closes attribution.">
+          <svg class="instore-svg" viewBox="0 0 880 550" xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+              <linearGradient id="floor" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#0a0a14"/>
+                <stop offset="100%" stop-color="#1a1a26"/>
+              </linearGradient>
+              <linearGradient id="screenContent" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fe2c55"/>
+                <stop offset="100%" stop-color="#25f4ee"/>
+              </linearGradient>
+              <linearGradient id="cameraBeam" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#25f4ee" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#25f4ee" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <rect x="0" y="380" width="880" height="170" fill="url(#floor)"/>
+            <line x1="0" y1="380" x2="880" y2="380" stroke="#1f1f2e" stroke-width="1"/>
+
+            <rect x="80" y="120" width="720" height="260" fill="#1a1a26" stroke="#2a2a3e" stroke-width="1"/>
+            <line x1="80" y1="200" x2="800" y2="200" stroke="#2a2a3e" stroke-width="1"/>
+            <line x1="80" y1="280" x2="800" y2="280" stroke="#2a2a3e" stroke-width="1"/>
+
+            <g opacity="0.6">
+              <rect x="110" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="160" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="210" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="260" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="310" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="360" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="410" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="460" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="510" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="560" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="610" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="660" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="710" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
+
+              <rect x="110" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="160" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="210" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="260" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="310" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="360" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="460" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="510" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="560" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="610" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="660" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="710" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
+
+              <rect x="110" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="160" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="210" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="260" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="310" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="360" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="460" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="510" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="560" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="610" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="660" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+              <rect x="710" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
+            </g>
+
+            <g class="actor-shoe">
+              <rect x="410" y="235" width="40" height="35" rx="3" fill="#fe2c55" stroke="#25f4ee" stroke-width="1"/>
+              <rect x="412" y="237" width="36" height="3" rx="1" fill="#25f4ee"/>
+            </g>
+
+            <g class="camera">
+              <rect x="395" y="118" width="22" height="10" rx="2" fill="#0a0a14" stroke="#444"/>
+              <circle cx="406" cy="123" r="3" fill="#25f4ee" opacity="0.9"/>
+            </g>
+            <text x="430" y="125" font-family="ui-monospace, Menlo" font-size="9" fill="#56565e" letter-spacing="1">SHELF CAMERA</text>
+
+            <polygon class="actor-camera-beam" points="406,128 380,235 432,235" fill="url(#cameraBeam)"/>
+
+            <g class="actor-screen">
+              <rect x="320" y="290" width="100" height="55" rx="4" fill="#0a0a14" stroke="#3a3a52" stroke-width="1.5"/>
+              <text x="370" y="320" font-family="ui-monospace, Menlo" font-size="8" fill="#56565e" text-anchor="middle" letter-spacing="1">SHELF SCREEN</text>
+              <text x="370" y="333" font-family="ui-monospace, Menlo" font-size="7" fill="#3a3a52" text-anchor="middle" letter-spacing="0.5">[ idle ]</text>
+            </g>
+
+            <g class="actor-screen-content">
+              <rect x="320" y="290" width="100" height="55" rx="4" fill="url(#screenContent)" opacity="0.9"/>
+              <rect x="324" y="294" width="36" height="47" rx="2" fill="rgba(0,0,0,0.5)"/>
+              <text x="342" y="320" font-family="ui-monospace, Menlo" font-size="6" fill="#fff" text-anchor="middle">@creator</text>
+              <text x="342" y="328" font-family="ui-monospace, Menlo" font-size="5" fill="#fff" text-anchor="middle" opacity="0.85">matched review</text>
+              <text x="390" y="305" font-family="ui-monospace, Menlo" font-size="7" fill="#fff" text-anchor="middle" letter-spacing="0.5">▶ LIVE</text>
+              <text x="390" y="320" font-family="ui-monospace, Menlo" font-size="6" fill="#fff" text-anchor="middle" opacity="0.7">SKU match</text>
+              <text x="390" y="332" font-family="ui-monospace, Menlo" font-size="6" fill="#fff" text-anchor="middle" opacity="0.7">#92847</text>
+            </g>
+
+            <g class="actor-shopper" transform="translate(280, 280)">
+              <ellipse cx="60" cy="40" rx="14" ry="16" fill="#36364a"/>
+              <rect x="48" y="55" width="24" height="40" rx="6" fill="#2a2a3e"/>
+              <rect x="50" y="92" width="9" height="32" rx="3" fill="#1a1a26"/>
+              <rect x="61" y="92" width="9" height="32" rx="3" fill="#1a1a26"/>
+              <g class="actor-arm">
+                <rect x="60" y="60" width="6" height="35" rx="3" fill="#36364a"/>
+                <circle cx="63" cy="97" r="4" fill="#36364a"/>
+              </g>
+              <rect x="48" y="60" width="6" height="32" rx="3" fill="#2a2a3e"/>
+            </g>
+
+            <g class="actor-loyalty">
+              <rect x="640" y="430" width="180" height="70" rx="6" fill="#14141c" stroke="#25f4ee" stroke-width="1"/>
+              <text x="730" y="455" font-family="ui-monospace, Menlo" font-size="10" fill="#25f4ee" text-anchor="middle" letter-spacing="1">LOYALTY SCAN</text>
+              <text x="730" y="470" font-family="ui-monospace, Menlo" font-size="8" fill="#94949e" text-anchor="middle">#ID-3829471</text>
+              <text x="730" y="486" font-family="ui-monospace, Menlo" font-size="8" fill="#fe2c55" text-anchor="middle" letter-spacing="0.5">→ creator @handle</text>
+            </g>
+
+            <path class="actor-attribution-line" d="M 420 320 Q 550 380 650 450" stroke="#25f4ee" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+
+            <g font-family="ui-monospace, Menlo" font-size="9" letter-spacing="1" fill="#94949e">
+              <text x="40" y="60">01 · PICKUP</text>
+              <text x="220" y="60">02 · CV DETECT</text>
+              <text x="430" y="60">03 · SCREEN TRIGGER</text>
+              <text x="640" y="60">04 · LOYALTY CLOSE</text>
+            </g>
+
+            <text x="40" y="525" font-family="ui-monospace, Menlo" font-size="9" fill="#56565e" letter-spacing="0.5">
+              Indicative only. Animation to be reworked.
+            </text>
+          </svg>
+        </div>
+
+        <div class="instore-controls">
+          <button class="instore-replay" id="instore-replay">↻ Replay sequence</button>
+        </div>
+
+        <div class="surface-callouts cols-2 reveal-stagger" style="margin-top: var(--space-10);">
+          <div class="callout">
+            <div class="stat">No face data</div>
+            <div class="stat-label">GDPR posture</div>
+            <p>Shelf-event detection is designed to detect product movement, not people. Identity bridges at till via loyalty card, not in the aisle.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">$196.7bn<a href="#fn-instore-1" class="fn">¹</a></div>
+            <div class="stat-label">Global retail media spend, 2026</div>
+            <p>WARC's forecast for 2026, growing through $200bn in 2027. As retail media inventory grows, so does the demand for creative that performs on it. TikTok has the creative.</p>
+          </div>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-instore-1"><a href="https://retailmediaage.co.uk/retail-media-networks/report-retail-media-spend-to-pass-200-billion-in-2027/" target="_blank" rel="noopener noreferrer">WARC Media — Global retail media spend forecast, November 2025</a></li>
+            <li id="fn-instore-2"><a href="https://iabeurope.eu/" target="_blank" rel="noopener noreferrer">IAB Europe — European Retail Media Adspend report 2024 (€13.7bn 2024, forecast €20.8bn 2026, €28.8bn 2028)</a></li>
+            <li id="fn-instore-3"><a href="https://www.vusion.com/products/captana" target="_blank" rel="noopener noreferrer">Vusion Group — Captana product page; Monoprix and Carrefour deployments</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 06 — SHARE BLOCK -->
+    <section id="share" class="section-divider">
+      <div class="container">
+        <div class="section-eyebrow reveal">
+          <span class="micro">06 — Next</span>
+        </div>
+
+        <div class="share-frame reveal">
+          <a href="mailto:olly.higgs93@gmail.com?subject=Out%20of%20Phone%3A%20Commerce" class="share-cta">
+            <span>Click here to get in touch</span>
+            <span class="share-cta-arrow">→</span>
+          </a>
+          <button class="share-fallback" id="share-fallback-btn" type="button" aria-label="Copy email address">
+            <span class="share-fallback-label">or copy email</span>
+            <span class="share-fallback-email" id="share-fallback-email">olly.higgs93@gmail.com</span>
+            <span class="share-fallback-icon" aria-hidden="true">⎘</span>
+          </button>
+          <div class="share-fallback-toast" id="share-fallback-toast" role="status" aria-live="polite">Copied</div>
+          <div class="share-meta reveal" style="margin-top: var(--space-6);">
+            <div class="share-meta-row">
+              <span class="share-meta-label">Document</span>
+              <span class="share-meta-value">Out of Phone: Commerce</span>
+            </div>
+            <div class="share-meta-row">
+              <span class="share-meta-label">Status</span>
+              <span class="share-meta-value">Pitch · Confidential</span>
+            </div>
+            <div class="share-meta-row">
+              <span class="share-meta-label">Recipient</span>
+              <span class="share-meta-value" id="share-recipient-display">Jade Walton</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-disclaimer">
+        <p class="micro" style="margin-bottom: var(--space-2); color: var(--text-quiet);">Disclaimer</p>
+        <p class="small">
+          Concept prototype. Not affiliated with or endorsed by TikTok, ByteDance, Frasers Group (Sports Direct, Flannels, Frasers), Boots UK, Walgreens Boots Alliance, Boots Media Group, Vusion Group, Zitcha, SMG, Criteo, LiveRamp, or any other named party. Brand assets and references are used illustratively for pitch purposes only. This document is private; <code>noindex, nofollow</code> applied.
+        </p>
+      </div>
+      <div class="footer-meta">
+        <div class="footer-meta-row">Document · Confidential</div>
+        <div class="footer-meta-row">Status · Pitch v2.1</div>
+        <div class="footer-meta-row" id="ref-display">Recipient · default</div>
+      </div>
+      <div class="footer-meta">
+        <div class="footer-meta-row">Out of Phone: Commerce</div>
+        <div class="footer-meta-row">Pitch · 2026</div>
+        <div class="footer-meta-row">© drafted privately</div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    (function() {
+      'use strict';
+
+      const params = new URLSearchParams(window.location.search);
+      const ref = (params.get('ref') || 'default').toLowerCase();
+      document.body.setAttribute('data-recipient', ref);
+
+      const refDisplay = document.getElementById('ref-display');
+      if (refDisplay) {
+        refDisplay.textContent = 'Recipient · ' + (ref === 'default' ? 'Jade Walton' : ref);
+      }
+
+      const shareRefDisplay = document.getElementById('share-recipient-display');
+      if (shareRefDisplay) {
+        shareRefDisplay.textContent = ref === 'default' ? 'Jade Walton' : ref;
+      }
+
+      // Copy-to-clipboard fallback for the email button
+      // Sticky section eyebrow — updates label as scroll position crosses each surface section
+      const stickyEyebrow = document.getElementById('sticky-eyebrow');
+      const stickyEyebrowLabel = document.getElementById('sticky-eyebrow-label');
+      if (stickyEyebrow && stickyEyebrowLabel) {
+        const sectionMap = [
+          { id: 'surface-pdp',    label: 'Surface 01 · The product description page' },
+          { id: 'surface-search', label: 'Surface 02 · The product search page' },
+          { id: 'surface-instore', label: 'In-store retail media' }
+        ];
+        const updateStickyEyebrow = () => {
+          const triggerY = window.innerHeight * 0.35;
+          let activeLabel = null;
+          // Walk sections in document order; the last section whose top has crossed
+          // the trigger line is the "active" one
+          sectionMap.forEach(({ id, label }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= triggerY && rect.bottom > triggerY) {
+              activeLabel = label;
+            }
+          });
+          if (activeLabel) {
+            if (stickyEyebrowLabel.textContent !== activeLabel) {
+              stickyEyebrowLabel.textContent = activeLabel;
+            }
+            stickyEyebrow.classList.add('is-visible');
+          } else {
+            stickyEyebrow.classList.remove('is-visible');
+          }
+        };
+        window.addEventListener('scroll', updateStickyEyebrow, { passive: true });
+        updateStickyEyebrow();
+      }
+
+      const shareFallbackBtn = document.getElementById('share-fallback-btn');
+      const shareFallbackToast = document.getElementById('share-fallback-toast');
+      if (shareFallbackBtn && shareFallbackToast) {
+        shareFallbackBtn.addEventListener('click', () => {
+          const email = 'olly.higgs93@gmail.com';
+          const showToast = () => {
+            shareFallbackToast.classList.add('is-visible');
+            setTimeout(() => shareFallbackToast.classList.remove('is-visible'), 2000);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(showToast).catch(() => {
+              // Fallback for older browsers
+              const ta = document.createElement('textarea');
+              ta.value = email;
+              document.body.appendChild(ta);
+              ta.select();
+              try { document.execCommand('copy'); showToast(); } catch (e) {}
+              document.body.removeChild(ta);
+            });
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = email;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); showToast(); } catch (e) {}
+            document.body.removeChild(ta);
+          }
+        });
+      }
+
+      const reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        reveals.forEach(el => io.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('is-visible'));
+      }
+
+      const nav = document.querySelector('.site-nav');
+      let lastY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > lastY && y > 200) {
+          nav.classList.add('is-hidden');
+        } else {
+          nav.classList.remove('is-hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+
+      const replayBtn = document.getElementById('instore-replay');
+      const stage = document.getElementById('instore-stage');
+      if (replayBtn && stage) {
+        replayBtn.addEventListener('click', () => {
+          const animated = stage.querySelectorAll('[class*="actor-"]');
+          animated.forEach(el => {
+            el.style.animation = 'none';
+            void el.offsetWidth;
+            el.style.animation = '';
+          });
+        });
+      }
+
+      // PDP accordion sections (Product Description, Specs, Delivery, Returns)
+      document.querySelectorAll('.pdp2-accordion-section').forEach((section) => {
+        const header = section.querySelector('.pdp2-accordion-header');
+        const icon = section.querySelector('.pdp2-accordion-icon');
+        if (header && icon) {
+          header.addEventListener('click', () => {
+            const isOpen = section.classList.toggle('is-open');
+            icon.textContent = isOpen ? '−' : '+';
+          });
+        }
+      });
+
+      // PDP gallery TikTok embed: scale to fit its column. Cell is now 1:2 aspect (tall),
+      // so we scale width-based — the embed's 9:16 native ratio fits the tall cell well.
+      const pdpGalleryItem = document.getElementById('pdp-tiktok-gallery-item');
+      if (pdpGalleryItem) {
+        const updatePdpScale = () => {
+          const itemEl = pdpGalleryItem;
+          if (!itemEl) return;
+          const columnWidth = itemEl.offsetWidth;
+          const embedNaturalWidth = 325;
+          const scale = columnWidth / embedNaturalWidth;
+          pdpGalleryItem.style.setProperty('--pdp-embed-scale', scale.toFixed(3));
+        };
+        updatePdpScale();
+        window.addEventListener('resize', updatePdpScale, { passive: true });
+        const pdpEmbedReadyInterval = setInterval(() => {
+          if (pdpGalleryItem.querySelector('iframe')) {
+            updatePdpScale();
+            clearInterval(pdpEmbedReadyInterval);
+          }
+        }, 250);
+        setTimeout(() => clearInterval(pdpEmbedReadyInterval), 8000);
+      }
+
+      // Sponsored TikTok embed (search mockup): scale to fit its column
+      const sponsoredCard = document.getElementById('sponsored-tiktok-card');
+      if (sponsoredCard) {
+        const updateScale = () => {
+          const imageEl = sponsoredCard.querySelector('.flannels-product-image');
+          if (!imageEl) return;
+          const columnWidth = imageEl.offsetWidth;
+          const embedNaturalWidth = 325;
+          const scale = columnWidth / embedNaturalWidth;
+          sponsoredCard.style.setProperty('--embed-scale', scale.toFixed(3));
+        };
+        updateScale();
+        window.addEventListener('resize', updateScale, { passive: true });
+        const embedReadyInterval = setInterval(() => {
+          if (sponsoredCard.querySelector('iframe')) {
+            updateScale();
+            clearInterval(embedReadyInterval);
+          }
+        }, 250);
+        setTimeout(() => clearInterval(embedReadyInterval), 8000);
+      }
+
+      // Rev-share animation: alternate between high-volume and low-volume splits.
+      // Only animates when the bar is in viewport, so motion doesn't run unseen.
+      const revshareBar = document.getElementById('revshare-bar');
+      if (revshareBar && 'IntersectionObserver' in window) {
+        const tiktokSeg = revshareBar.querySelector('.revshare-segment.is-tiktok');
+        const creatorSeg = revshareBar.querySelector('.revshare-segment.is-creator');
+        const tiktokPct = tiktokSeg.querySelector('.revshare-segment-pct');
+        const creatorPct = creatorSeg.querySelector('.revshare-segment-pct');
+        const states = revshareBar.parentElement.querySelectorAll('.revshare-state');
+
+        const STATES = [
+          { name: 'high-volume', tiktok: 50, creator: 20 },
+          { name: 'low-volume',  tiktok: 30, creator: 40 }
+        ];
+        let stateIndex = 0;
+        let intervalId = null;
+
+        const applyState = (s) => {
+          tiktokSeg.style.width = s.tiktok + '%';
+          creatorSeg.style.width = s.creator + '%';
+          tiktokPct.textContent = s.tiktok + '%';
+          creatorPct.textContent = s.creator + '%';
+          states.forEach(el => {
+            el.classList.toggle('is-active', el.dataset.state === s.name);
+          });
+        };
+
+        const cycle = () => {
+          stateIndex = (stateIndex + 1) % STATES.length;
+          applyState(STATES[stateIndex]);
+        };
+
+        const revObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !intervalId) {
+              applyState(STATES[stateIndex]);
+              intervalId = setInterval(cycle, 3500);
+            } else if (!entry.isIntersecting && intervalId) {
+              clearInterval(intervalId);
+              intervalId = null;
+            }
+          });
+        }, { threshold: 0.4 });
+        revObserver.observe(revshareBar);
+      }
+
+    })();
+  </script>
+
+  <!-- TikTok official embed script (renders the blockquote into a real player) -->
+  <script async src="https://www.tiktok.com/embed.js"></script>
+
+</body>
+</html>
