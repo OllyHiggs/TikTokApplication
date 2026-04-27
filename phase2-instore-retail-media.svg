@@ -1,0 +1,567 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 550" role="img" aria-label="Phase 2 in-store retail media: a 27:16 digital signage display sits above a multi-row product shelf. All three panels are continuously playing TikTok-coloured brand content. When a shopper picks up a product, the shelf-mounted camera detects it; the centre 9:16 panel switches from neutral preview content to a TikTok creator video about that product.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e0e15"/>
+      <stop offset="1" stop-color="#06060a"/>
+    </linearGradient>
+    <linearGradient id="tiktokGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fe2c55"/>
+      <stop offset="1" stop-color="#25f4ee"/>
+    </linearGradient>
+    <linearGradient id="creatorGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"    stop-color="#fe2c55" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#7d2076" stop-opacity="0.85"/>
+      <stop offset="1"    stop-color="#25f4ee" stop-opacity="0.9"/>
+    </linearGradient>
+    <!-- Side panels: always-on TikTok brand gradient -->
+    <linearGradient id="sidePanelGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"    stop-color="#4a1a3a"/>
+      <stop offset="0.55" stop-color="#1c1828"/>
+      <stop offset="1"    stop-color="#0a3a55"/>
+    </linearGradient>
+    <!-- Middle panel idle: cool neutral (so the switch to TikTok colours reads dramatically) -->
+    <linearGradient id="midIdleGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2530"/>
+      <stop offset="1" stop-color="#0a141c"/>
+    </linearGradient>
+    <!-- Beam of light: radial gradient emanating from the camera apex -->
+    <radialGradient id="beamRadial" gradientUnits="userSpaceOnUse"
+                    cx="440" cy="306" r="190">
+      <stop offset="0"    stop-color="#25f4ee" stop-opacity="0.9"/>
+      <stop offset="0.45" stop-color="#25f4ee" stop-opacity="0.6"/>
+      <stop offset="0.85" stop-color="#25f4ee" stop-opacity="0.35"/>
+      <stop offset="1"    stop-color="#fe2c55" stop-opacity="0.3"/>
+    </radialGradient>
+    <!-- Soft Gaussian blur for the outer beam halo (volumetric light scattering) -->
+    <filter id="beamBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <!-- Brighter product gradient for stronger contrast against the dark background -->
+    <linearGradient id="productGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a4a5c"/>
+      <stop offset="1" stop-color="#2c2c38"/>
+    </linearGradient>
+    <radialGradient id="cyanGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#25f4ee" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#25f4ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pinkGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fe2c55" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#fe2c55" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="screenAmbient" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0"   stop-color="#fe2c55" stop-opacity="0.22"/>
+      <stop offset="0.6" stop-color="#25f4ee" stop-opacity="0.1"/>
+      <stop offset="1"   stop-color="#25f4ee" stop-opacity="0"/>
+    </radialGradient>
+    <!--
+      SCREEN GEOMETRY (27:16)
+      Total: 432 × 256 at x=224, y=30
+      Three 9:16 panels (144 × 256):
+        Left   x=224..368
+        Middle x=368..512   ← switches between idle and TikTok content
+        Right  x=512..656
+    -->
+    <clipPath id="leftPanelClip">
+      <rect x="224" y="30" width="144" height="256"/>
+    </clipPath>
+    <clipPath id="midPanelClip">
+      <rect x="368" y="30" width="144" height="256"/>
+    </clipPath>
+    <clipPath id="rightPanelClip">
+      <rect x="512" y="30" width="144" height="256"/>
+    </clipPath>
+  </defs>
+
+  <style><![CDATA[
+    /* ============================================================ */
+    /* MAIN 10s LOOP                                                */
+    /* 0–26%   : idle (camera ambient pulse, side panels playing)  */
+    /* 28–32%  : detection + lift simultaneously                    */
+    /* 32–44%  : product carried away, beam visible                 */
+    /* 46–52%  : middle panel switches to TikTok content            */
+    /* 52–80%  : TikTok content plays                               */
+    /* 80–94%  : revert                                             */
+    /* 94–100% : product fades back into slot                       */
+    /* ============================================================ */
+
+    .cam-dot {
+      animation: camDot 10s ease-in-out infinite;
+      transform-origin: 440px 299px;
+    }
+    @keyframes camDot {
+      0%, 33% { opacity: 0.45; transform: scale(1); }
+      36%     { opacity: 1;    transform: scale(1.25); }
+      46%     { opacity: 1;    transform: scale(1); }
+      53%     { opacity: 0.7;  transform: scale(1); }
+      100%    { opacity: 0.45; transform: scale(1); }
+    }
+
+    .beam {
+      opacity: 0;
+      animation: beam 10s ease-in-out infinite;
+    }
+    @keyframes beam {
+      0%, 33% { opacity: 0; }
+      36%     { opacity: 1; }
+      46%     { opacity: 0.95; }
+      51%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+
+    .target-product {
+      animation: targetLift 10s ease-in-out infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    @keyframes targetLift {
+      0%, 26%  { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 1; }
+      30%      { transform: translate(0,-2px)     scale(1.05) rotate(0deg);  opacity: 1; }
+      34%      { transform: translate(4px,-12px)  scale(1.05) rotate(8deg);  opacity: 1; }
+      40%      { transform: translate(14px,-26px) scale(1)    rotate(14deg); opacity: 0.95; }
+      48%      { transform: translate(40px,-40px) scale(0.92) rotate(20deg); opacity: 0; }
+      85%      { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 0; }
+      94%      { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 1; }
+      100%     { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 1; }
+    }
+
+    .target-pink {
+      opacity: 0;
+      animation: targetPink 10s ease-in-out infinite;
+    }
+    @keyframes targetPink {
+      0%, 34% { opacity: 0; }
+      37%     { opacity: 1; }
+      43%     { opacity: 1; }
+      47%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+
+    .empty-mark {
+      opacity: 0;
+      animation: emptyMark 10s ease-in-out infinite;
+    }
+    @keyframes emptyMark {
+      0%, 44% { opacity: 0; }
+      48%     { opacity: 0.9; }
+      57%     { opacity: 0.4; }
+      64%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+
+    /* ============================================================ */
+    /* MIDDLE PANEL: idle ↔ TikTok creator content                  */
+    /* The side panels are always-on (no swap needed)               */
+    /* ============================================================ */
+
+    .mid-active {
+      opacity: 0;
+      animation: midActive 10s ease-in-out infinite;
+    }
+    @keyframes midActive {
+      0%, 46% { opacity: 0; }
+      52%     { opacity: 1; }
+      80%     { opacity: 1; }
+      86%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+
+    /* Brief pink/cyan flash on the middle panel only at the moment of change */
+    .mid-flash {
+      opacity: 0;
+      animation: midFlash 10s ease-in-out infinite;
+    }
+    @keyframes midFlash {
+      0%, 47% { opacity: 0; }
+      50%     { opacity: 0.45; }
+      55%     { opacity: 0; }
+      100%    { opacity: 0; }
+    }
+
+    /* ============================================================ */
+    /* PERSISTENT CONTENT ANIMATIONS (always running, divides 10s)  */
+    /* ============================================================ */
+
+    /* LIVE indicators on side panels — pulse */
+    .live-dot-side {
+      animation: liveDotSide 1.25s ease-in-out infinite;  /* 1.25s × 8 = 10s seamless */
+    }
+    @keyframes liveDotSide {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.3; }
+    }
+
+    /* Scan lines on side panels — slow vertical sweep */
+    .scan-line {
+      animation: scanLine 5s linear infinite;  /* 5s × 2 = 10s seamless */
+    }
+    .scan-line-r { animation-delay: -2.5s; }
+    @keyframes scanLine {
+      0%   { transform: translateY(0px);    opacity: 0; }
+      10%  { opacity: 0.55; }
+      90%  { opacity: 0.55; }
+      100% { transform: translateY(256px);  opacity: 0; }
+    }
+
+    /* Brand emblem subtle pulse */
+    .brand-pulse {
+      animation: brandPulse 5s ease-in-out infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    @keyframes brandPulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+
+    /* Mini progress bar on side panels — perpetual playback feel */
+    .side-progress {
+      animation: sideProgress 5s linear infinite;
+      transform-origin: left center;
+      transform-box: fill-box;
+    }
+    @keyframes sideProgress {
+      0%   { transform: scaleX(0); }
+      90%  { transform: scaleX(1); }
+      99%, 100% { transform: scaleX(0); }
+    }
+    .side-progress-r { animation-delay: -2.5s; }
+
+    /* TikTok creator content animations (only run during active overlay) */
+    .live-dot {
+      animation: liveDot 1.25s ease-in-out infinite;
+    }
+    @keyframes liveDot {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.25; }
+    }
+    .creator-pan {
+      animation: creatorPan 10s ease-in-out infinite;
+    }
+    @keyframes creatorPan {
+      0%, 50% { transform: translateY(2px); }
+      70%     { transform: translateY(-3px); }
+      85%     { transform: translateY(0); }
+      100%    { transform: translateY(2px); }
+    }
+    .progress-bar {
+      animation: progressBar 10s linear infinite;
+      transform-origin: left center;
+      transform-box: fill-box;
+    }
+    @keyframes progressBar {
+      0%, 50%   { transform: scaleX(0); }
+      80%       { transform: scaleX(1); }
+      85%, 100% { transform: scaleX(0); }
+    }
+
+    .ambient-pulse {
+      animation: ambientPulse 5s ease-in-out infinite;
+    }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 0.3; }
+      50%      { opacity: 0.55; }
+    }
+
+    .label {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 8px;
+      letter-spacing: 1.4px;
+      fill: #6a6a78;
+    }
+    .label-line {
+      stroke: #2c2c38;
+      stroke-width: 0.6;
+    }
+  ]]></style>
+
+  <!-- Background -->
+  <rect width="880" height="550" fill="url(#bg)"/>
+  <rect x="10" y="10" width="860" height="530" rx="6" fill="none" stroke="#1a1a24" stroke-width="1"/>
+
+  <!-- =================================================================== -->
+  <!-- SCREEN: 27:16 single signage display (432 × 256)                    -->
+  <!-- =================================================================== -->
+  <g>
+    <!-- Ambient screen glow (pink-cyan radial) -->
+    <ellipse class="ambient-pulse" cx="440" cy="160" rx="320" ry="170" fill="url(#screenAmbient)"/>
+
+    <!-- Outer bezel + inner surface -->
+    <rect x="218" y="24" width="444" height="268" rx="5" fill="#0a0a12" stroke="#2c2c38" stroke-width="1"/>
+    <rect x="224" y="30" width="432" height="256" rx="3" fill="#08080d"/>
+
+    <!-- ============= LEFT PANEL — always-on TikTok brand content ============= -->
+    <g clip-path="url(#leftPanelClip)">
+      <!-- TikTok-coloured background gradient -->
+      <rect x="224" y="30" width="144" height="256" fill="url(#sidePanelGrad)"/>
+
+      <!-- Subtle vignette darkening edges -->
+      <rect x="224" y="30" width="144" height="256" fill="url(#screenAmbient)" opacity="0.3"/>
+
+      <!-- LIVE indicator (top-left) -->
+      <circle class="live-dot-side" cx="234" cy="44" r="2.6" fill="#fe2c55"/>
+      <rect x="240" y="41" width="16" height="6.5" rx="1" fill="#fe2c55" opacity="0.95"/>
+
+      <!-- Brand emblem: cyan ring + pink core + cyan accent -->
+      <g class="brand-pulse">
+        <circle cx="296" cy="130" r="26" fill="none" stroke="#25f4ee" stroke-width="2.2"/>
+        <circle cx="296" cy="130" r="13" fill="#fe2c55"/>
+        <circle cx="296" cy="130" r="13" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.55"/>
+        <circle cx="316" cy="116" r="3.5" fill="#25f4ee"/>
+        <circle cx="316" cy="116" r="6" fill="url(#cyanGlow)" opacity="0.7"/>
+      </g>
+
+      <!-- Wordmark (white / cyan / pink) -->
+      <rect x="252" y="178" width="88" height="6" rx="3" fill="#ffffff" opacity="0.95"/>
+      <rect x="266" y="190" width="60" height="4" rx="2" fill="#25f4ee" opacity="0.85"/>
+      <rect x="276" y="200" width="40" height="3" rx="1.5" fill="#fe2c55" opacity="0.85"/>
+
+      <!-- Mini progress bar (always playing) -->
+      <rect x="244" y="232" width="104" height="2" rx="1" fill="#ffffff" opacity="0.15"/>
+      <rect class="side-progress" x="244" y="232" width="104" height="2" rx="1" fill="url(#tiktokGrad)"/>
+
+      <!-- Time / channel marker -->
+      <rect x="244" y="244" width="20" height="2.5" rx="1" fill="#25f4ee" opacity="0.7"/>
+      <rect x="328" y="244" width="20" height="2.5" rx="1" fill="#fe2c55" opacity="0.7"/>
+
+      <!-- Scan line (animated) -->
+      <rect class="scan-line" x="224" y="30" width="144" height="1.4" fill="#25f4ee" opacity="0"/>
+    </g>
+
+    <!-- ============= MIDDLE PANEL — idle ↔ TikTok creator content ============= -->
+    <g clip-path="url(#midPanelClip)">
+      <!-- IDLE BASE LAYER (always present underneath) -->
+      <!-- Cool dark gradient — distinctly NOT TikTok-coloured -->
+      <rect x="368" y="30" width="144" height="256" fill="url(#midIdleGrad)"/>
+
+      <!-- Inner video frame outline -->
+      <rect x="376" y="40" width="128" height="236" rx="3" fill="none" stroke="#2a3a48" stroke-width="1"/>
+
+      <!-- Large play button -->
+      <circle cx="440" cy="158" r="22" fill="rgba(0,0,0,0.35)"/>
+      <circle cx="440" cy="158" r="22" fill="none" stroke="#7a8a9a" stroke-width="1.4"/>
+      <path d="M 433 148 L 452 158 L 433 168 Z" fill="#a0b0c0"/>
+
+      <!-- "Up next" / preview placeholder bars -->
+      <rect x="386" y="220" width="46" height="3" rx="1.5" fill="#5a6878" opacity="0.7"/>
+      <rect x="386" y="228" width="68" height="2" rx="1" fill="#5a6878" opacity="0.45"/>
+      <rect x="464" y="220" width="40" height="3" rx="1.5" fill="#5a6878" opacity="0.55"/>
+      <rect x="464" y="228" width="28" height="2" rx="1" fill="#5a6878" opacity="0.35"/>
+
+      <!-- Faint progress placeholder -->
+      <rect x="376" y="250" width="128" height="1.5" rx="0.75" fill="#3a4858" opacity="0.5"/>
+      <rect x="376" y="250" width="42" height="1.5" rx="0.75" fill="#7a8a9a" opacity="0.7"/>
+
+      <!-- ACTIVE OVERLAY: TikTok creator content (fades in over the idle base) -->
+      <g class="mid-active">
+        <!-- Full-panel pink/cyan gradient -->
+        <rect x="368" y="30" width="144" height="256" fill="url(#creatorGrad)"/>
+
+        <!-- Creator silhouette (back view, no face) -->
+        <g class="creator-pan">
+          <ellipse cx="440" cy="220" rx="46" ry="26" fill="#1a0612" opacity="0.6"/>
+          <circle cx="440" cy="156" r="29" fill="#1a0612" opacity="0.75"/>
+          <rect x="473" y="138" width="18" height="29" rx="1.5" fill="#0a0a12" opacity="0.85"/>
+          <rect x="473" y="138" width="18" height="29" rx="1.5" fill="none" stroke="#fe2c55" stroke-width="0.6" opacity="0.5"/>
+        </g>
+
+        <!-- Soft play overlay -->
+        <circle cx="440" cy="156" r="16" fill="#ffffff" opacity="0.18"/>
+        <path d="M 434 148 L 449 156 L 434 164 Z" fill="#ffffff" opacity="0.75"/>
+
+        <!-- LIVE indicator -->
+        <circle class="live-dot" cx="382" cy="46" r="2.6" fill="#ffffff"/>
+        <rect x="388" y="43" width="14" height="6.5" rx="1" fill="#fe2c55" opacity="0.95"/>
+
+        <!-- Right-side engagement marks -->
+        <g fill="#ffffff" opacity="0.9">
+          <circle cx="496" cy="138" r="2.6"/>
+          <circle cx="496" cy="154" r="2.6"/>
+          <circle cx="496" cy="170" r="2.6"/>
+          <circle cx="496" cy="186" r="2.6"/>
+        </g>
+
+        <!-- Username placeholder -->
+        <rect x="378" y="246" width="50" height="3.5" rx="1.5" fill="#ffffff" opacity="0.85"/>
+        <rect x="378" y="254" width="74" height="2.5" rx="1.25" fill="#ffffff" opacity="0.55"/>
+
+        <!-- Progress bar -->
+        <rect x="372" y="276" width="136" height="2" fill="rgba(255,255,255,0.2)"/>
+        <rect class="progress-bar" x="372" y="276" width="136" height="2" fill="url(#tiktokGrad)"/>
+      </g>
+
+      <!-- Brief flash at the moment of switch -->
+      <rect class="mid-flash" x="368" y="30" width="144" height="256" fill="url(#tiktokGrad)"/>
+    </g>
+
+    <!-- ============= RIGHT PANEL — always-on TikTok brand content (mirror of left) ============= -->
+    <g clip-path="url(#rightPanelClip)">
+      <rect x="512" y="30" width="144" height="256" fill="url(#sidePanelGrad)"/>
+      <rect x="512" y="30" width="144" height="256" fill="url(#screenAmbient)" opacity="0.3"/>
+
+      <!-- LIVE indicator -->
+      <circle class="live-dot-side" cx="522" cy="44" r="2.6" fill="#fe2c55"/>
+      <rect x="528" y="41" width="16" height="6.5" rx="1" fill="#fe2c55" opacity="0.95"/>
+
+      <!-- Brand emblem -->
+      <g class="brand-pulse">
+        <circle cx="584" cy="130" r="26" fill="none" stroke="#25f4ee" stroke-width="2.2"/>
+        <circle cx="584" cy="130" r="13" fill="#fe2c55"/>
+        <circle cx="584" cy="130" r="13" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.55"/>
+        <circle cx="564" cy="116" r="3.5" fill="#25f4ee"/>
+        <circle cx="564" cy="116" r="6" fill="url(#cyanGlow)" opacity="0.7"/>
+      </g>
+
+      <!-- Wordmark -->
+      <rect x="540" y="178" width="88" height="6" rx="3" fill="#ffffff" opacity="0.95"/>
+      <rect x="554" y="190" width="60" height="4" rx="2" fill="#25f4ee" opacity="0.85"/>
+      <rect x="564" y="200" width="40" height="3" rx="1.5" fill="#fe2c55" opacity="0.85"/>
+
+      <!-- Mini progress -->
+      <rect x="532" y="232" width="104" height="2" rx="1" fill="#ffffff" opacity="0.15"/>
+      <rect class="side-progress side-progress-r" x="532" y="232" width="104" height="2" rx="1" fill="url(#tiktokGrad)"/>
+
+      <!-- Time / channel marker -->
+      <rect x="532" y="244" width="20" height="2.5" rx="1" fill="#25f4ee" opacity="0.7"/>
+      <rect x="616" y="244" width="20" height="2.5" rx="1" fill="#fe2c55" opacity="0.7"/>
+
+      <!-- Scan line (offset) -->
+      <rect class="scan-line scan-line-r" x="512" y="30" width="144" height="1.4" fill="#25f4ee" opacity="0"/>
+    </g>
+
+    <!-- Section dividers -->
+    <line x1="368" y1="36" x2="368" y2="280" stroke="#1a1a24" stroke-width="0.6"/>
+    <line x1="512" y1="36" x2="512" y2="280" stroke="#1a1a24" stroke-width="0.6"/>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- CAMERA + label                                                       -->
+  <!-- =================================================================== -->
+  <g>
+    <rect x="430" y="286" width="20" height="6" fill="#1a1a24" stroke="#262632" stroke-width="0.5"/>
+    <rect x="422" y="292" width="36" height="14" rx="2" fill="#0f0f17" stroke="#2c2c38" stroke-width="0.8"/>
+    <circle cx="440" cy="299" r="5.5" fill="#0a0a12" stroke="#2c2c38" stroke-width="0.6"/>
+    <circle class="cam-dot" cx="440" cy="299" r="3" fill="#25f4ee"/>
+    <circle class="cam-dot" cx="440" cy="299" r="9" fill="url(#cyanGlow)" opacity="0.7"/>
+
+    <line class="label-line" x1="464" y1="299" x2="488" y2="299"/>
+    <text class="label" x="492" y="302">SHELF CAMERA</text>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- SHELVES — rendered BEFORE products and beam                         -->
+  <!-- =================================================================== -->
+  <g stroke="#2e2e3c" stroke-width="1" fill="none">
+    <line x1="60" y1="320" x2="820" y2="320"/>
+    <line x1="60" y1="390" x2="820" y2="390"/>
+    <line x1="60" y1="460" x2="820" y2="460"/>
+    <line x1="60" y1="530" x2="820" y2="530"/>
+    <line x1="60" y1="320" x2="60" y2="530"/>
+    <line x1="820" y1="320" x2="820" y2="530"/>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- STATIC PRODUCTS — all 3 rows (col 8 row 2 reserved for target)      -->
+  <!-- =================================================================== -->
+  <!-- Row 1 -->
+  <g fill="url(#productGrad)" stroke="#6c6c80" stroke-width="1">
+    <rect x="80"  y="325" width="60" height="60" rx="3"/>
+    <rect x="146" y="325" width="60" height="60" rx="3"/>
+    <rect x="212" y="325" width="60" height="60" rx="3"/>
+    <rect x="278" y="325" width="60" height="60" rx="3"/>
+    <rect x="344" y="325" width="60" height="60" rx="3"/>
+    <rect x="410" y="325" width="60" height="60" rx="3"/>
+    <rect x="476" y="325" width="60" height="60" rx="3"/>
+    <rect x="542" y="325" width="60" height="60" rx="3"/>
+    <rect x="608" y="325" width="60" height="60" rx="3"/>
+    <rect x="674" y="325" width="60" height="60" rx="3"/>
+    <rect x="740" y="325" width="60" height="60" rx="3"/>
+  </g>
+  <!-- Row 2 — col 8 reserved for target -->
+  <g fill="url(#productGrad)" stroke="#6c6c80" stroke-width="1">
+    <rect x="80"  y="395" width="60" height="60" rx="3"/>
+    <rect x="146" y="395" width="60" height="60" rx="3"/>
+    <rect x="212" y="395" width="60" height="60" rx="3"/>
+    <rect x="278" y="395" width="60" height="60" rx="3"/>
+    <rect x="344" y="395" width="60" height="60" rx="3"/>
+    <rect x="410" y="395" width="60" height="60" rx="3"/>
+    <rect x="476" y="395" width="60" height="60" rx="3"/>
+    <rect x="542" y="395" width="60" height="60" rx="3"/>
+    <rect x="674" y="395" width="60" height="60" rx="3"/>
+    <rect x="740" y="395" width="60" height="60" rx="3"/>
+  </g>
+  <!-- Row 3 -->
+  <g fill="url(#productGrad)" stroke="#6c6c80" stroke-width="1">
+    <rect x="80"  y="465" width="60" height="60" rx="3"/>
+    <rect x="146" y="465" width="60" height="60" rx="3"/>
+    <rect x="212" y="465" width="60" height="60" rx="3"/>
+    <rect x="278" y="465" width="60" height="60" rx="3"/>
+    <rect x="344" y="465" width="60" height="60" rx="3"/>
+    <rect x="410" y="465" width="60" height="60" rx="3"/>
+    <rect x="476" y="465" width="60" height="60" rx="3"/>
+    <rect x="542" y="465" width="60" height="60" rx="3"/>
+    <rect x="608" y="465" width="60" height="60" rx="3"/>
+    <rect x="674" y="465" width="60" height="60" rx="3"/>
+    <rect x="740" y="465" width="60" height="60" rx="3"/>
+  </g>
+
+  <!-- Empty-slot marker (under the target product position; revealed after pickup) -->
+  <g class="empty-mark">
+    <rect x="608" y="395" width="60" height="60" rx="3" fill="none" stroke="#fe2c55" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.85"/>
+    <path d="M 608 401 L 608 395 L 614 395 M 662 395 L 668 395 L 668 401 M 668 449 L 668 455 L 662 455 M 614 455 L 608 455 L 608 449"
+          fill="none" stroke="#25f4ee" stroke-width="1.6"/>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- DETECTION BEAM — rendered ON TOP of static products                 -->
+  <!-- Layered for a volumetric "beam of light" feel:                      -->
+  <!--   1. Diffuse blurred halo (light scattering)                        -->
+  <!--   2. Main beam fill with radial gradient from camera apex           -->
+  <!--   3. Sharp edge lines                                               -->
+  <!--   4. Bright apex burst (light source at camera)                     -->
+  <!--   5. Bright landing pool where beam hits the shelf                  -->
+  <!-- =================================================================== -->
+  <g class="beam">
+    <!-- Outer halo (blurred, simulates light bleeding into surrounding air) -->
+    <path d="M 415 305 L 545 462 L 735 462 L 465 305 Z"
+          fill="#25f4ee" opacity="0.18" filter="url(#beamBlur)"/>
+
+    <!-- Main beam — radial gradient emanates from camera apex -->
+    <path d="M 430 308 L 575 455 L 705 455 L 450 308 Z"
+          fill="url(#beamRadial)"/>
+
+    <!-- Sharp beam edges -->
+    <line x1="430" y1="308" x2="575" y2="455" stroke="#25f4ee" stroke-width="1" opacity="0.85"/>
+    <line x1="450" y1="308" x2="705" y2="455" stroke="#25f4ee" stroke-width="1" opacity="0.85"/>
+
+    <!-- Bright apex burst (the light source at the camera lens) -->
+    <circle cx="440" cy="306" r="18" fill="url(#cyanGlow)" opacity="0.95"/>
+    <circle cx="440" cy="306" r="6" fill="#25f4ee" opacity="0.85"/>
+
+    <!-- Bright base line + landing pool where the beam hits the shelf -->
+    <ellipse cx="640" cy="455" rx="74" ry="14" fill="url(#cyanGlow)" opacity="0.75"/>
+    <line x1="575" y1="455" x2="705" y2="455" stroke="#25f4ee" stroke-width="2" opacity="1"/>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- TARGET PRODUCT — rendered ON TOP of beam (it's what the beam is     -->
+  <!-- illuminating)                                                       -->
+  <!-- Position: row 2, col 8 (x=608, y=395)                               -->
+  <!-- =================================================================== -->
+  <g class="target-product">
+    <rect x="608" y="395" width="60" height="60" rx="3" fill="url(#productGrad)" stroke="#7c7c92" stroke-width="1"/>
+    <g class="target-pink">
+      <rect x="608" y="395" width="60" height="60" rx="3" fill="#fe2c55" opacity="0.9"/>
+      <rect x="608" y="395" width="60" height="60" rx="3" fill="none" stroke="#25f4ee" stroke-width="1.6"/>
+      <ellipse cx="638" cy="425" rx="50" ry="42" fill="url(#pinkGlow)" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- Subtle ambient corner accents -->
+  <g>
+    <line x1="40" y1="60" x2="60" y2="60" stroke="#25f4ee" stroke-width="0.6" opacity="0.3"/>
+    <line x1="40" y1="60" x2="40" y2="80" stroke="#25f4ee" stroke-width="0.6" opacity="0.3"/>
+    <line x1="820" y1="490" x2="840" y2="490" stroke="#fe2c55" stroke-width="0.6" opacity="0.3"/>
+    <line x1="840" y1="470" x2="840" y2="490" stroke="#fe2c55" stroke-width="0.6" opacity="0.3"/>
+  </g>
+</svg>
