@@ -564,4 +564,16 @@
     <line x1="820" y1="490" x2="840" y2="490" stroke="#fe2c55" stroke-width="0.6" opacity="0.3"/>
     <line x1="840" y1="470" x2="840" y2="490" stroke="#fe2c55" stroke-width="0.6" opacity="0.3"/>
   </g>
+
+  <!-- Labels -->
+  <g>
+    <!-- IN-STORE RETAIL SCREEN — right side of display bezel, mid-height -->
+    <line class="label-line" x1="668" y1="155" x2="692" y2="155"/>
+    <text class="label" x="696" y="158">IN-STORE RETAIL SCREEN</text>
+
+    <!-- PRODUCT SHELF — left margin, two-line label connecting to shelf left edge -->
+    <text class="label" x="4" y="349">PRODUCT</text>
+    <text class="label" x="4" y="360">SHELF</text>
+    <line class="label-line" x1="52" y1="355" x2="60" y2="355"/>
+  </g>
 </svg>
