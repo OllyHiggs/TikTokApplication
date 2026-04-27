@@ -2038,81 +2038,17 @@
     }
 
     /* IN-STORE ANIMATION */
-    .instore-stage {
-      position: relative;
+    .instore-animation {
       width: 100%;
       max-width: 880px;
-      margin: 0 auto;
-      aspect-ratio: 16 / 10;
-      background: linear-gradient(180deg, #1a1a26 0%, #0f0f17 100%);
+      margin: var(--space-10) auto;
+    }
+    .instore-animation img {
+      width: 100%;
+      height: auto;
+      display: block;
       border-radius: 8px;
-      overflow: hidden;
       border: 1px solid var(--rule);
-    }
-    .instore-svg { width: 100%; height: 100%; }
-    .instore-controls {
-      display: flex;
-      gap: var(--space-2);
-      justify-content: center;
-      margin-top: var(--space-4);
-    }
-    .instore-replay {
-      font-family: var(--font-mono);
-      font-size: var(--type-micro);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 8px 14px;
-      border: 1px solid var(--rule-strong);
-      border-radius: 999px;
-      transition: color 200ms var(--ease), border-color 200ms var(--ease);
-    }
-    .instore-replay:hover { color: var(--text); border-color: var(--rule-bright); }
-
-    .actor-shopper { animation: shopperWalk 14s var(--ease-in-out) infinite; }
-    .actor-arm { animation: shopperPickup 14s var(--ease-in-out) infinite; transform-origin: 60px 95px; }
-    .actor-shoe { animation: shoePickup 14s var(--ease-in-out) infinite; }
-    .actor-camera-beam { animation: cameraDetect 14s linear infinite; }
-    .actor-screen { animation: screenContent 14s linear infinite; }
-    .actor-screen-content { animation: screenContent 14s linear infinite; opacity: 0; }
-    .actor-loyalty { animation: loyaltyMoment 14s linear infinite; opacity: 0; }
-    .actor-attribution-line { animation: attributionDraw 14s linear infinite; stroke-dasharray: 200; stroke-dashoffset: 200; }
-
-    @keyframes shopperWalk {
-      0% { transform: translateX(-180px); }
-      18% { transform: translateX(0); }
-      82% { transform: translateX(0); }
-      100% { transform: translateX(180px); }
-    }
-    @keyframes shopperPickup {
-      0%, 25% { transform: rotate(0deg); }
-      32%, 42% { transform: rotate(-55deg); }
-      50%, 75% { transform: rotate(0deg); }
-      100% { transform: rotate(0deg); }
-    }
-    @keyframes shoePickup {
-      0%, 32% { transform: translate(0, 0); opacity: 1; }
-      40%, 75% { transform: translate(-12px, -45px); opacity: 1; }
-      78%, 100% { transform: translate(-12px, -45px); opacity: 1; }
-    }
-    @keyframes cameraDetect {
-      0%, 32% { opacity: 0; }
-      35%, 50% { opacity: 0.85; }
-      55%, 100% { opacity: 0.15; }
-    }
-    @keyframes screenContent {
-      0%, 45% { opacity: 0; }
-      50%, 78% { opacity: 1; }
-      82%, 100% { opacity: 0.3; }
-    }
-    @keyframes loyaltyMoment {
-      0%, 80% { opacity: 0; }
-      85%, 95% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-    @keyframes attributionDraw {
-      0%, 80% { stroke-dashoffset: 200; }
-      85%, 100% { stroke-dashoffset: 0; }
     }
 
     /* RETAILERS */
@@ -3530,11 +3466,11 @@
         </h2>
 
         <p class="lead reveal reading" style="color: var(--text-muted); margin-top: var(--space-3);">
-          In-store retail media is the fastest-scaling part of the category. WARC forecasts global retail media spend at $196.7bn in 2026,<a href="#fn-instore-1" class="fn">¹</a> with European spend growing at double the rate of the broader digital advertising market.<a href="#fn-instore-1" class="fn">¹</a> European retail media specifically reached €13.7bn in 2024 (21.1% YoY) and is forecast to hit €20.8bn in 2026 and €28.8bn by 2028.<a href="#fn-instore-2" class="fn">²</a> The screens are being deployed; the budgets are flowing; what's missing is creative supply that holds attention better than what's playing today.
+          The proposition for in-store is the same as it is for the web. TikTok creator content, brand-approved, matched to the SKU, played on screens already running brand-funded retail media. The content experience carries across digital and physical shopping experiences; the commercial model adjusts because the attribution chain in-store is different.
         </p>
 
         <p class="lead reveal reading" style="color: var(--text-muted);">
-          The proposition for in-store is the same as it is for the web. TikTok creator content, brand-approved, matched to the SKU, played on screens already running brand-funded retail media. The mechanic carries across surfaces; the commercial model adjusts because the attribution chain in-store is different.
+          In-store retail media is the fastest-scaling part of the category. WARC forecasts global retail media spend at $196.7bn in 2026,<a href="#fn-instore-1" class="fn">¹</a> with European spend growing at double the rate of the broader digital advertising market.<a href="#fn-instore-1" class="fn">¹</a> European retail media specifically reached €13.7bn in 2024 (21.1% YoY) and is forecast to hit €20.8bn in 2026 and €28.8bn by 2028.<a href="#fn-instore-2" class="fn">²</a> The screens are being deployed; the budgets are flowing; what's missing is creative supply that holds attention better than what's playing today.
         </p>
 
         <div class="stakeholders reveal-stagger">
@@ -3587,7 +3523,7 @@
         </h3>
 
         <p class="reveal reading" style="color: var(--text-muted); margin-top: var(--space-3); font-size: var(--type-small);">
-          The architecture is vendor-neutral. Vusion's particular combination of products is one credible path; SES, Pricer and Hanshow operate adjacent infrastructure. The integration described here has not been tested.
+          The architecture is vendor-neutral. Vusion's particular combination of products is one credible path; Hanshow operates adjacent infrastructure. The integration described here has not been tested.
         </p>
 
         <div class="vendor-intro reveal-stagger">
@@ -3612,138 +3548,8 @@
           In-store retail screens become more engaging with TikTok creator content as the creative supply. Shelf interaction technology makes the next step possible: when a shopper picks up a product, the nearest retail media screen surfaces relevant creator content for that exact SKU. Targeted, informational, in the moment of decision.
         </p>
 
-        <div class="instore-stage reveal" id="instore-stage" aria-label="Indicative animation: shopper picks up product, in-store sensor fires, screen activates with TikTok content, loyalty card scan closes attribution.">
-          <svg class="instore-svg" viewBox="0 0 880 550" xmlns="http://www.w3.org/2000/svg">
-
-            <defs>
-              <linearGradient id="floor" x1="0" y1="1" x2="0" y2="0">
-                <stop offset="0%" stop-color="#0a0a14"/>
-                <stop offset="100%" stop-color="#1a1a26"/>
-              </linearGradient>
-              <linearGradient id="screenContent" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#fe2c55"/>
-                <stop offset="100%" stop-color="#25f4ee"/>
-              </linearGradient>
-              <linearGradient id="cameraBeam" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#25f4ee" stop-opacity="0.6"/>
-                <stop offset="100%" stop-color="#25f4ee" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-
-            <rect x="0" y="380" width="880" height="170" fill="url(#floor)"/>
-            <line x1="0" y1="380" x2="880" y2="380" stroke="#1f1f2e" stroke-width="1"/>
-
-            <rect x="80" y="120" width="720" height="260" fill="#1a1a26" stroke="#2a2a3e" stroke-width="1"/>
-            <line x1="80" y1="200" x2="800" y2="200" stroke="#2a2a3e" stroke-width="1"/>
-            <line x1="80" y1="280" x2="800" y2="280" stroke="#2a2a3e" stroke-width="1"/>
-
-            <g opacity="0.6">
-              <rect x="110" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="160" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="210" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="260" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="310" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="360" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="410" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="460" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="510" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="560" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="610" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="660" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="710" y="155" width="40" height="35" rx="3" fill="#2a2a3e"/>
-
-              <rect x="110" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="160" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="210" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="260" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="310" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="360" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="460" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="510" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="560" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="610" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="660" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="710" y="235" width="40" height="35" rx="3" fill="#2a2a3e"/>
-
-              <rect x="110" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="160" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="210" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="260" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="310" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="360" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="460" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="510" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="560" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="610" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="660" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-              <rect x="710" y="315" width="40" height="35" rx="3" fill="#2a2a3e"/>
-            </g>
-
-            <g class="actor-shoe">
-              <rect x="410" y="235" width="40" height="35" rx="3" fill="#fe2c55" stroke="#25f4ee" stroke-width="1"/>
-              <rect x="412" y="237" width="36" height="3" rx="1" fill="#25f4ee"/>
-            </g>
-
-            <g class="camera">
-              <rect x="395" y="118" width="22" height="10" rx="2" fill="#0a0a14" stroke="#444"/>
-              <circle cx="406" cy="123" r="3" fill="#25f4ee" opacity="0.9"/>
-            </g>
-            <text x="430" y="125" font-family="ui-monospace, Menlo" font-size="9" fill="#56565e" letter-spacing="1">SHELF CAMERA</text>
-
-            <polygon class="actor-camera-beam" points="406,128 380,235 432,235" fill="url(#cameraBeam)"/>
-
-            <g class="actor-screen">
-              <rect x="320" y="290" width="100" height="55" rx="4" fill="#0a0a14" stroke="#3a3a52" stroke-width="1.5"/>
-              <text x="370" y="320" font-family="ui-monospace, Menlo" font-size="8" fill="#56565e" text-anchor="middle" letter-spacing="1">SHELF SCREEN</text>
-              <text x="370" y="333" font-family="ui-monospace, Menlo" font-size="7" fill="#3a3a52" text-anchor="middle" letter-spacing="0.5">[ idle ]</text>
-            </g>
-
-            <g class="actor-screen-content">
-              <rect x="320" y="290" width="100" height="55" rx="4" fill="url(#screenContent)" opacity="0.9"/>
-              <rect x="324" y="294" width="36" height="47" rx="2" fill="rgba(0,0,0,0.5)"/>
-              <text x="342" y="320" font-family="ui-monospace, Menlo" font-size="6" fill="#fff" text-anchor="middle">@creator</text>
-              <text x="342" y="328" font-family="ui-monospace, Menlo" font-size="5" fill="#fff" text-anchor="middle" opacity="0.85">matched review</text>
-              <text x="390" y="305" font-family="ui-monospace, Menlo" font-size="7" fill="#fff" text-anchor="middle" letter-spacing="0.5">▶ LIVE</text>
-              <text x="390" y="320" font-family="ui-monospace, Menlo" font-size="6" fill="#fff" text-anchor="middle" opacity="0.7">SKU match</text>
-              <text x="390" y="332" font-family="ui-monospace, Menlo" font-size="6" fill="#fff" text-anchor="middle" opacity="0.7">#92847</text>
-            </g>
-
-            <g class="actor-shopper" transform="translate(280, 280)">
-              <ellipse cx="60" cy="40" rx="14" ry="16" fill="#36364a"/>
-              <rect x="48" y="55" width="24" height="40" rx="6" fill="#2a2a3e"/>
-              <rect x="50" y="92" width="9" height="32" rx="3" fill="#1a1a26"/>
-              <rect x="61" y="92" width="9" height="32" rx="3" fill="#1a1a26"/>
-              <g class="actor-arm">
-                <rect x="60" y="60" width="6" height="35" rx="3" fill="#36364a"/>
-                <circle cx="63" cy="97" r="4" fill="#36364a"/>
-              </g>
-              <rect x="48" y="60" width="6" height="32" rx="3" fill="#2a2a3e"/>
-            </g>
-
-            <g class="actor-loyalty">
-              <rect x="640" y="430" width="180" height="70" rx="6" fill="#14141c" stroke="#25f4ee" stroke-width="1"/>
-              <text x="730" y="455" font-family="ui-monospace, Menlo" font-size="10" fill="#25f4ee" text-anchor="middle" letter-spacing="1">LOYALTY SCAN</text>
-              <text x="730" y="470" font-family="ui-monospace, Menlo" font-size="8" fill="#94949e" text-anchor="middle">#ID-3829471</text>
-              <text x="730" y="486" font-family="ui-monospace, Menlo" font-size="8" fill="#fe2c55" text-anchor="middle" letter-spacing="0.5">→ creator @handle</text>
-            </g>
-
-            <path class="actor-attribution-line" d="M 420 320 Q 550 380 650 450" stroke="#25f4ee" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
-
-            <g font-family="ui-monospace, Menlo" font-size="9" letter-spacing="1" fill="#94949e">
-              <text x="40" y="60">01 · PICKUP</text>
-              <text x="220" y="60">02 · CV DETECT</text>
-              <text x="430" y="60">03 · SCREEN TRIGGER</text>
-              <text x="640" y="60">04 · LOYALTY CLOSE</text>
-            </g>
-
-            <text x="40" y="525" font-family="ui-monospace, Menlo" font-size="9" fill="#56565e" letter-spacing="0.5">
-              Indicative only. Animation to be reworked.
-            </text>
-          </svg>
-        </div>
-
-        <div class="instore-controls">
-          <button class="instore-replay" id="instore-replay">↻ Replay sequence</button>
+        <div class="instore-animation reveal">
+          <img src="phase2-instore-retail-media.svg" alt="In-store retail media animation: digital signage above a shelf playing TikTok creator content; the centre panel switches to a relevant creator video when a shopper picks up a product." />
         </div>
 
         <div class="surface-callouts cols-2 reveal-stagger" style="margin-top: var(--space-10);">
@@ -3941,19 +3747,6 @@
         }
         lastY = y;
       }, { passive: true });
-
-      const replayBtn = document.getElementById('instore-replay');
-      const stage = document.getElementById('instore-stage');
-      if (replayBtn && stage) {
-        replayBtn.addEventListener('click', () => {
-          const animated = stage.querySelectorAll('[class*="actor-"]');
-          animated.forEach(el => {
-            el.style.animation = 'none';
-            void el.offsetWidth;
-            el.style.animation = '';
-          });
-        });
-      }
 
       // PDP accordion sections (Product Description, Specs, Delivery, Returns)
       document.querySelectorAll('.pdp2-accordion-section').forEach((section) => {
