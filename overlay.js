@@ -9,9 +9,6 @@
   const STORAGE_KEY = 'olly_gate_passed';
   // ────────────────────────────────────────────────────────────────────────
 
-  // If visitor has already submitted, skip the overlay entirely
-  if (sessionStorage.getItem(STORAGE_KEY)) return;
-
   // ── BUILD OVERLAY DOM ───────────────────────────────────────────────────
   const overlay = document.createElement('div');
   overlay.id = 'olly-overlay';
@@ -30,6 +27,14 @@
     </div>
   `;
   document.body.appendChild(overlay);
+
+  // If already submitted this session, show thank-you state immediately
+  // (overlay stays up — content remains blurred)
+  if (sessionStorage.getItem(STORAGE_KEY)) {
+    document.getElementById('olly-overlay-form').style.display = 'none';
+    document.getElementById('olly-overlay-thankyou').style.display = 'block';
+    return;
+  }
 
   // ── SUBMIT HANDLER ──────────────────────────────────────────────────────
   document.getElementById('olly-submit').addEventListener('click', async function () {
@@ -51,29 +56,19 @@
     btn.disabled = true;
     btn.textContent = 'Submitting…';
 
-    // Submit to Google Form silently (no-cors so we can't read the response,
-    // but the submission lands in your Google Sheet)
+    // Submit to Google Form silently
     const body = new FormData();
     body.append(ENTRY_NAME,  nameVal);
     body.append(ENTRY_EMAIL, emailVal);
 
     try {
       await fetch(GOOGLE_FORM_ACTION, { method: 'POST', mode: 'no-cors', body });
-    } catch (_) {
-      // Submission may silently fail if blocked — data still likely received
-    }
+    } catch (_) {}
 
-    // Show thank you, hide form
+    // Show thank-you, hide form — overlay stays permanently, content stays blurred
     document.getElementById('olly-overlay-form').style.display = 'none';
     document.getElementById('olly-overlay-thankyou').style.display = 'block';
-
-    // Mark as passed for this session, then fade out overlay after 2.5s
     sessionStorage.setItem(STORAGE_KEY, '1');
-    setTimeout(() => {
-      overlay.style.transition = 'opacity 0.6s ease';
-      overlay.style.opacity = '0';
-      setTimeout(() => overlay.remove(), 650);
-    }, 2500);
   });
 
   // Allow Enter key to submit
