@@ -9,7 +9,7 @@
 
   // Google Apps Script endpoint (Sheet 2 — visit log)
   // Replace SCRIPT_ID with the deployed Web App ID after following setup instructions
-  const VISIT_LOG_URL = 'https://script.google.com/macros/s/SCRIPT_ID/exec';
+  const VISIT_LOG_URL = 'https://script.google.com/macros/s/AKfycby6VMGNMUGCrSTrSmoFNmLTVzqaoILfw60Ami7oLEYwhETiuBq9RubKVXpgXHt6EXug/exec';
 
   // Access control
   const STORAGE_KEY = 'olly_gate_passed';
