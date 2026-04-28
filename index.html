@@ -4061,7 +4061,6 @@
       </div>
       <div class="footer-meta">
         <div class="footer-meta-row">Document · Confidential</div>
-        <div class="footer-meta-row">Status · Pitch v2.1</div>
         <div class="footer-meta-row" id="ref-display">Recipient · default</div>
       </div>
       <div class="footer-meta">
@@ -4081,14 +4080,19 @@
       const ref = (params.get('ref') || 'default').toLowerCase();
       document.body.setAttribute('data-recipient', ref);
 
+      const slugToName = (slug) =>
+        slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+      const refName = ref === 'default' ? 'Jade Walton' : slugToName(ref);
+
       const refDisplay = document.getElementById('ref-display');
       if (refDisplay) {
-        refDisplay.textContent = 'Recipient · ' + (ref === 'default' ? 'Jade Walton' : ref);
+        refDisplay.textContent = 'Recipient · ' + refName;
       }
 
       const shareRefDisplay = document.getElementById('share-recipient-display');
       if (shareRefDisplay) {
-        shareRefDisplay.textContent = ref === 'default' ? 'Jade Walton' : ref;
+        shareRefDisplay.textContent = refName;
       }
 
       // Copy-to-clipboard fallback for the email button
