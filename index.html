@@ -6,6 +6,8 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="referrer" content="no-referrer" />
   <title>Out of Phone: Commerce</title>
+  <link rel="stylesheet" href="/overlay.css">
+  <script src="/overlay.js" defer></script>
   <meta name="description" content="A pitch document. Concept prototype. Not affiliated with or endorsed by TikTok, Frasers Group, Boots, or Vusion." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -3147,7 +3149,7 @@
 
 
     <!-- REV-SHARE BLOCK — product-level position, above retailer profiles -->
-    <section class="section-divider">
+    <section class="section-divider" style="padding-top: 0;">
       <div class="container">
         <!-- REV-SHARE BLOCK with animated dynamic split -->
         <div class="revshare-block reveal">
@@ -3525,7 +3527,435 @@
         </div>
 
         <div class="instore-animation reveal">
-          <img src="phase2-instore-retail-media.svg" alt="In-store retail media animation: digital signage above a shelf playing TikTok creator content; the centre panel switches to a relevant creator video when a shopper picks up a product." />
+          <svg id="instore-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 550" role="img" aria-label="In-store retail media animation: digital signage above a shelf playing TikTok creator content; the centre panel switches to a relevant creator video when a shopper picks up a product.">
+            <defs>
+              <linearGradient id="isv-bg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#0e0e15"/>
+                <stop offset="1" stop-color="#06060a"/>
+              </linearGradient>
+              <linearGradient id="isv-tiktokGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fe2c55"/>
+                <stop offset="1" stop-color="#25f4ee"/>
+              </linearGradient>
+              <linearGradient id="isv-creatorGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0"    stop-color="#fe2c55" stop-opacity="0.95"/>
+                <stop offset="0.55" stop-color="#7d2076" stop-opacity="0.85"/>
+                <stop offset="1"    stop-color="#25f4ee" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="isv-sidePanelGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0"    stop-color="#4a1a3a"/>
+                <stop offset="0.55" stop-color="#1c1828"/>
+                <stop offset="1"    stop-color="#0a3a55"/>
+              </linearGradient>
+              <linearGradient id="isv-midIdleGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1a2530"/>
+                <stop offset="1" stop-color="#0a141c"/>
+              </linearGradient>
+              <radialGradient id="isv-beamRadial" gradientUnits="userSpaceOnUse" cx="440" cy="306" r="190">
+                <stop offset="0"    stop-color="#25f4ee" stop-opacity="0.9"/>
+                <stop offset="0.45" stop-color="#25f4ee" stop-opacity="0.6"/>
+                <stop offset="0.85" stop-color="#25f4ee" stop-opacity="0.35"/>
+                <stop offset="1"    stop-color="#fe2c55" stop-opacity="0.3"/>
+              </radialGradient>
+              <filter id="isv-beamBlur" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="6"/>
+              </filter>
+              <linearGradient id="isv-productGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#4a4a5c"/>
+                <stop offset="1" stop-color="#2c2c38"/>
+              </linearGradient>
+              <radialGradient id="isv-cyanGlow" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#25f4ee" stop-opacity="0.65"/>
+                <stop offset="1" stop-color="#25f4ee" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="isv-pinkGlow" cx="0.5" cy="0.5" r="0.5">
+                <stop offset="0" stop-color="#fe2c55" stop-opacity="0.6"/>
+                <stop offset="1" stop-color="#fe2c55" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="isv-screenAmbient" cx="0.5" cy="0.4" r="0.7">
+                <stop offset="0"   stop-color="#fe2c55" stop-opacity="0.22"/>
+                <stop offset="0.6" stop-color="#25f4ee" stop-opacity="0.1"/>
+                <stop offset="1"   stop-color="#25f4ee" stop-opacity="0"/>
+              </radialGradient>
+              <clipPath id="isv-leftPanelClip">
+                <rect x="224" y="30" width="144" height="256"/>
+              </clipPath>
+              <clipPath id="isv-midPanelClip">
+                <rect x="368" y="30" width="144" height="256"/>
+              </clipPath>
+              <clipPath id="isv-rightPanelClip">
+                <rect x="512" y="30" width="144" height="256"/>
+              </clipPath>
+            </defs>
+
+            <style>
+              #instore-svg .cam-dot {
+                animation: isvCamDot 10s ease-in-out infinite;
+                transform-origin: 440px 299px;
+              }
+              @keyframes isvCamDot {
+                0%, 33% { opacity: 0.45; transform: scale(1); }
+                36%     { opacity: 1;    transform: scale(1.25); }
+                46%     { opacity: 1;    transform: scale(1); }
+                53%     { opacity: 0.7;  transform: scale(1); }
+                100%    { opacity: 0.45; transform: scale(1); }
+              }
+              #instore-svg .beam {
+                opacity: 0;
+                animation: isvBeam 10s ease-in-out infinite;
+              }
+              @keyframes isvBeam {
+                0%, 33% { opacity: 0; }
+                36%     { opacity: 1; }
+                46%     { opacity: 0.95; }
+                51%     { opacity: 0; }
+                100%    { opacity: 0; }
+              }
+              #instore-svg .target-product {
+                animation: isvTargetLift 10s ease-in-out infinite;
+                transform-origin: center;
+                transform-box: fill-box;
+              }
+              @keyframes isvTargetLift {
+                0%, 26%  { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 1; }
+                30%      { transform: translate(0,-2px)     scale(1.05) rotate(0deg);  opacity: 1; }
+                34%      { transform: translate(4px,-12px)  scale(1.05) rotate(8deg);  opacity: 1; }
+                40%      { transform: translate(14px,-26px) scale(1)    rotate(14deg); opacity: 0.95; }
+                48%      { transform: translate(40px,-40px) scale(0.92) rotate(20deg); opacity: 0; }
+                85%      { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 0; }
+                94%      { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 1; }
+                100%     { transform: translate(0,0)        scale(1)    rotate(0deg);  opacity: 1; }
+              }
+              #instore-svg .target-pink {
+                opacity: 0;
+                animation: isvTargetPink 10s ease-in-out infinite;
+              }
+              @keyframes isvTargetPink {
+                0%, 34% { opacity: 0; }
+                37%     { opacity: 1; }
+                43%     { opacity: 1; }
+                47%     { opacity: 0; }
+                100%    { opacity: 0; }
+              }
+              #instore-svg .empty-mark {
+                opacity: 0;
+                animation: isvEmptyMark 10s ease-in-out infinite;
+              }
+              @keyframes isvEmptyMark {
+                0%, 44% { opacity: 0; }
+                48%     { opacity: 0.9; }
+                57%     { opacity: 0.4; }
+                64%     { opacity: 0; }
+                100%    { opacity: 0; }
+              }
+              #instore-svg .mid-active {
+                opacity: 0;
+                animation: isvMidActive 10s ease-in-out infinite;
+              }
+              @keyframes isvMidActive {
+                0%, 46% { opacity: 0; }
+                52%     { opacity: 1; }
+                80%     { opacity: 1; }
+                86%     { opacity: 0; }
+                100%    { opacity: 0; }
+              }
+              #instore-svg .mid-flash {
+                opacity: 0;
+                animation: isvMidFlash 10s ease-in-out infinite;
+              }
+              @keyframes isvMidFlash {
+                0%, 47% { opacity: 0; }
+                50%     { opacity: 0.45; }
+                55%     { opacity: 0; }
+                100%    { opacity: 0; }
+              }
+              #instore-svg .live-dot-side {
+                animation: isvLiveDotSide 1.25s ease-in-out infinite;
+              }
+              @keyframes isvLiveDotSide {
+                0%, 100% { opacity: 1; }
+                50%      { opacity: 0.3; }
+              }
+              #instore-svg .scan-line {
+                animation: isvScanLine 5s linear infinite;
+              }
+              #instore-svg .scan-line-r { animation-delay: -2.5s; }
+              @keyframes isvScanLine {
+                0%   { transform: translateY(0px);    opacity: 0; }
+                10%  { opacity: 0.55; }
+                90%  { opacity: 0.55; }
+                100% { transform: translateY(256px);  opacity: 0; }
+              }
+              #instore-svg .brand-pulse {
+                animation: isvBrandPulse 5s ease-in-out infinite;
+                transform-origin: center;
+                transform-box: fill-box;
+              }
+              @keyframes isvBrandPulse {
+                0%, 100% { transform: scale(1); }
+                50%      { transform: scale(1.04); }
+              }
+              #instore-svg .side-progress {
+                animation: isvSideProgress 5s linear infinite;
+                transform-origin: left center;
+                transform-box: fill-box;
+              }
+              @keyframes isvSideProgress {
+                0%        { transform: scaleX(0); }
+                90%       { transform: scaleX(1); }
+                99%, 100% { transform: scaleX(0); }
+              }
+              #instore-svg .side-progress-r { animation-delay: -2.5s; }
+              #instore-svg .live-dot {
+                animation: isvLiveDot 1.25s ease-in-out infinite;
+              }
+              @keyframes isvLiveDot {
+                0%, 100% { opacity: 1; }
+                50%      { opacity: 0.25; }
+              }
+              #instore-svg .creator-pan {
+                animation: isvCreatorPan 10s ease-in-out infinite;
+              }
+              @keyframes isvCreatorPan {
+                0%, 50% { transform: translateY(2px); }
+                70%     { transform: translateY(-3px); }
+                85%     { transform: translateY(0); }
+                100%    { transform: translateY(2px); }
+              }
+              #instore-svg .progress-bar {
+                animation: isvProgressBar 10s linear infinite;
+                transform-origin: left center;
+                transform-box: fill-box;
+              }
+              @keyframes isvProgressBar {
+                0%, 50%   { transform: scaleX(0); }
+                80%       { transform: scaleX(1); }
+                85%, 100% { transform: scaleX(0); }
+              }
+              #instore-svg .ambient-pulse {
+                animation: isvAmbientPulse 5s ease-in-out infinite;
+              }
+              @keyframes isvAmbientPulse {
+                0%, 100% { opacity: 0.3; }
+                50%      { opacity: 0.55; }
+              }
+              #instore-svg .isv-label {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                font-size: 8px;
+                letter-spacing: 1.4px;
+                fill: #6a6a78;
+              }
+              #instore-svg .isv-label-line {
+                stroke: #2c2c38;
+                stroke-width: 0.6;
+              }
+            </style>
+
+            <!-- Background -->
+            <rect width="880" height="550" fill="url(#isv-bg)"/>
+            <rect x="10" y="10" width="860" height="530" rx="6" fill="none" stroke="#1a1a24" stroke-width="1"/>
+
+            <!-- SCREEN: 27:16 single signage display -->
+            <g>
+              <ellipse class="ambient-pulse" cx="440" cy="160" rx="320" ry="170" fill="url(#isv-screenAmbient)"/>
+              <rect x="218" y="24" width="444" height="268" rx="5" fill="#0a0a12" stroke="#2c2c38" stroke-width="1"/>
+              <rect x="224" y="30" width="432" height="256" rx="3" fill="#08080d"/>
+
+              <!-- LEFT PANEL -->
+              <g clip-path="url(#isv-leftPanelClip)">
+                <rect x="224" y="30" width="144" height="256" fill="url(#isv-sidePanelGrad)"/>
+                <rect x="224" y="30" width="144" height="256" fill="url(#isv-screenAmbient)" opacity="0.3"/>
+                <circle class="live-dot-side" cx="234" cy="44" r="2.6" fill="#fe2c55"/>
+                <rect x="240" y="41" width="16" height="6.5" rx="1" fill="#fe2c55" opacity="0.95"/>
+                <g class="brand-pulse">
+                  <circle cx="296" cy="130" r="26" fill="none" stroke="#25f4ee" stroke-width="2.2"/>
+                  <circle cx="296" cy="130" r="13" fill="#fe2c55"/>
+                  <circle cx="296" cy="130" r="13" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.55"/>
+                  <circle cx="316" cy="116" r="3.5" fill="#25f4ee"/>
+                  <circle cx="316" cy="116" r="6" fill="url(#isv-cyanGlow)" opacity="0.7"/>
+                </g>
+                <rect x="252" y="178" width="88" height="6" rx="3" fill="#ffffff" opacity="0.95"/>
+                <rect x="266" y="190" width="60" height="4" rx="2" fill="#25f4ee" opacity="0.85"/>
+                <rect x="276" y="200" width="40" height="3" rx="1.5" fill="#fe2c55" opacity="0.85"/>
+                <rect x="244" y="232" width="104" height="2" rx="1" fill="#ffffff" opacity="0.15"/>
+                <rect class="side-progress" x="244" y="232" width="104" height="2" rx="1" fill="url(#isv-tiktokGrad)"/>
+                <rect x="244" y="244" width="20" height="2.5" rx="1" fill="#25f4ee" opacity="0.7"/>
+                <rect x="328" y="244" width="20" height="2.5" rx="1" fill="#fe2c55" opacity="0.7"/>
+                <rect class="scan-line" x="224" y="30" width="144" height="1.4" fill="#25f4ee" opacity="0"/>
+              </g>
+
+              <!-- MIDDLE PANEL -->
+              <g clip-path="url(#isv-midPanelClip)">
+                <rect x="368" y="30" width="144" height="256" fill="url(#isv-midIdleGrad)"/>
+                <rect x="376" y="40" width="128" height="236" rx="3" fill="none" stroke="#2a3a48" stroke-width="1"/>
+                <circle cx="440" cy="158" r="22" fill="rgba(0,0,0,0.35)"/>
+                <circle cx="440" cy="158" r="22" fill="none" stroke="#7a8a9a" stroke-width="1.4"/>
+                <path d="M 433 148 L 452 158 L 433 168 Z" fill="#a0b0c0"/>
+                <rect x="386" y="220" width="46" height="3" rx="1.5" fill="#5a6878" opacity="0.7"/>
+                <rect x="386" y="228" width="68" height="2" rx="1" fill="#5a6878" opacity="0.45"/>
+                <rect x="464" y="220" width="40" height="3" rx="1.5" fill="#5a6878" opacity="0.55"/>
+                <rect x="464" y="228" width="28" height="2" rx="1" fill="#5a6878" opacity="0.35"/>
+                <rect x="376" y="250" width="128" height="1.5" rx="0.75" fill="#3a4858" opacity="0.5"/>
+                <rect x="376" y="250" width="42" height="1.5" rx="0.75" fill="#7a8a9a" opacity="0.7"/>
+                <g class="mid-active">
+                  <rect x="368" y="30" width="144" height="256" fill="url(#isv-creatorGrad)"/>
+                  <g class="creator-pan">
+                    <ellipse cx="440" cy="220" rx="46" ry="26" fill="#1a0612" opacity="0.6"/>
+                    <circle cx="440" cy="156" r="29" fill="#1a0612" opacity="0.75"/>
+                    <rect x="473" y="138" width="18" height="29" rx="1.5" fill="#0a0a12" opacity="0.85"/>
+                    <rect x="473" y="138" width="18" height="29" rx="1.5" fill="none" stroke="#fe2c55" stroke-width="0.6" opacity="0.5"/>
+                  </g>
+                  <circle cx="440" cy="156" r="16" fill="#ffffff" opacity="0.18"/>
+                  <path d="M 434 148 L 449 156 L 434 164 Z" fill="#ffffff" opacity="0.75"/>
+                  <circle class="live-dot" cx="382" cy="46" r="2.6" fill="#ffffff"/>
+                  <rect x="388" y="43" width="14" height="6.5" rx="1" fill="#fe2c55" opacity="0.95"/>
+                  <g fill="#ffffff" opacity="0.9">
+                    <circle cx="496" cy="138" r="2.6"/>
+                    <circle cx="496" cy="154" r="2.6"/>
+                    <circle cx="496" cy="170" r="2.6"/>
+                    <circle cx="496" cy="186" r="2.6"/>
+                  </g>
+                  <rect x="378" y="246" width="50" height="3.5" rx="1.5" fill="#ffffff" opacity="0.85"/>
+                  <rect x="378" y="254" width="74" height="2.5" rx="1.25" fill="#ffffff" opacity="0.55"/>
+                  <rect x="372" y="276" width="136" height="2" fill="rgba(255,255,255,0.2)"/>
+                  <rect class="progress-bar" x="372" y="276" width="136" height="2" fill="url(#isv-tiktokGrad)"/>
+                </g>
+                <rect class="mid-flash" x="368" y="30" width="144" height="256" fill="url(#isv-tiktokGrad)"/>
+              </g>
+
+              <!-- RIGHT PANEL -->
+              <g clip-path="url(#isv-rightPanelClip)">
+                <rect x="512" y="30" width="144" height="256" fill="url(#isv-sidePanelGrad)"/>
+                <rect x="512" y="30" width="144" height="256" fill="url(#isv-screenAmbient)" opacity="0.3"/>
+                <circle class="live-dot-side" cx="522" cy="44" r="2.6" fill="#fe2c55"/>
+                <rect x="528" y="41" width="16" height="6.5" rx="1" fill="#fe2c55" opacity="0.95"/>
+                <g class="brand-pulse">
+                  <circle cx="584" cy="130" r="26" fill="none" stroke="#25f4ee" stroke-width="2.2"/>
+                  <circle cx="584" cy="130" r="13" fill="#fe2c55"/>
+                  <circle cx="584" cy="130" r="13" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.55"/>
+                  <circle cx="564" cy="116" r="3.5" fill="#25f4ee"/>
+                  <circle cx="564" cy="116" r="6" fill="url(#isv-cyanGlow)" opacity="0.7"/>
+                </g>
+                <rect x="540" y="178" width="88" height="6" rx="3" fill="#ffffff" opacity="0.95"/>
+                <rect x="554" y="190" width="60" height="4" rx="2" fill="#25f4ee" opacity="0.85"/>
+                <rect x="564" y="200" width="40" height="3" rx="1.5" fill="#fe2c55" opacity="0.85"/>
+                <rect x="532" y="232" width="104" height="2" rx="1" fill="#ffffff" opacity="0.15"/>
+                <rect class="side-progress side-progress-r" x="532" y="232" width="104" height="2" rx="1" fill="url(#isv-tiktokGrad)"/>
+                <rect x="532" y="244" width="20" height="2.5" rx="1" fill="#25f4ee" opacity="0.7"/>
+                <rect x="616" y="244" width="20" height="2.5" rx="1" fill="#fe2c55" opacity="0.7"/>
+                <rect class="scan-line scan-line-r" x="512" y="30" width="144" height="1.4" fill="#25f4ee" opacity="0"/>
+              </g>
+
+              <line x1="368" y1="36" x2="368" y2="280" stroke="#1a1a24" stroke-width="0.6"/>
+              <line x1="512" y1="36" x2="512" y2="280" stroke="#1a1a24" stroke-width="0.6"/>
+            </g>
+
+            <!-- CAMERA + label -->
+            <g>
+              <rect x="430" y="286" width="20" height="6" fill="#1a1a24" stroke="#262632" stroke-width="0.5"/>
+              <rect x="422" y="292" width="36" height="14" rx="2" fill="#0f0f17" stroke="#2c2c38" stroke-width="0.8"/>
+              <circle cx="440" cy="299" r="5.5" fill="#0a0a12" stroke="#2c2c38" stroke-width="0.6"/>
+              <circle class="cam-dot" cx="440" cy="299" r="3" fill="#25f4ee"/>
+              <circle class="cam-dot" cx="440" cy="299" r="9" fill="url(#isv-cyanGlow)" opacity="0.7"/>
+              <line class="isv-label-line" x1="464" y1="299" x2="488" y2="299"/>
+              <text class="isv-label" x="492" y="302">SHELF CAMERA</text>
+            </g>
+
+            <!-- SHELVES -->
+            <g stroke="#2e2e3c" stroke-width="1" fill="none">
+              <line x1="60" y1="320" x2="820" y2="320"/>
+              <line x1="60" y1="390" x2="820" y2="390"/>
+              <line x1="60" y1="460" x2="820" y2="460"/>
+              <line x1="60" y1="530" x2="820" y2="530"/>
+              <line x1="60" y1="320" x2="60" y2="530"/>
+              <line x1="820" y1="320" x2="820" y2="530"/>
+            </g>
+
+            <!-- STATIC PRODUCTS -->
+            <g fill="url(#isv-productGrad)" stroke="#6c6c80" stroke-width="1">
+              <rect x="80"  y="325" width="60" height="60" rx="3"/>
+              <rect x="146" y="325" width="60" height="60" rx="3"/>
+              <rect x="212" y="325" width="60" height="60" rx="3"/>
+              <rect x="278" y="325" width="60" height="60" rx="3"/>
+              <rect x="344" y="325" width="60" height="60" rx="3"/>
+              <rect x="410" y="325" width="60" height="60" rx="3"/>
+              <rect x="476" y="325" width="60" height="60" rx="3"/>
+              <rect x="542" y="325" width="60" height="60" rx="3"/>
+              <rect x="608" y="325" width="60" height="60" rx="3"/>
+              <rect x="674" y="325" width="60" height="60" rx="3"/>
+              <rect x="740" y="325" width="60" height="60" rx="3"/>
+            </g>
+            <g fill="url(#isv-productGrad)" stroke="#6c6c80" stroke-width="1">
+              <rect x="80"  y="395" width="60" height="60" rx="3"/>
+              <rect x="146" y="395" width="60" height="60" rx="3"/>
+              <rect x="212" y="395" width="60" height="60" rx="3"/>
+              <rect x="278" y="395" width="60" height="60" rx="3"/>
+              <rect x="344" y="395" width="60" height="60" rx="3"/>
+              <rect x="410" y="395" width="60" height="60" rx="3"/>
+              <rect x="476" y="395" width="60" height="60" rx="3"/>
+              <rect x="542" y="395" width="60" height="60" rx="3"/>
+              <rect x="674" y="395" width="60" height="60" rx="3"/>
+              <rect x="740" y="395" width="60" height="60" rx="3"/>
+            </g>
+            <g fill="url(#isv-productGrad)" stroke="#6c6c80" stroke-width="1">
+              <rect x="80"  y="465" width="60" height="60" rx="3"/>
+              <rect x="146" y="465" width="60" height="60" rx="3"/>
+              <rect x="212" y="465" width="60" height="60" rx="3"/>
+              <rect x="278" y="465" width="60" height="60" rx="3"/>
+              <rect x="344" y="465" width="60" height="60" rx="3"/>
+              <rect x="410" y="465" width="60" height="60" rx="3"/>
+              <rect x="476" y="465" width="60" height="60" rx="3"/>
+              <rect x="542" y="465" width="60" height="60" rx="3"/>
+              <rect x="608" y="465" width="60" height="60" rx="3"/>
+              <rect x="674" y="465" width="60" height="60" rx="3"/>
+              <rect x="740" y="465" width="60" height="60" rx="3"/>
+            </g>
+
+            <!-- Empty-slot marker -->
+            <g class="empty-mark">
+              <rect x="608" y="395" width="60" height="60" rx="3" fill="none" stroke="#fe2c55" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.85"/>
+              <path d="M 608 401 L 608 395 L 614 395 M 662 395 L 668 395 L 668 401 M 668 449 L 668 455 L 662 455 M 614 455 L 608 455 L 608 449" fill="none" stroke="#25f4ee" stroke-width="1.6"/>
+            </g>
+
+            <!-- DETECTION BEAM -->
+            <g class="beam">
+              <path d="M 415 305 L 545 462 L 735 462 L 465 305 Z" fill="#25f4ee" opacity="0.18" filter="url(#isv-beamBlur)"/>
+              <path d="M 430 308 L 575 455 L 705 455 L 450 308 Z" fill="url(#isv-beamRadial)"/>
+              <line x1="430" y1="308" x2="575" y2="455" stroke="#25f4ee" stroke-width="1" opacity="0.85"/>
+              <line x1="450" y1="308" x2="705" y2="455" stroke="#25f4ee" stroke-width="1" opacity="0.85"/>
+              <circle cx="440" cy="306" r="18" fill="url(#isv-cyanGlow)" opacity="0.95"/>
+              <circle cx="440" cy="306" r="6" fill="#25f4ee" opacity="0.85"/>
+              <ellipse cx="640" cy="455" rx="74" ry="14" fill="url(#isv-cyanGlow)" opacity="0.75"/>
+              <line x1="575" y1="455" x2="705" y2="455" stroke="#25f4ee" stroke-width="2" opacity="1"/>
+            </g>
+
+            <!-- TARGET PRODUCT -->
+            <g class="target-product">
+              <rect x="608" y="395" width="60" height="60" rx="3" fill="url(#isv-productGrad)" stroke="#7c7c92" stroke-width="1"/>
+              <g class="target-pink">
+                <rect x="608" y="395" width="60" height="60" rx="3" fill="#fe2c55" opacity="0.9"/>
+                <rect x="608" y="395" width="60" height="60" rx="3" fill="none" stroke="#25f4ee" stroke-width="1.6"/>
+                <ellipse cx="638" cy="425" rx="50" ry="42" fill="url(#isv-pinkGlow)" opacity="0.6"/>
+              </g>
+            </g>
+
+            <!-- Ambient corner accents -->
+            <g>
+              <line x1="40" y1="60" x2="60" y2="60" stroke="#25f4ee" stroke-width="0.6" opacity="0.3"/>
+              <line x1="40" y1="60" x2="40" y2="80" stroke="#25f4ee" stroke-width="0.6" opacity="0.3"/>
+              <line x1="820" y1="490" x2="840" y2="490" stroke="#fe2c55" stroke-width="0.6" opacity="0.3"/>
+              <line x1="840" y1="470" x2="840" y2="490" stroke="#fe2c55" stroke-width="0.6" opacity="0.3"/>
+            </g>
+
+            <!-- Labels -->
+            <g>
+              <line class="isv-label-line" x1="668" y1="155" x2="692" y2="155"/>
+              <text class="isv-label" x="696" y="158">IN-STORE RETAIL SCREEN</text>
+              <text class="isv-label" x="4" y="349">PRODUCT</text>
+              <text class="isv-label" x="4" y="360">SHELF</text>
+              <line class="isv-label-line" x1="52" y1="355" x2="60" y2="355"/>
+            </g>
+          </svg>
         </div>
 
         <h3 class="reveal" style="margin-top: var(--space-12); font-family: var(--font-display); font-weight: 400; font-variation-settings: 'opsz' 144; font-size: clamp(1.4rem, 2.2vw, 1.8rem); line-height: 1.2; letter-spacing: -0.015em; color: var(--text); max-width: 32ch;">
