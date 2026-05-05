@@ -6,8 +6,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="referrer" content="no-referrer" />
   <title>Out of Phone: Commerce</title>
-  <link rel="stylesheet" href="/overlay.css">
-  <script src="/overlay.js" defer></script>
+  <script src="/tracker.js" defer></script>
   <meta name="description" content="A pitch document. Concept prototype. Not affiliated with or endorsed by TikTok, Frasers Group, Boots, or Vusion." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -4042,7 +4041,7 @@
             </div>
             <div class="share-meta-row">
               <span class="share-meta-label">Recipient</span>
-              <span class="share-meta-value" id="share-recipient-display">Jade Walton</span>
+              <span class="share-meta-value" id="share-recipient-display"></span>
             </div>
           </div>
         </div>
@@ -4083,16 +4082,25 @@
       const slugToName = (slug) =>
         slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
-      const refName = ref === 'default' ? 'Jade Walton' : slugToName(ref);
+      const refName = ref === 'default' ? '' : slugToName(ref);
 
       const refDisplay = document.getElementById('ref-display');
       if (refDisplay) {
-        refDisplay.textContent = 'Recipient · ' + refName;
+        if (refName) {
+          refDisplay.textContent = 'Recipient · ' + refName;
+        } else {
+          refDisplay.style.display = 'none';
+        }
       }
 
       const shareRefDisplay = document.getElementById('share-recipient-display');
       if (shareRefDisplay) {
-        shareRefDisplay.textContent = refName;
+        const shareRow = shareRefDisplay.closest('.share-meta-row');
+        if (refName) {
+          shareRefDisplay.textContent = refName;
+        } else if (shareRow) {
+          shareRow.style.display = 'none';
+        }
       }
 
       // Copy-to-clipboard fallback for the email button
