@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Out of Phone: Commerce — Tesco Food &amp; Beverage</title>
+  <meta name="description" content="A pitch document. Concept prototype. Not affiliated with or endorsed by TikTok, Tesco, dunnhumby, Diageo, Pimm's, or ByteDance." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..800,0..100&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-elevated: #12121b;
+      --bg-card: #1a1a26;
+      --bg-card-hover: #20202e;
+      --text: #f2f2f4;
+      --text-muted: #9494a0;
+      --text-quiet: #56565e;
+      --text-subtle: #36363e;
+      --rule: rgba(255, 255, 255, 0.07);
+      --rule-strong: rgba(255, 255, 255, 0.14);
+      --rule-bright: rgba(255, 255, 255, 0.32);
+      --accent-pink: #fe2c55;
+      --accent-cyan: #25f4ee;
+      --accent-warm: #efe1c0;
+      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+      --font-body: "Inter", system-ui, -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      --type-mega: clamp(2.5rem, 8.5vw, 7.5rem);
+      --type-display: clamp(2rem, 4.8vw, 4rem);
+      --type-h1: clamp(1.625rem, 3.2vw, 2.625rem);
+      --type-h2: clamp(1.35rem, 2.4vw, 1.95rem);
+      --type-h3: clamp(1.125rem, 1.6vw, 1.45rem);
+      --type-lead: clamp(1.075rem, 1.4vw, 1.3rem);
+      --type-body: 1.0625rem;
+      --type-small: 0.9375rem;
+      --type-micro: 0.8125rem;
+      --type-mono: 0.8125rem;
+      --space-1: 0.5rem; --space-2: 1rem; --space-3: 1.5rem; --space-4: 2rem;
+      --space-5: 2.5rem; --space-6: 3rem; --space-8: 4rem; --space-10: 5rem;
+      --space-12: 6rem; --space-16: 8rem; --space-20: 10rem;
+      --max-w: 1280px; --reading-w: 68ch;
+      --gutter: clamp(1.25rem, 4vw, 2.5rem);
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html {
+      background: var(--bg); color: var(--text);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility; scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh; overflow-x: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(254, 44, 85, 0.05), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 110%, rgba(37, 244, 238, 0.03), transparent 60%),
+        var(--bg);
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+    a.fn {
+      color: var(--accent-cyan); text-decoration: none; font-weight: 500;
+      font-feature-settings: "sups" 1; vertical-align: super; font-size: 0.7em;
+      margin-left: 1px; letter-spacing: 0; transition: opacity 200ms var(--ease);
+    }
+    a.fn:hover { opacity: 0.7; }
+
+    .display, h1, h2 {
+      font-family: var(--font-display); font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      line-height: 1.02; letter-spacing: -0.022em; color: var(--text);
+    }
+    h1 { font-size: var(--type-display); }
+    h2 { font-size: var(--type-h1); }
+    h3 {
+      font-family: var(--font-body); font-weight: 600; font-size: var(--type-h3);
+      line-height: 1.25; letter-spacing: -0.01em; margin: 0; color: var(--text);
+    }
+    p { margin: 0 0 var(--space-3); }
+    .lead { font-size: var(--type-lead); line-height: 1.5; color: var(--text); font-weight: 400; }
+    .small { font-size: var(--type-small); color: var(--text-muted); }
+    .micro {
+      font-family: var(--font-mono); font-size: var(--type-micro);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 500;
+    }
+    .mono { font-family: var(--font-mono); font-size: var(--type-mono); letter-spacing: 0; color: var(--text-muted); }
+    em { font-style: italic; color: var(--accent-warm); font-family: var(--font-display); }
+
+    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+    .container-narrow { max-width: 880px; }
+    .reading { max-width: var(--reading-w); }
+
+    section { position: relative; padding-top: var(--space-20); padding-bottom: var(--space-20); }
+    @media (max-width: 720px) { section { padding-top: var(--space-12); padding-bottom: var(--space-12); } }
+
+    .section-eyebrow { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-6); }
+    .section-eyebrow::before { content: ""; width: 2.5rem; height: 1px; background: var(--rule-bright); }
+    .section-eyebrow .micro { color: var(--text-muted); }
+    .section-divider { border-top: 1px solid var(--rule); margin-top: 0; }
+
+    .sources { margin-top: var(--space-10); padding-top: var(--space-4); border-top: 1px solid var(--rule); max-width: var(--reading-w); }
+    .sources-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-quiet); margin-bottom: var(--space-2); }
+    .sources ol { list-style: none; padding: 0; margin: 0; counter-reset: src; }
+    .sources li { counter-increment: src; font-family: var(--font-mono); font-size: 11px; line-height: 1.55; color: var(--text-quiet); padding: 4px 0; position: relative; padding-left: 1.6em; }
+    .sources li::before { content: counter(src); position: absolute; left: 0; color: var(--accent-cyan); font-weight: 500; }
+    .sources li a { color: var(--text-muted); text-decoration: none; border-bottom: 1px dotted var(--text-subtle); transition: color 200ms var(--ease), border-color 200ms var(--ease); }
+    .sources li a:hover { color: var(--text); border-bottom-color: var(--rule-bright); }
+
+    /* NAV */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: var(--space-3) var(--gutter);
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 10, 15, 0.94);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border-bottom: 1px solid var(--rule);
+      transition: transform 250ms var(--ease);
+    }
+    .site-nav.is-hidden { transform: translateY(-100%); }
+    .site-nav-brand { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); display: flex; align-items: center; gap: var(--space-2); }
+    .site-nav-brand::before { content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan)); border-radius: 50%; }
+    .site-nav-meta { font-family: var(--font-mono); font-size: var(--type-micro); color: var(--text-quiet); letter-spacing: 0.05em; text-transform: uppercase; }
+    @media (max-width: 640px) { .site-nav-meta { display: none; } }
+
+    /* STICKY EYEBROW */
+    .sticky-eyebrow {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 6px 14px;
+      background: rgba(10, 10, 15, 0.88);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-mono); font-size: var(--type-micro);
+      color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;
+      opacity: 0; pointer-events: none; transform: translateY(-100%);
+      transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+    }
+    .sticky-eyebrow.is-visible { opacity: 1; transform: translateY(0); }
+    .sticky-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan)); flex-shrink: 0; }
+    .sticky-eyebrow-label { color: var(--text); font-weight: 500; }
+    @media (max-width: 640px) { .sticky-eyebrow { font-size: 9px; padding: 5px 10px; } }
+
+    /* SURFACE MARKER */
+    .surface-marker { position: relative; padding-top: var(--space-8); margin-bottom: var(--space-6); }
+    .surface-marker::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--accent-pink) 0%, var(--accent-cyan) 100%); opacity: 0.7; }
+    .surface-marker-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: var(--space-3); }
+    .surface-marker-eyebrow .marker-num { color: var(--text); font-weight: 600; }
+    .surface-marker-eyebrow .marker-divider { width: 24px; height: 1px; background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan)); display: inline-block; }
+    .surface-marker-eyebrow .marker-title { color: var(--text); font-weight: 500; }
+    .surface-marker::after { content: ""; position: absolute; left: 0; top: 1px; bottom: -8px; width: 1px; background: linear-gradient(180deg, var(--accent-pink) 0%, transparent 100%); opacity: 0.4; }
+
+    .has-accent-stroke { position: relative; padding-left: var(--space-4); }
+    .has-accent-stroke::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--accent-pink) 0%, var(--accent-cyan) 100%); border-radius: 2px; }
+
+    .gradient-rule { width: 100%; height: 1px; background: linear-gradient(90deg, transparent 0%, var(--accent-pink) 30%, var(--accent-cyan) 70%, transparent 100%); opacity: 0.6; margin: var(--space-8) 0; border: 0; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: var(--space-20); padding-bottom: var(--space-12); position: relative; }
+    .hero-eyebrow { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-8); opacity: 0; animation: fadeInUp 700ms var(--ease-out) 200ms forwards; }
+    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-pink); animation: pulse 2.4s var(--ease-in-out) infinite; }
+    .hero-headline { max-width: 24ch; margin: 0 0 var(--space-6); opacity: 0; animation: fadeInUp 900ms var(--ease-out) 350ms forwards; font-family: var(--font-display); font-variation-settings: "opsz" 144, "SOFT" 30; font-weight: 350; font-size: clamp(2rem, 5.2vw, 4.5rem); line-height: 1.05; letter-spacing: -0.025em; }
+    .hero-headline .quiet { color: var(--text-muted); }
+    .hero-product { font-family: var(--font-display); font-style: italic; color: var(--accent-warm); }
+    .hero-lead { max-width: 60ch; margin: 0 0 var(--space-8); opacity: 0; animation: fadeInUp 900ms var(--ease-out) 600ms forwards; color: var(--text-muted); }
+    .hero-meta { display: flex; gap: var(--space-6); flex-wrap: wrap; padding-top: var(--space-6); border-top: 1px solid var(--rule); opacity: 0; animation: fadeInUp 900ms var(--ease-out) 800ms forwards; }
+    .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .hero-meta-item .micro { color: var(--text-quiet); }
+    .hero-meta-item .value { font-family: var(--font-display); font-variation-settings: "opsz" 96; font-weight: 400; font-size: 1.15rem; color: var(--text); }
+    .hero-scroll-cue { position: absolute; bottom: var(--space-6); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: var(--space-1); opacity: 0; animation: fadeIn 1500ms var(--ease-out) 1500ms forwards; }
+    .hero-scroll-cue .line { width: 1px; height: 32px; background: linear-gradient(180deg, transparent, var(--rule-bright)); animation: scrollHint 2.5s var(--ease-in-out) infinite; }
+
+    /* SURFACE HEADER */
+    .surface-header { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-8); max-width: 64ch; }
+    .surface-counter { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: 0.08em; color: var(--text-quiet); text-transform: uppercase; }
+
+    /* MOCKUP FRAME */
+    .mockup-frame { background: var(--bg-elevated); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5); }
+    .mockup-frame-header { background: #ffffff; color: #111; padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #e5e5e5; }
+    .mockup-frame-traffic { display: flex; gap: 6px; }
+    .mockup-frame-traffic span { width: 11px; height: 11px; border-radius: 50%; background: #e0e0e0; }
+    .mockup-frame-traffic span:first-child { background: #ff5f56; }
+    .mockup-frame-traffic span:nth-child(2) { background: #ffbd2e; }
+    .mockup-frame-traffic span:nth-child(3) { background: #27c93f; }
+    .mockup-frame-url { font-family: var(--font-mono); font-size: 12px; color: #555; background: #f3f3f3; padding: 4px 10px; border-radius: 4px; flex: 1; }
+
+    /* PDP SCROLL CONTAINER */
+    .pdp2-scroll-container { background: #fff; color: #111; font-family: var(--font-body); max-height: 820px; overflow-y: auto; overflow-x: hidden; position: relative; scroll-behavior: smooth; }
+    .pdp2-scroll-container::-webkit-scrollbar { width: 6px; }
+    .pdp2-scroll-container::-webkit-scrollbar-track { background: #fafafa; }
+    .pdp2-scroll-container::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 3px; }
+    .pdp2-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 0; padding: 0; align-items: start; }
+    @media (max-width: 720px) { .pdp2-layout { grid-template-columns: 1fr; } }
+    .pdp2-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: #fff; }
+    .pdp2-gallery-item { width: 100%; aspect-ratio: 1/1; background: #f3f3f3; position: relative; overflow: hidden; display: block; }
+    .pdp2-gallery-item.is-tall { grid-row: span 2; aspect-ratio: 1/2; }
+    .pdp2-gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    /* TikTok gallery item */
+    .pdp2-gallery-item.is-tiktok { background: #000; position: relative; }
+    .pdp2-tiktok-caption { position: absolute; top: 10px; left: 10px; z-index: 10; background: #fff; color: #000; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; padding: 5px 9px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+    .pdp2-tiktok-caption::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: linear-gradient(135deg, #fe2c55, #25f4ee); }
+    .pdp2-tiktok-embed-wrap { position: absolute; top: 0; left: 50%; transform-origin: top center; transform: translateX(-50%) scale(var(--pdp-embed-scale, 1)); width: 325px; height: auto; }
+    .pdp2-tiktok-embed-wrap blockquote.tiktok-embed { max-width: 325px !important; min-width: 325px !important; margin: 0 !important; width: 325px !important; }
+    .pdp2-tiktok-embed-wrap iframe { max-width: 325px !important; width: 325px !important; border: 0; display: block; }
+
+    /* Alcohol notice overlay on TikTok gallery item */
+    .tiktok-alcohol-notice { position: absolute; bottom: 8px; left: 8px; right: 8px; z-index: 11; background: rgba(0,0,0,0.88); color: #fff; font-size: 9px; padding: 5px 8px; border-radius: 3px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.35; pointer-events: none; }
+    .age-badge { background: #fff; color: #000; font-weight: 700; font-size: 9px; padding: 2px 5px; border-radius: 2px; flex-shrink: 0; letter-spacing: 0.04em; }
+
+    /* TESCO PDP INFO PANEL */
+    .tesco-pdp-info { padding: 24px 28px 48px; background: #fff; position: sticky; top: 0; align-self: start; max-height: 820px; overflow-y: auto; }
+    .tesco-pdp-info::-webkit-scrollbar { width: 4px; }
+    .tesco-pdp-info::-webkit-scrollbar-thumb { background: #ddd; }
+    .tesco-pdp-breadcrumb { font-size: 11px; color: #5a5a5a; margin-bottom: 14px; line-height: 1.5; }
+    .tesco-pdp-breadcrumb .crumb { color: #5a5a5a; }
+    .tesco-pdp-breadcrumb .crumb + .crumb::before { content: " > "; color: #aaa; }
+    .tesco-pdp-title { font-family: var(--font-body); font-size: 18px; font-weight: 700; color: #1c1c1c; line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.01em; }
+    .tesco-pdp-rating { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; margin-bottom: 14px; }
+    .tesco-pdp-rating .stars { color: #f5a623; letter-spacing: 1px; }
+    .tesco-pdp-price { font-size: 26px; font-weight: 700; color: #1c1c1c; line-height: 1; margin-bottom: 3px; }
+    .tesco-pdp-price-unit { font-size: 12px; color: #777; margin-bottom: 16px; }
+    .tesco-badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .tesco-badge { padding: 3px 8px; background: #f0f0f0; border-radius: 3px; font-size: 11px; color: #444; font-weight: 500; }
+    .tesco-badge.is-abv { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
+    .tesco-badge.is-18 { background: #1c1c1c; color: #fff; font-weight: 700; letter-spacing: 0.04em; }
+
+    .tesco-clubcard-offer { background: #fff5f5; border: 1px solid #ffd7d7; border-left: 3px solid #e51b24; border-radius: 4px; padding: 12px; margin-bottom: 16px; }
+    .tesco-clubcard-offer-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .tesco-clubcard-logo { background: #e51b24; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 7px; border-radius: 3px; text-transform: uppercase; flex-shrink: 0; }
+    .tesco-clubcard-offer-title { font-size: 13px; font-weight: 700; color: #1c1c1c; }
+    .tesco-clubcard-offer-detail { font-size: 12px; color: #333; line-height: 1.4; margin-bottom: 4px; }
+    .tesco-clubcard-valid { font-size: 11px; color: #777; }
+
+    .tesco-add-trolley { display: flex; align-items: center; justify-content: center; gap: 8px; background: #00539f; color: #fff; padding: 13px 20px; border-radius: 4px; font-size: 14px; font-weight: 700; margin-bottom: 14px; cursor: pointer; text-align: center; border: 0; width: 100%; }
+
+    .tesco-pdp-accordion { border-top: 1px solid #e5e5e5; margin-top: 8px; }
+    .tesco-pdp-accordion-section { border-bottom: 1px solid #e5e5e5; }
+    .tesco-pdp-accordion-header { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 13px 0; background: none; border: 0; cursor: pointer; font-size: 13px; font-weight: 600; color: #1c1c1c; text-align: left; }
+    .tesco-pdp-accordion-icon { font-size: 16px; color: #555; width: 16px; text-align: center; transition: transform 240ms var(--ease); }
+    .tesco-pdp-accordion-section.is-open .tesco-pdp-accordion-icon { transform: rotate(45deg); }
+    .tesco-pdp-accordion-body { max-height: 0; overflow: hidden; transition: max-height 320ms var(--ease); }
+    .tesco-pdp-accordion-section.is-open .tesco-pdp-accordion-body { max-height: 600px; }
+    .tesco-pdp-accordion-body-inner { padding: 0 0 14px; font-size: 12px; color: #444; line-height: 1.6; }
+    .tesco-pdp-accordion-body-inner p { margin: 0 0 8px; }
+    .tesco-pdp-accordion-body-inner p:last-child { margin-bottom: 0; }
+    .tesco-spec-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+    .tesco-spec-label { color: #777; min-width: 80px; flex-shrink: 0; }
+    .tesco-spec-value { color: #1c1c1c; font-weight: 500; }
+
+    /* TESCO HEADER (shared between PDP and category mockups) */
+    .tesco-header { background: #00539f; padding: 12px 20px; display: flex; align-items: center; gap: 12px; }
+    .tesco-wordmark { font-family: var(--font-body); font-weight: 900; font-size: 20px; color: #fff; letter-spacing: -0.02em; text-transform: lowercase; flex-shrink: 0; }
+    .tesco-search-field { flex: 1; display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 4px; padding: 7px 12px; font-size: 13px; color: #555; }
+    .tesco-search-field .magnifier { color: #00539f; font-size: 14px; font-weight: 700; }
+    .tesco-header-icons { display: flex; gap: 14px; align-items: center; color: #fff; font-size: 11px; flex-shrink: 0; }
+    .tesco-subnav { background: #fff; border-bottom: 2px solid #00539f; padding: 0 20px; display: flex; gap: 0; }
+    .tesco-subnav-item { font-size: 12px; color: #333; font-weight: 500; padding: 10px 12px; cursor: pointer; white-space: nowrap; }
+    .tesco-subnav-item.is-active { color: #00539f; border-bottom: 2px solid #00539f; margin-bottom: -2px; font-weight: 700; }
+
+    /* TESCO CATEGORY PAGE */
+    .tesco-cat-content { padding: 16px 20px; background: #fff; }
+    .tesco-cat-breadcrumb { font-size: 12px; color: #5a5a5a; margin-bottom: 14px; }
+    .tesco-cat-breadcrumb .crumb + .crumb::before { content: " > "; color: #aaa; }
+    .tesco-cat-heading { font-size: 22px; font-weight: 700; color: #1c1c1c; margin: 0 0 4px; letter-spacing: -0.01em; font-family: var(--font-body); }
+    .tesco-sort-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; margin-bottom: 16px; font-size: 12px; color: #555; }
+    .tesco-sort-select { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #1c1c1c; font-weight: 600; cursor: pointer; }
+    .tesco-cat-note { font-size: 12px; color: #555; margin-bottom: 12px; line-height: 1.5; }
+
+    .tesco-cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 720px) { .tesco-cat-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .tesco-product-card { display: flex; flex-direction: column; gap: 6px; position: relative; }
+    .tesco-product-image { aspect-ratio: 1/1; background: #f9f9f9; border: 1px solid #efefef; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+    .tesco-product-image img { width: 100%; height: 100%; object-fit: contain; padding: 8px; display: block; }
+    .tesco-product-image.is-placeholder { background: #f0f0f0; }
+    .tesco-placeholder-label { font-family: var(--font-mono); font-size: 10px; color: #aaa; text-align: center; padding: 8px; line-height: 1.4; }
+    .tesco-product-name { font-size: 12px; color: #1c1c1c; line-height: 1.35; font-weight: 400; }
+    .tesco-product-rating { font-size: 11px; color: #555; display: flex; align-items: center; gap: 4px; }
+    .tesco-product-rating .stars { color: #f5a623; }
+    .tesco-product-price { font-size: 16px; font-weight: 700; color: #1c1c1c; }
+    .tesco-product-price-unit { font-size: 11px; color: #777; }
+    .tesco-product-clubcard { display: inline-flex; align-items: center; gap: 5px; background: #e51b24; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 7px; border-radius: 3px; }
+    .tesco-product-clubcard-valid { font-size: 10px; color: #777; }
+
+    /* SPONSORED CATEGORY CARD */
+    .tesco-product-card.is-sponsored { background: #000; border-radius: 4px; overflow: hidden; }
+    .tesco-product-card.is-sponsored .tesco-product-image { aspect-ratio: 1/1; background: #000; border: 0; border-radius: 0; padding: 0; position: relative; overflow: hidden; }
+    .tesco-product-card.is-sponsored .cat-embed-wrap { position: absolute; inset: 0; width: 325px; height: auto; transform-origin: top left; transform: scale(var(--embed-scale, 0.7)); }
+    .tesco-product-card.is-sponsored .cat-embed-wrap blockquote.tiktok-embed { max-width: 325px !important; min-width: 325px !important; margin: 0 !important; width: 325px !important; }
+    .tesco-product-card.is-sponsored .cat-embed-wrap iframe { max-width: 325px !important; width: 325px !important; border: 0; display: block; }
+    .tesco-sponsored-overlay { position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.82); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; padding: 5px 8px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 4px; z-index: 10; }
+    .tesco-sponsored-overlay::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: linear-gradient(135deg, #fe2c55, #25f4ee); }
+    .tesco-cat-alcohol-notice { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); color: #fff; font-size: 9px; padding: 6px 8px; display: flex; align-items: center; gap: 6px; z-index: 10; line-height: 1.3; pointer-events: none; }
+
+    /* CALLOUTS */
+    .surface-callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-top: var(--space-6); }
+    @media (max-width: 720px) { .surface-callouts { grid-template-columns: 1fr; } }
+    .callout { padding: var(--space-3) 0; border-top: 1px solid var(--rule-strong); }
+    .callout .stat { font-family: var(--font-display); font-variation-settings: "opsz" 144; font-size: clamp(1.85rem, 3.6vw, 2.7rem); line-height: 1; color: var(--text); margin-bottom: var(--space-1); letter-spacing: -0.02em; }
+    .callout .stat-label { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-2); }
+    .callout p { font-size: var(--type-small); color: var(--text-muted); margin: 0; }
+
+    /* SAFETY / APPROVAL BLOCK */
+    .safety-block { margin-top: var(--space-8); padding: var(--space-5); background: var(--bg-elevated); border: 1px solid var(--rule); border-radius: 6px; }
+    .safety-block-label { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-quiet); margin-bottom: var(--space-3); }
+    .safety-block h3 { font-family: var(--font-display); font-variation-settings: "opsz" 144; font-weight: 400; font-size: clamp(1.4rem, 2vw, 1.7rem); line-height: 1.2; letter-spacing: -0.015em; color: var(--text); margin: 0 0 var(--space-3); }
+    .safety-block p { color: var(--text-muted); font-size: var(--type-small); line-height: 1.6; max-width: 64ch; }
+    .safety-block p:last-child { margin-bottom: 0; }
+    .safety-block strong { color: var(--text); font-weight: 600; }
+
+    /* ANNOTATION CALLOUT */
+    .mockup-annotation { margin-top: var(--space-4); padding: var(--space-3) var(--space-4); background: var(--bg-elevated); border: 1px solid var(--rule); border-left: 2px solid var(--accent-cyan); border-radius: 4px; font-size: var(--type-small); color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.02em; }
+    .mockup-annotation strong { color: var(--accent-cyan); font-family: var(--font-body); font-weight: 600; letter-spacing: 0; text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; margin-right: 8px; }
+
+    /* RETAILER CARD */
+    .retailer-card { background: var(--bg-elevated); border: 1px solid var(--rule); border-radius: 6px; padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-4); position: relative; }
+    .retailer-card-header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-2); flex-wrap: wrap; }
+    .retailer-card-name { font-family: var(--font-display); font-variation-settings: "opsz" 144, "SOFT" 30; font-weight: 400; font-size: clamp(1.6rem, 2.4vw, 2.1rem); line-height: 1.05; letter-spacing: -0.02em; color: var(--text); margin: 0; }
+    .retailer-card-tag { font-family: var(--font-mono); font-size: var(--type-micro); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-quiet); }
+    .retailer-card p { color: var(--text-muted); font-size: var(--type-small); line-height: 1.55; margin: 0 0 var(--space-2); }
+    .retailer-card p:last-of-type { margin-bottom: 0; }
+    .retailer-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3) var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--rule); margin-top: auto; }
+    @media (max-width: 860px) { .retailer-stats { grid-template-columns: repeat(2, 1fr); } }
+    .retailer-stat .figure { font-family: var(--font-display); font-variation-settings: "opsz" 144; font-weight: 350; font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 1; color: var(--text); letter-spacing: -0.02em; margin-bottom: var(--space-1); }
+    .retailer-stat .figure .unit { font-size: 0.55em; color: var(--text-muted); margin-left: 1px; }
+    .retailer-stat .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); line-height: 1.3; }
+
+    /* COMPLIANCE CHECKLIST */
+    .compliance-list { list-style: none; padding: 0; margin: var(--space-4) 0 0; }
+    .compliance-list li { display: flex; gap: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px solid var(--rule); font-size: var(--type-small); color: var(--text-muted); line-height: 1.5; }
+    .compliance-list li:last-child { border-bottom: 0; }
+    .compliance-list li::before { content: "✓"; color: var(--accent-cyan); font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 1px; font-family: var(--font-mono); }
+    .compliance-list li strong { color: var(--text); font-weight: 600; }
+
+    /* FOOTER */
+    footer.site-footer { padding: var(--space-12) var(--gutter) var(--space-6); border-top: 1px solid var(--rule); margin-top: var(--space-12); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: var(--space-6); max-width: var(--max-w); margin: 0 auto; }
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-disclaimer { font-size: var(--type-small); color: var(--text-muted); max-width: 60ch; }
+    .footer-meta { font-family: var(--font-mono); font-size: var(--type-micro); color: var(--text-quiet); letter-spacing: 0.04em; }
+    .footer-meta-row { padding: 4px 0; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
+    .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+    .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+    .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+    .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+    .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.9); } }
+    @keyframes scrollHint { 0% { transform: translateY(-12px); opacity: 0; } 40% { opacity: 1; } 100% { transform: translateY(12px); opacity: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+    ::selection { background: var(--accent-pink); color: white; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Primary">
+    <div class="site-nav-brand">
+      <span>Out of Phone: Commerce · Food &amp; Beverage</span>
+    </div>
+    <div class="site-nav-meta">Confidential</div>
+  </nav>
+
+  <div class="sticky-eyebrow" id="sticky-eyebrow" aria-hidden="true">
+    <span class="sticky-eyebrow-dot" aria-hidden="true"></span>
+    <span class="sticky-eyebrow-label" id="sticky-eyebrow-label"></span>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="micro">Out of Phone: Commerce — Food &amp; Beverage</span>
+        </div>
+        <h1 class="hero-headline">
+          Tesco Media.<br />
+          <em>Pimm's.</em><br />
+          <span class="quiet">Impression to purchase.</span>
+        </h1>
+        <p class="lead hero-lead">
+          A Tesco-specific deployment of Out of Phone: Commerce. TikTok creator video embedded in the Pimm's No.1 &amp; Lemonade can product description page and a sponsored unit in the Spirits category. Attribution closed from TikTok impression to Tesco checkout, server to server, per creator, per SKU. No clean rooms.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="micro">Retailer</span>
+            <span class="value">Tesco · dunnhumby</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="micro">Brand</span>
+            <span class="value">Diageo · Pimm's</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="micro">Attribution</span>
+            <span class="value">TikTok Events API · server-to-server</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="micro">Surfaces</span>
+            <span class="value">PDP · Spirits category</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span class="micro" style="color: var(--text-quiet)">Scroll</span>
+        <span class="line"></span>
+      </div>
+    </section>
+
+
+    <!-- 01 — TESCO RETAILER PANEL -->
+    <section id="retailer-panel" class="section-divider">
+      <div class="container">
+        <div class="section-eyebrow reveal">
+          <span class="micro">01 — Tesco Media and Insight Platform</span>
+        </div>
+
+        <h2 class="display reveal" style="max-width: 28ch;">
+          The UK's largest grocer, <em>at scale.</em>
+        </h2>
+
+        <p class="lead reveal reading" style="margin-top: var(--space-4); color: var(--text-muted);">
+          Tesco Media and Insight Platform is the retail media arm of Tesco, owned and operated by dunnhumby — Tesco's data science subsidiary. With 24 million Clubcard households and around 27% of UK grocery market share, it is the most scaled closed-loop retail media network in Britain. The dunnhumby Sphere platform gives brands self-serve access to campaign planning, activation and closed-loop measurement across both online and in-store.
+        </p>
+
+        <div class="retailer-card reveal" style="margin-top: var(--space-8);">
+          <div class="retailer-card-header">
+            <h3 class="retailer-card-name">Tesco · Media and Insight Platform</h3>
+            <span class="retailer-card-tag">Powered by dunnhumby</span>
+          </div>
+          <p>
+            The Tesco Media and Insight Platform connects brands to 24 million UK Clubcard households — the UK's largest loyalty dataset — giving closed-loop visibility across every Clubcard transaction online and in-store. dunnhumby Sphere, the self-serve activation layer, allows brands to plan, buy and measure retail media campaigns without managed-service overhead.
+          </p>
+          <p>
+            With around 27% of UK grocery market share, Tesco's first-party data audience is structurally larger than any other UK grocer. For brands selling alcohol through Tesco, including Diageo's portfolio, this is the only UK retail media platform where Clubcard data enables attribution from a TikTok creator impression through to a verifiable Tesco purchase — both online and at the till.
+          </p>
+          <div class="retailer-stats">
+            <div class="retailer-stat">
+              <div class="figure">24<span class="unit">M+</span></div>
+              <div class="label">UK Clubcard households (Oct 2025)</div>
+            </div>
+            <div class="retailer-stat">
+              <div class="figure">~27<span class="unit">%</span></div>
+              <div class="label">UK grocery market share</div>
+            </div>
+            <div class="retailer-stat">
+              <div class="figure">Sphere</div>
+              <div class="label">dunnhumby self-serve platform</div>
+            </div>
+            <div class="retailer-stat">
+              <div class="figure">dunnhumby</div>
+              <div class="label">Platform partner</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-panel-1"><a href="https://www.dunnhumby.com/about-us/news/tesco-media-upfront-redefining-retail-media/" target="_blank" rel="noopener noreferrer">dunnhumby — Tesco Media Upfront 2025: Redefining Retail Media</a></li>
+            <li id="fn-panel-2"><a href="https://www.dunnhumby.com/tesco-media-insight-platform/" target="_blank" rel="noopener noreferrer">Tesco Media and Insight Platform — citing Tesco Interim Results 2025/26</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SURFACE 01 — CAN PDP -->
+    <section id="surface-pdp" class="section-divider">
+      <div class="container">
+        <div class="surface-marker reveal">
+          <div class="surface-marker-eyebrow">
+            <span class="marker-num">Surface 01</span>
+            <span class="marker-divider"></span>
+            <span class="marker-title">The can PDP</span>
+          </div>
+        </div>
+        <div class="surface-header reveal">
+          <span class="surface-counter">Surface 01 of 02</span>
+          <h2 class="display has-accent-stroke">Pimm's No.1 &amp; Lemonade.<br />The product page.</h2>
+          <p class="lead" style="color: var(--text-muted);">
+            The TikTok creator video sits as one of the product gallery images, between the can photography. A small "as served on TikTok" caption marks it as creator content. Tesco owns the surface and approves which creator content runs per SKU. Scroll the mockup.
+          </p>
+        </div>
+
+        <div class="mockup-frame reveal">
+          <div class="mockup-frame-header">
+            <div class="mockup-frame-traffic"><span></span><span></span><span></span></div>
+            <div class="mockup-frame-url">https://www.tesco.com/groceries/en-GB/products/310164073</div>
+          </div>
+
+          <div class="pdp2-scroll-container">
+
+            <!-- Tesco header -->
+            <div class="tesco-header" style="position: sticky; top: 0; z-index: 6;">
+              <div class="tesco-wordmark">tesco</div>
+              <div class="tesco-search-field">
+                <span class="magnifier">⌕</span>
+                <span style="color: #aaa; font-size: 13px;">Search products, brands and more…</span>
+              </div>
+              <div class="tesco-header-icons">
+                <span>👤 Account</span>
+                <span>🛒 Trolley</span>
+              </div>
+            </div>
+
+            <!-- Tesco subnav -->
+            <div class="tesco-subnav" style="position: sticky; top: 52px; z-index: 5;">
+              <span class="tesco-subnav-item is-active">Groceries</span>
+              <span class="tesco-subnav-item">Food Cupboard</span>
+              <span class="tesco-subnav-item">Drinks</span>
+              <span class="tesco-subnav-item">Fresh</span>
+              <span class="tesco-subnav-item">Frozen</span>
+              <span class="tesco-subnav-item">Bakery</span>
+              <span class="tesco-subnav-item">Home</span>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div style="padding: 10px 20px; background: #fff; border-bottom: 1px solid #f0f0f0; font-size: 11px; color: #5a5a5a;">
+              <span class="crumb">Drinks</span>
+              <span> &rsaquo; </span>
+              <span class="crumb">Ready To Drink Wine &amp; Spirits</span>
+              <span> &rsaquo; </span>
+              <span style="color: #1c1c1c;">Ready to Drink Premixed Spirits &amp; Cocktails</span>
+            </div>
+
+            <!-- Two-column: gallery left, info right -->
+            <div class="pdp2-layout">
+
+              <!-- Gallery: 2-col grid -->
+              <div class="pdp2-gallery">
+
+                <!-- Image 1 -->
+                <div class="pdp2-gallery-item">
+                  <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/cb2a1f47-2b62-4501-ae34-e49d16d3f154/d40b7597-7987-4ad3-a41c-fd77259c77e1_1704550895.jpeg" alt="Pimm's No.1 & Lemonade Ready to Drink Premix 250ml – front" loading="lazy" />
+                </div>
+
+                <!-- TikTok creator video — tall, spans 2 rows; sits between image 1 and images 2/3 -->
+                <div class="pdp2-gallery-item is-tiktok is-tall" id="pdp-tiktok-gallery-item">
+                  <div class="pdp2-tiktok-caption">As served on TikTok</div>
+                  <div class="pdp2-tiktok-embed-wrap">
+                    <blockquote class="tiktok-embed"
+                      cite="https://www.tiktok.com/@pleiadesnetball/video/7646124800313789718"
+                      data-video-id="7646124800313789718">
+                      <section>
+                        <a target="_blank" title="@pleiadesnetball" href="https://www.tiktok.com/@pleiadesnetball?refer=embed">@pleiadesnetball</a>
+                      </section>
+                    </blockquote>
+                  </div>
+                  <!-- 18+ and drinkaware notice -->
+                  <div class="tiktok-alcohol-notice">
+                    <span class="age-badge">18+</span>
+                    <span>Please drink responsibly. drinkaware.co.uk</span>
+                  </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="pdp2-gallery-item">
+                  <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/3487bc5f-ed4b-4ea7-b856-534f3e8cf9a4/307b851e-cf59-4d6f-af1d-caf74478d1b6_568944444.jpeg" alt="Pimm's No.1 & Lemonade Ready to Drink Premix 250ml – back" loading="lazy" />
+                </div>
+
+                <!-- Image 3 -->
+                <div class="pdp2-gallery-item">
+                  <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/63b380f6-b8c3-462a-be3c-acb4516b6771/8c787fde-470b-408a-ac56-c9a64cfcf109_1780287280.jpeg" alt="Pimm's No.1 & Lemonade Ready to Drink Premix 250ml – pour serve" loading="lazy" />
+                </div>
+
+                <!-- Spacer for even grid -->
+                <div class="pdp2-gallery-item" style="background: #f9f9f9;"></div>
+
+              </div><!-- /gallery -->
+
+              <!-- Info panel -->
+              <div class="tesco-pdp-info">
+                <div class="tesco-pdp-breadcrumb">
+                  <span class="crumb">Drinks</span>
+                  <span class="crumb"> &rsaquo; Ready To Drink Wine &amp; Spirits</span>
+                  <span class="crumb"> &rsaquo; Ready to Drink Premixed Spirits &amp; Cocktails</span>
+                </div>
+
+                <h2 class="tesco-pdp-title">Pimm's No.1 &amp; Lemonade Ready to Drink Premix 250ml</h2>
+
+                <div class="tesco-pdp-rating">
+                  <span class="stars">★★★★★</span>
+                  <span>4.7</span>
+                  <span style="color: #aaa;">|</span>
+                  <span>37 reviews</span>
+                </div>
+
+                <div class="tesco-pdp-price">£2.40</div>
+                <div class="tesco-pdp-price-unit">£9.60/litre</div>
+
+                <div class="tesco-badge-row">
+                  <span class="tesco-badge is-18">18+</span>
+                  <span class="tesco-badge is-abv">5.4% ABV</span>
+                  <span class="tesco-badge">250ml</span>
+                  <span class="tesco-badge">Origin: Italy</span>
+                </div>
+
+                <!-- Clubcard offer -->
+                <div class="tesco-clubcard-offer">
+                  <div class="tesco-clubcard-offer-header">
+                    <span class="tesco-clubcard-logo">Clubcard</span>
+                    <span class="tesco-clubcard-offer-title">Clubcard Price offer</span>
+                  </div>
+                  <div class="tesco-clubcard-offer-detail">Any 4 for 3 Clubcard Price, Cheapest Product Free, Selected Premix Cans</div>
+                  <div class="tesco-clubcard-valid">Valid for delivery 23/02/2026 – 09/08/2026</div>
+                </div>
+
+                <button class="tesco-add-trolley">🛒 Add to Trolley</button>
+
+                <!-- Accordion details -->
+                <div class="tesco-pdp-accordion">
+                  <div class="tesco-pdp-accordion-section is-open">
+                    <button class="tesco-pdp-accordion-header">
+                      <span>About this product</span>
+                      <span class="tesco-pdp-accordion-icon">−</span>
+                    </button>
+                    <div class="tesco-pdp-accordion-body">
+                      <div class="tesco-pdp-accordion-body-inner">
+                        <p>Best enjoyed chilled straight from the can or poured over ice with fresh fruit. The classic British long drink, made for picnics, BBQs and summer festivals.</p>
+                        <p>Pimm's has been served at Wimbledon for over 50 years. The original recipe — gin-based, botanically infused — was created in London in 1840.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tesco-pdp-accordion-section">
+                    <button class="tesco-pdp-accordion-header">
+                      <span>Product details</span>
+                      <span class="tesco-pdp-accordion-icon">+</span>
+                    </button>
+                    <div class="tesco-pdp-accordion-body">
+                      <div class="tesco-pdp-accordion-body-inner">
+                        <div class="tesco-spec-row"><span class="tesco-spec-label">ABV</span><span class="tesco-spec-value">5.4%</span></div>
+                        <div class="tesco-spec-row"><span class="tesco-spec-label">Pack size</span><span class="tesco-spec-value">250ml</span></div>
+                        <div class="tesco-spec-row"><span class="tesco-spec-label">Country</span><span class="tesco-spec-value">Italy</span></div>
+                        <div class="tesco-spec-row"><span class="tesco-spec-label">Age restriction</span><span class="tesco-spec-value">18+</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /info -->
+
+            </div><!-- /layout -->
+          </div><!-- /scroll-container -->
+        </div><!-- /mockup-frame -->
+
+        <!-- Annotation -->
+        <div class="mockup-annotation reveal">
+          <strong>Native to the gallery</strong>
+          The TikTok creator video sits between Tesco's own product photography in the standard gallery grid. Tesco owns this surface and curates which creator content runs per SKU from the Spark Ads authorisation pool. A small "as served on TikTok" caption and the 18+ marker are the only visible indicators that the frame is creator content; to the shopper it reads as part of the standard product gallery.
+        </div>
+
+        <div class="surface-callouts reveal-stagger">
+          <div class="callout">
+            <div class="stat">132%<a href="#fn-pdp-1" class="fn">¹</a></div>
+            <div class="stat-label">Spark Ads completion lift</div>
+            <p>Higher video-completion rate than standard in-feed ads. The mechanic that makes creator content outperform brand creative — authentic, attention-holding, made by people the audience already trusts.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">SKU level</div>
+            <div class="stat-label">Closed-loop attribution · server to server</div>
+            <p>TikTok serves the creator video and logs the impression at delivery. Tesco's server reports the resulting view, add-to-cart and purchase events back to TikTok through the TikTok Events API, keyed to the same session via shared identifiers — hashed email, hashed phone, IP and user agent. Per creator, per SKU. Direct attribution.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">Dwell + rank</div>
+            <div class="stat-label">Search visibility on the product page</div>
+            <p>Embedded TikTok content lifts on-page dwell time, a known signal for Google ranking. TikTok content has also been surfacing in Google's video carousel since 2021.<a href="#fn-pdp-2" class="fn">²</a> The same PDP can rank twice.</p>
+          </div>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-pdp-1"><a href="https://www.tiktok.com/business/en/blog/spark-ads-supercharging-tiktok-marketing" target="_blank" rel="noopener noreferrer">TikTok for Business — Spark Ads performance benchmarks</a></li>
+            <li id="fn-pdp-2"><a href="https://blog.google/products/search/tiktok-instagram-search-results/" target="_blank" rel="noopener noreferrer">Google — short videos in Search results, including TikTok content (since 2021)</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SURFACE 02 — SPIRITS CATEGORY PAGE -->
+    <section id="surface-category" class="section-divider">
+      <div class="container">
+        <div class="surface-marker reveal">
+          <div class="surface-marker-eyebrow">
+            <span class="marker-num">Surface 02</span>
+            <span class="marker-divider"></span>
+            <span class="marker-title">The Spirits category page</span>
+          </div>
+        </div>
+        <div class="surface-header reveal">
+          <span class="surface-counter">Surface 02 of 02</span>
+          <h2 class="display has-accent-stroke">The Spirits category page.</h2>
+          <p class="lead" style="color: var(--text-muted);">
+            A brand-funded sponsored creator unit, slotted into the standard Tesco Spirits category browse at position two. Diageo approves the creative because Diageo funds the placement. The unit runs on category and search pages alike. No price, no offer on the creative — alcohol advertising rules met at the point of delivery.
+          </p>
+        </div>
+
+        <div class="mockup-frame reveal">
+          <div class="mockup-frame-header">
+            <div class="mockup-frame-traffic"><span></span><span></span><span></span></div>
+            <div class="mockup-frame-url">https://www.tesco.com/groceries/en-GB/shop/drinks/spirits/all</div>
+          </div>
+
+          <div style="background: #fff; color: #1c1c1c; font-family: var(--font-body);">
+
+            <!-- Tesco header -->
+            <div class="tesco-header">
+              <div class="tesco-wordmark">tesco</div>
+              <div class="tesco-search-field">
+                <span class="magnifier">⌕</span>
+                <span style="color: #aaa; font-size: 13px;">Search products, brands and more…</span>
+              </div>
+              <div class="tesco-header-icons">
+                <span>👤 Account</span>
+                <span>🛒 Trolley</span>
+              </div>
+            </div>
+
+            <!-- Subnav -->
+            <div class="tesco-subnav">
+              <span class="tesco-subnav-item">Groceries</span>
+              <span class="tesco-subnav-item">Food Cupboard</span>
+              <span class="tesco-subnav-item is-active">Drinks</span>
+              <span class="tesco-subnav-item">Fresh</span>
+              <span class="tesco-subnav-item">Frozen</span>
+              <span class="tesco-subnav-item">Bakery</span>
+              <span class="tesco-subnav-item">Home</span>
+            </div>
+
+            <!-- Category content -->
+            <div class="tesco-cat-content">
+
+              <!-- Breadcrumb -->
+              <div class="tesco-cat-breadcrumb">
+                <span class="crumb">Drinks</span>
+                <span> &rsaquo; </span>
+                <span style="color: #1c1c1c; font-weight: 600;">Spirits</span>
+              </div>
+
+              <h2 class="tesco-cat-heading">Spirits</h2>
+
+              <p class="tesco-cat-note">
+                Sponsored creator units run on both category and search pages. The unit in position two is brand-funded: Diageo places the Pimm's creator video against the Spirits category browse and relevant search queries.
+              </p>
+
+              <!-- Sort bar -->
+              <div class="tesco-sort-bar">
+                <div class="tesco-sort-select">
+                  Sort By: <span style="font-weight: 400;">Relevance</span> <span>▾</span>
+                </div>
+                <div style="font-size: 12px; color: #777;">Showing 1–6 of 248 products</div>
+              </div>
+
+              <!-- Product grid: 3 columns, 6 cells -->
+              <div class="tesco-cat-grid">
+
+                <!-- Cell 1: Au Vodka Blue Raspberry 70cl — PLACEHOLDER -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image is-placeholder">
+                    <div class="tesco-placeholder-label">[Product image placeholder]<br/>Au Vodka Blue Raspberry 70cl<br/>Tesco product 310178908<br/>Image unavailable — 403 on fetch</div>
+                  </div>
+                  <div class="tesco-product-name">Au Vodka Blue Raspberry 70cl</div>
+                  <div class="tesco-product-price">£34.00</div>
+                  <div class="tesco-product-price-unit">£48.57/litre</div>
+                </div>
+
+                <!-- Cell 2: SPONSORED TIKTOK UNIT -->
+                <!-- Backup video: @ao, id 7518077457488973078 -->
+                <div class="tesco-product-card is-sponsored" id="cat-sponsored-tiktok">
+                  <div class="tesco-product-image" style="position: relative;">
+                    <div class="tesco-sponsored-overlay">Sponsored · TikTok</div>
+                    <div class="cat-embed-wrap">
+                      <blockquote class="tiktok-embed"
+                        cite="https://www.tiktok.com/@pinchofnom/video/7099790755656404229"
+                        data-video-id="7099790755656404229">
+                        <section>
+                          <a target="_blank" title="@pinchofnom" href="https://www.tiktok.com/@pinchofnom?refer=embed">@pinchofnom</a>
+                        </section>
+                      </blockquote>
+                    </div>
+                    <!-- Alcohol compliance notice -->
+                    <div class="tesco-cat-alcohol-notice">
+                      <span class="age-badge">18+</span>
+                      <span>Please drink responsibly. drinkaware.co.uk</span>
+                    </div>
+                  </div>
+                  <!-- No price, no offer on sponsored unit -->
+                </div>
+
+                <!-- Cell 3: Pimm's No.1 Cup Bottle 70cl — real image provided -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image">
+                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/bf70a9c2-d823-4d2f-80ba-47969ee4ac4d/dfe62c79-a4ca-42cf-b066-56f69736cd2d.jpeg" alt="Pimm's The Original No.1 Cup Bottle 22% Vol 70cl" loading="lazy" />
+                  </div>
+                  <div class="tesco-product-name">Pimm's The Original No.1 Cup Bottle 22% Vol 70cl</div>
+                  <div class="tesco-product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span>5.0 (2)</span>
+                  </div>
+                  <div class="tesco-product-price">£19.50</div>
+                  <div class="tesco-product-price-unit">£27.86/litre</div>
+                  <div class="tesco-product-clubcard">Clubcard £14.00 (£20.00/litre)</div>
+                  <div class="tesco-product-clubcard-valid">Clubcard valid to 15/06/2026</div>
+                </div>
+
+                <!-- Cell 4: Brecon Botanicals 70cl — PLACEHOLDER -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image is-placeholder">
+                    <div class="tesco-placeholder-label">[Product image placeholder]<br/>Brecon Botanicals 70cl<br/>Tesco product 285211406<br/>Image unavailable — 403 on fetch</div>
+                  </div>
+                  <div class="tesco-product-name">Brecon Botanicals 70cl</div>
+                  <div class="tesco-product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span>5.0 (9)</span>
+                  </div>
+                  <div class="tesco-product-price">£27.75</div>
+                  <div class="tesco-product-price-unit">£39.64/litre</div>
+                </div>
+
+                <!-- Cell 5: Singleton of Dufftown 12 Year — PLACEHOLDER -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image is-placeholder">
+                    <div class="tesco-placeholder-label">[Product image placeholder]<br/>Singleton of Dufftown 12 Year Whisky Bottle 40% Vol 70cl<br/>Tesco product 266398576<br/>Image unavailable — 403 on fetch</div>
+                  </div>
+                  <div class="tesco-product-name">Singleton of Dufftown 12 Year Whisky Bottle 40% Vol 70cl</div>
+                  <div class="tesco-product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span>4.8 (57)</span>
+                  </div>
+                  <div class="tesco-product-price">£41.00</div>
+                  <div class="tesco-product-price-unit">£58.57/litre</div>
+                  <div class="tesco-product-clubcard">Clubcard £29.50 (£42.14/litre)</div>
+                  <div class="tesco-product-clubcard-valid">Clubcard 19/05/2026 – 22/06/2026</div>
+                </div>
+
+                <!-- Cell 6: The Ardmore — PLACEHOLDER -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image is-placeholder">
+                    <div class="tesco-placeholder-label">[Product image placeholder]<br/>The Ardmore Highland Single Malt Scotch Whisky 70cl<br/>Tesco product 285845756<br/>Image unavailable — 403 on fetch</div>
+                  </div>
+                  <div class="tesco-product-name">The Ardmore Highland Single Malt Scotch Whisky 70cl</div>
+                  <div class="tesco-product-rating">
+                    <span class="stars">★★★☆☆</span>
+                    <span>3.3 (11)</span>
+                  </div>
+                  <div class="tesco-product-price">£34.00</div>
+                  <div class="tesco-product-price-unit">£48.57/litre</div>
+                </div>
+
+              </div><!-- /cat-grid -->
+            </div><!-- /cat-content -->
+          </div>
+        </div><!-- /mockup-frame -->
+
+        <!-- Why position 2 annotation -->
+        <div class="mockup-annotation reveal">
+          <strong>Why position two</strong>
+          The sponsored creator card sits in the second slot rather than the first. Eye-tracking research consistently shows attention reset to the centre of the screen after initial scan, so position 2 collects higher dwell on retailer category grids than the lead position. Native rather than dominant.
+        </div>
+
+        <div class="surface-callouts reveal-stagger">
+          <div class="callout">
+            <div class="stat">Brand-funded</div>
+            <div class="stat-label">Diageo-approved · Spark pool</div>
+            <p>Diageo funds and approves the sponsored unit on the category and search pages because Diageo owns the spend. Content is gated to the Spark Ads authorisation pool — only creators Diageo has pre-cleared for the Pimm's brand.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">9:16 native</div>
+            <div class="stat-label">Vertical creative — no reformatting</div>
+            <p>The format that already works on TikTok works on the Tesco Spirits browse page. No reformatting, no extra production cost for the brand. The creative was made once for TikTok and runs across both surfaces.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">Category + search</div>
+            <div class="stat-label">Two placement types, one pool</div>
+            <p>The same Spark-authorised creator unit runs on category browse pages and on relevant search queries — "gin", "summer drinks", "Pimm's" — from a single approved content pool. One activation, two surfaces.</p>
+          </div>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-cat-1"><a href="https://www.tiktok.com/business/en/blog/spark-ads-supercharging-tiktok-marketing" target="_blank" rel="noopener noreferrer">TikTok for Business — Spark Ads performance benchmarks</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- APPROVAL AND ALCOHOL COMPLIANCE -->
+    <section id="approval" class="section-divider">
+      <div class="container">
+        <div class="section-eyebrow reveal">
+          <span class="micro">Approval and alcohol compliance</span>
+        </div>
+
+        <h2 class="display reveal" style="max-width: 28ch;">
+          Two approval layers. <em>Alcohol rules met at delivery.</em>
+        </h2>
+
+        <p class="lead reveal reading" style="margin-top: var(--space-4); color: var(--text-muted);">
+          Every piece of creator content placed on either surface has been pre-cleared through the existing Spark Ads authorisation flow, restricted to creators authorised for 18+ audiences. On top of that base, surface-specific approval routes apply, and TikTok's own UK alcohol advertising conditions govern what can run and how.
+        </p>
+
+        <div class="safety-block reveal">
+          <div class="safety-block-label">Two-layer approval</div>
+          <h3>Spark Ads authorisation. Then surface-specific sign-off.</h3>
+          <p>
+            The content pool for both surfaces is gated to creators who have been authorised by Diageo through the Spark Ads flow — restricted to the subset of those creators explicitly approved for 18+ audiences. That gate is the floor. Everything else sits on top of it.
+          </p>
+          <p>
+            <strong>On the Spirits category and search pages</strong>, the unit is a brand-funded ad placement. <strong>Diageo approves</strong> which creator content runs, because Diageo is the advertiser funding the spend. Approval can be asset-by-asset or via pre-authorised creator lists with automated content-quality rules where Diageo has configured those.
+          </p>
+          <p>
+            <strong>On the Pimm's can PDP</strong>, the unit is real estate Tesco owns. <strong>Tesco approves</strong> which Spark-authorised content appears in the product gallery for that SKU — the same approval mechanic, but a different approver, because a different party owns the surface. Either party can revoke at any time. Creators retain takedown rights over their own content.
+          </p>
+        </div>
+
+        <div class="safety-block reveal" style="margin-top: var(--space-6);">
+          <div class="safety-block-label">TikTok UK alcohol advertising conditions</div>
+          <h3>The live requirements, as applied to both surfaces.</h3>
+          <p style="margin-bottom: var(--space-3);">
+            TikTok's own UK alcohol policy<a href="#fn-alc-1" class="fn">¹</a> sets the conditions any alcohol advertiser must meet to run on the platform. Those conditions apply here in full. Each is met by the design of the two surfaces:
+          </p>
+          <ul class="compliance-list">
+            <li><strong>Restricted to users 18+.</strong> The sponsored category unit targets only users TikTok has verified or inferred as 18+ in the UK. The PDP gallery does not target users — it is a Tesco-owned surface where Tesco's own age-verification at checkout already applies.</li>
+            <li><strong>Landing page age-gating.</strong> Tesco age-verifies all alcohol purchases at checkout — customers must confirm they are 18+. That mechanism is already in place and is used as the age-gating mechanism for both surfaces on this plan.</li>
+            <li><strong>Compliance with applicable laws, regulations and codes.</strong> Both surfaces comply with applicable UK law. Under TikTok's requirement to comply with applicable codes sit the UK ASA and CAP rules and the Portman Group Code of Practice. Those codes set the standards the creative must meet; TikTok's policy is the delivery gate through which compliant creative must pass.</li>
+            <li><strong>No offer, prize or discount on the creative that incentivises consumption.</strong> The sponsored category unit carries no price, no promotional offer and no discount. The PDP gallery video is creator content only — product information and pricing are shown separately by Tesco in the standard info panel.</li>
+            <li><strong>No depiction of irresponsible drinking.</strong> Creator content is reviewed against this condition during the Spark Ads authorisation process. Content that depicts irresponsible drinking cannot be authorised.</li>
+            <li><strong>No implication that alcohol improves health, attractiveness or social success.</strong> Applied as a content moderation rule during Spark authorisation. Rejected at the pool level before it reaches either surface.</li>
+            <li><strong>Human eligibility gate via TikTok Sales Representative.</strong> TikTok requires alcohol advertisers to work with a TikTok Sales Representative to determine eligibility before running alcohol advertising. That representative review is a real human gate that precedes any live campaign — it is part of the approval story, not a formality.</li>
+          </ul>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-alc-1"><a href="https://ads.tiktok.com/help/article/alcohol-advertising-policy" target="_blank" rel="noopener noreferrer">TikTok Ads — Alcohol advertising policy (TikTok's own policy page)</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-disclaimer">
+        <p class="micro" style="margin-bottom: var(--space-2); color: var(--text-quiet);">Disclaimer</p>
+        <p class="small">
+          Concept prototype. Not affiliated with or endorsed by Tesco PLC, dunnhumby, Diageo PLC, Pimm's, TikTok, ByteDance, or any other named party. Brand assets and references are used illustratively for pitch purposes only. This document is private; <code>noindex, nofollow</code> applied.
+        </p>
+      </div>
+      <div class="footer-meta">
+        <div class="footer-meta-row">Document · Confidential</div>
+        <div class="footer-meta-row" id="ref-display"></div>
+      </div>
+      <div class="footer-meta">
+        <div class="footer-meta-row">Out of Phone: Commerce · Food &amp; Beverage</div>
+        <div class="footer-meta-row">Pitch · 2026</div>
+        <div class="footer-meta-row">© drafted privately</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Ref parameter display
+      const params = new URLSearchParams(window.location.search);
+      const ref = (params.get('ref') || 'default').toLowerCase();
+      const slugToName = s => s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      const refName = ref === 'default' ? '' : slugToName(ref);
+      const refDisplay = document.getElementById('ref-display');
+      if (refDisplay && refName) {
+        refDisplay.textContent = 'Recipient · ' + refName;
+      } else if (refDisplay) {
+        refDisplay.style.display = 'none';
+      }
+
+      // Sticky eyebrow
+      const stickyEyebrow = document.getElementById('sticky-eyebrow');
+      const stickyEyebrowLabel = document.getElementById('sticky-eyebrow-label');
+      if (stickyEyebrow && stickyEyebrowLabel) {
+        const sectionMap = [
+          { id: 'retailer-panel', label: '01 · Tesco Media and Insight Platform' },
+          { id: 'surface-pdp',    label: 'Surface 01 · The can PDP' },
+          { id: 'surface-category', label: 'Surface 02 · The Spirits category page' },
+          { id: 'approval',       label: 'Approval and alcohol compliance' }
+        ];
+        const updateEyebrow = () => {
+          const triggerY = window.innerHeight * 0.35;
+          let activeLabel = null;
+          sectionMap.forEach(({ id, label }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= triggerY && rect.bottom > triggerY) activeLabel = label;
+          });
+          if (activeLabel) {
+            if (stickyEyebrowLabel.textContent !== activeLabel) stickyEyebrowLabel.textContent = activeLabel;
+            stickyEyebrow.classList.add('is-visible');
+          } else {
+            stickyEyebrow.classList.remove('is-visible');
+          }
+        };
+        window.addEventListener('scroll', updateEyebrow, { passive: true });
+        updateEyebrow();
+      }
+
+      // Nav hide on scroll
+      const nav = document.querySelector('.site-nav');
+      let lastY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (nav) {
+          if (y > lastY && y > 200) nav.classList.add('is-hidden');
+          else nav.classList.remove('is-hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+
+      // Scroll reveals
+      const reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        reveals.forEach(el => io.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // PDP accordion
+      document.querySelectorAll('.tesco-pdp-accordion-section').forEach((section) => {
+        const header = section.querySelector('.tesco-pdp-accordion-header');
+        const icon = section.querySelector('.tesco-pdp-accordion-icon');
+        if (header && icon) {
+          header.addEventListener('click', () => {
+            const isOpen = section.classList.toggle('is-open');
+            icon.textContent = isOpen ? '−' : '+';
+          });
+        }
+      });
+
+      // PDP TikTok embed: scale to fit the tall gallery column
+      const pdpGalleryItem = document.getElementById('pdp-tiktok-gallery-item');
+      if (pdpGalleryItem) {
+        const updatePdpScale = () => {
+          const w = pdpGalleryItem.offsetWidth;
+          pdpGalleryItem.style.setProperty('--pdp-embed-scale', (w / 325).toFixed(3));
+        };
+        updatePdpScale();
+        window.addEventListener('resize', updatePdpScale, { passive: true });
+        const pdpInterval = setInterval(() => {
+          if (pdpGalleryItem.querySelector('iframe')) { updatePdpScale(); clearInterval(pdpInterval); }
+        }, 250);
+        setTimeout(() => clearInterval(pdpInterval), 8000);
+      }
+
+      // Category sponsored embed: scale to fit its cell
+      const catCard = document.getElementById('cat-sponsored-tiktok');
+      if (catCard) {
+        const updateCatScale = () => {
+          const imgEl = catCard.querySelector('.tesco-product-image');
+          if (!imgEl) return;
+          const w = imgEl.offsetWidth;
+          catCard.style.setProperty('--embed-scale', (w / 325).toFixed(3));
+        };
+        updateCatScale();
+        window.addEventListener('resize', updateCatScale, { passive: true });
+        const catInterval = setInterval(() => {
+          if (catCard.querySelector('iframe')) { updateCatScale(); clearInterval(catInterval); }
+        }, 250);
+        setTimeout(() => clearInterval(catInterval), 8000);
+      }
+    })();
+  </script>
+
+  <!-- TikTok official embed script -->
+  <script async src="https://www.tiktok.com/embed.js"></script>
+
+</body>
+</html>
