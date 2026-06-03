@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
@@ -284,28 +284,32 @@
     .tesco-cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     @media (max-width: 720px) { .tesco-cat-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    .tesco-product-card { display: flex; flex-direction: column; gap: 6px; position: relative; }
-    .tesco-product-image { aspect-ratio: 1/1; background: #f9f9f9; border: 1px solid #efefef; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
-    .tesco-product-image img { width: 100%; height: 100%; object-fit: contain; padding: 8px; display: block; }
-    .tesco-product-image.is-placeholder { background: #f0f0f0; }
-    .tesco-placeholder-label { font-family: var(--font-mono); font-size: 10px; color: #aaa; text-align: center; padding: 8px; line-height: 1.4; }
-    .tesco-product-name { font-size: 12px; color: #1c1c1c; line-height: 1.35; font-weight: 400; }
+    .tesco-product-card { display: flex; flex-direction: column; gap: 0; position: relative; background: #fff; border: 1px solid #e5e5e5; border-radius: 6px; overflow: hidden; }
+    .tesco-product-image { aspect-ratio: 1/1; background: #f9f9f9; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+    .tesco-product-image img { width: 100%; height: 100%; object-fit: contain; padding: 10px; display: block; }
+    .tesco-product-size-badge { position: absolute; top: 6px; right: 6px; background: #fff; border: 1px solid #e5e5e5; border-radius: 2px; font-size: 10px; font-weight: 600; color: #333; padding: 2px 5px; line-height: 1.3; z-index: 2; }
+    .tesco-product-card-body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .tesco-sponsored-label { font-size: 10px; color: #777; }
+    .tesco-product-name { font-size: 12px; color: #006bb7; line-height: 1.35; font-weight: 400; cursor: pointer; }
+    .tesco-product-name:hover { text-decoration: underline; }
     .tesco-product-rating { font-size: 11px; color: #555; display: flex; align-items: center; gap: 4px; }
     .tesco-product-rating .stars { color: #f5a623; }
-    .tesco-product-price { font-size: 16px; font-weight: 700; color: #1c1c1c; }
+    .tesco-product-more { font-size: 11px; color: #006bb7; cursor: pointer; }
+    .tesco-clubcard-pill { display: flex; border-radius: 4px; overflow: hidden; margin: 2px 0; }
+    .tesco-clubcard-pill-label { background: #00539f; color: #fff; font-weight: 700; padding: 5px 7px; font-size: 9px; line-height: 1.25; flex-shrink: 0; text-align: center; }
+    .tesco-clubcard-pill-price { background: #f4ca00; color: #1c1c1c; font-weight: 700; padding: 5px 8px; font-size: 11px; line-height: 1.25; display: flex; align-items: center; justify-content: space-between; flex: 1; gap: 4px; }
+    .tesco-clubcard-validity { font-size: 10px; color: #555; text-align: center; line-height: 1.4; }
+    .tesco-product-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; margin-top: auto; padding-top: 6px; }
+    .tesco-product-price { font-size: 16px; font-weight: 700; color: #1c1c1c; line-height: 1; }
     .tesco-product-price-unit { font-size: 11px; color: #777; }
-    .tesco-product-clubcard { display: inline-flex; align-items: center; gap: 5px; background: #e51b24; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 7px; border-radius: 3px; }
-    .tesco-product-clubcard-valid { font-size: 10px; color: #777; }
+    .tesco-product-add-btn { background: #00539f; color: #fff; border: 0; border-radius: 20px; font-size: 13px; font-weight: 700; padding: 7px 18px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 
     /* SPONSORED CATEGORY CARD */
-    .tesco-product-card.is-sponsored { background: #000; border-radius: 4px; overflow: hidden; }
-    .tesco-product-card.is-sponsored .tesco-product-image { aspect-ratio: 1/1; background: #000; border: 0; border-radius: 0; padding: 0; position: relative; overflow: hidden; }
-    .tesco-product-card.is-sponsored .cat-embed-wrap { position: absolute; inset: 0; width: 325px; height: auto; transform-origin: top left; transform: scale(var(--embed-scale, 0.7)); }
+    .tesco-product-card.is-sponsored { background: #fff; border: 1px solid #e5e5e5; }
+    .tesco-product-card.is-sponsored .tesco-product-image { aspect-ratio: 1/1; background: #000; overflow: hidden; }
+    .tesco-product-card.is-sponsored .cat-embed-wrap { position: absolute; top: 0; left: 0; width: 325px; transform-origin: top left; transform: scale(var(--embed-scale, 0.7)); }
     .tesco-product-card.is-sponsored .cat-embed-wrap blockquote.tiktok-embed { max-width: 325px !important; min-width: 325px !important; margin: 0 !important; width: 325px !important; }
     .tesco-product-card.is-sponsored .cat-embed-wrap iframe { max-width: 325px !important; width: 325px !important; border: 0; display: block; }
-    .tesco-sponsored-overlay { position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.82); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; padding: 5px 8px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 4px; z-index: 10; }
-    .tesco-sponsored-overlay::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: linear-gradient(135deg, #fe2c55, #25f4ee); }
-    .tesco-cat-alcohol-notice { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); color: #fff; font-size: 9px; padding: 6px 8px; display: flex; align-items: center; gap: 6px; z-index: 10; line-height: 1.3; pointer-events: none; }
 
     /* CALLOUTS */
     .surface-callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-top: var(--space-6); }
@@ -439,7 +443,7 @@
           </div>
           <div class="hero-meta-item">
             <span class="micro">Surfaces</span>
-            <span class="value">PDP · Spirits category</span>
+            <span class="value">Spirits category · PDP</span>
           </div>
         </div>
       </div>
@@ -507,7 +511,252 @@
     </section>
 
 
-    <!-- SURFACE 01 — CAN PDP -->
+    <!-- Surface 01 — SPIRITS CATEGORY PAGE -->
+    <section id="surface-category" class="section-divider">
+      <div class="container">
+        <div class="surface-marker reveal">
+          <div class="surface-marker-eyebrow">
+            <span class="marker-num">Surface 02</span>
+            <span class="marker-divider"></span>
+            <span class="marker-title">The Spirits category page</span>
+          </div>
+        </div>
+        <div class="surface-header reveal">
+          <span class="surface-counter">Surface 01 of 02</span>
+          <h2 class="display has-accent-stroke">The Spirits category page.</h2>
+          <p class="lead" style="color: var(--text-muted);">
+            A brand-funded sponsored creator unit, slotted into the standard Tesco Spirits category browse at position two. Diageo approves the creative because Diageo funds the placement. The unit runs on category and search pages alike. No price, no offer on the creative — alcohol advertising rules met at the point of delivery.
+          </p>
+        </div>
+
+        <div class="mockup-frame reveal">
+          <div class="mockup-frame-header">
+            <div class="mockup-frame-traffic"><span></span><span></span><span></span></div>
+            <div class="mockup-frame-url">https://www.tesco.com/groceries/en-GB/shop/drinks/spirits/all</div>
+          </div>
+
+          <div style="background: #fff; color: #1c1c1c; font-family: var(--font-body);">
+
+            <!-- Tesco header -->
+            <div class="tesco-header">
+              <div class="tesco-wordmark">tesco</div>
+              <div class="tesco-search-field">
+                <span class="magnifier">⌕</span>
+                <span style="color: #aaa; font-size: 13px;">Search products, brands and more…</span>
+              </div>
+              <div class="tesco-header-icons">
+                <span>👤 Account</span>
+                <span>🛒 Trolley</span>
+              </div>
+            </div>
+
+            <!-- Subnav -->
+            <div class="tesco-subnav">
+              <span class="tesco-subnav-item">Groceries</span>
+              <span class="tesco-subnav-item">Food Cupboard</span>
+              <span class="tesco-subnav-item is-active">Drinks</span>
+              <span class="tesco-subnav-item">Fresh</span>
+              <span class="tesco-subnav-item">Frozen</span>
+              <span class="tesco-subnav-item">Bakery</span>
+              <span class="tesco-subnav-item">Home</span>
+            </div>
+
+            <!-- Category content -->
+            <div class="tesco-cat-content">
+
+              <!-- Breadcrumb -->
+              <div class="tesco-cat-breadcrumb">
+                <span class="crumb">Drinks</span>
+                <span> &rsaquo; </span>
+                <span style="color: #1c1c1c; font-weight: 600;">Spirits</span>
+              </div>
+
+              <h2 class="tesco-cat-heading">Spirits</h2>
+
+              <p class="tesco-cat-note">
+                Sponsored creator units run on both category and search pages. The unit in position two is brand-funded: Diageo places the Pimm's creator video against the Spirits category browse and relevant search queries.
+              </p>
+
+              <!-- Sort bar -->
+              <div class="tesco-sort-bar">
+                <div class="tesco-sort-select">
+                  Sort By: <span style="font-weight: 400;">Relevance</span> <span>▾</span>
+                </div>
+                <div style="font-size: 12px; color: #777;">Showing 1–6 of 248 products</div>
+              </div>
+
+              <!-- Product grid: 4 columns, 6 cells -->
+              <div class="tesco-cat-grid">
+
+                <!-- Cell 1: Au Vodka Blue Raspberry 70cl -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image">
+                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/89b543c9-31fb-474c-81dd-6ff3c11d19b1/eb0abee0-555d-46bd-a940-635a8dcb0f7a.jpeg?h=960&w=960" alt="Au Vodka Blue Raspberry 70cl" loading="lazy" />
+                    <div class="tesco-product-size-badge">70cl</div>
+                  </div>
+                  <div class="tesco-product-card-body">
+                    <div class="tesco-product-name">Au Vodka Blue Raspberry 70cl</div>
+                    <div class="tesco-product-more">More like this &rsaquo;</div>
+                    <div class="tesco-product-bottom">
+                      <div>
+                        <div class="tesco-product-price">£34.00</div>
+                        <div class="tesco-product-price-unit">£48.57/litre</div>
+                      </div>
+                      <button class="tesco-product-add-btn">Add</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cell 2: SPONSORED TIKTOK UNIT -->
+                <!-- Backup video: @ao, id 7518077457488973078 -->
+                <div class="tesco-product-card is-sponsored" id="cat-sponsored-tiktok">
+                  <div class="tesco-product-image">
+                    <div class="cat-embed-wrap">
+                      <blockquote class="tiktok-embed"
+                        cite="https://www.tiktok.com/@pinchofnom/video/7099790755656404229"
+                        data-video-id="7099790755656404229">
+                        <section>
+                          <a target="_blank" title="@pinchofnom" href="https://www.tiktok.com/@pinchofnom?refer=embed">@pinchofnom</a>
+                        </section>
+                      </blockquote>
+                    </div>
+                  </div>
+                  <div class="tesco-product-card-body">
+                    <div class="tesco-sponsored-label">Sponsored</div>
+                    <div class="tesco-product-name">@pinchofnom &middot; Pimm&rsquo;s No.1</div>
+                  </div>
+                </div>
+
+                <!-- Cell 3: Pimm's No.1 Cup Bottle 70cl -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image">
+                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/bf70a9c2-d823-4d2f-80ba-47969ee4ac4d/dfe62c79-a4ca-42cf-b066-56f69736cd2d.jpeg" alt="Pimm's The Original No.1 Cup Bottle 22% Vol 70cl" loading="lazy" />
+                    <div class="tesco-product-size-badge">70cl</div>
+                  </div>
+                  <div class="tesco-product-card-body">
+                    <div class="tesco-product-name">Pimm&rsquo;s The Original No.1 Cup 22% Vol 70cl</div>
+                    <div class="tesco-product-rating"><span class="stars">★★★★★</span> <span>5.0 (2)</span></div>
+                    <div class="tesco-product-more">More like this &rsaquo;</div>
+                    <div class="tesco-clubcard-pill">
+                      <div class="tesco-clubcard-pill-label">Clubcard<br/>Price</div>
+                      <div class="tesco-clubcard-pill-price">£14.00 (£20.00/litre) <span>&rsaquo;</span></div>
+                    </div>
+                    <div class="tesco-clubcard-validity">Offer valid to 15/06/2026</div>
+                    <div class="tesco-product-bottom">
+                      <div>
+                        <div class="tesco-product-price">£19.50</div>
+                        <div class="tesco-product-price-unit">£27.86/litre</div>
+                      </div>
+                      <button class="tesco-product-add-btn">Add</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cell 4: Brecon Botanicals 70cl -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image">
+                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/0a6b8b98-afad-436a-bf87-cf3178edf36e/54520a51-3451-46d1-b7d2-f84265ea0709.jpeg?h=960&w=960" alt="Brecon Botanicals 70cl" loading="lazy" />
+                    <div class="tesco-product-size-badge">70cl</div>
+                  </div>
+                  <div class="tesco-product-card-body">
+                    <div class="tesco-product-name">Brecon Botanicals 70cl</div>
+                    <div class="tesco-product-rating"><span class="stars">★★★★★</span> <span>5.0 (9)</span></div>
+                    <div class="tesco-product-more">More like this &rsaquo;</div>
+                    <div class="tesco-product-bottom">
+                      <div>
+                        <div class="tesco-product-price">£27.75</div>
+                        <div class="tesco-product-price-unit">£39.64/litre</div>
+                      </div>
+                      <button class="tesco-product-add-btn">Add</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cell 5: Singleton of Dufftown 12 Year -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image">
+                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/715ec85f-775a-4959-8397-4d80a6617424/30374d80-af7f-46bf-86a3-f86b8e531133.jpeg?h=960&w=960" alt="Singleton of Dufftown 12 Year Whisky Bottle 40% Vol 70cl" loading="lazy" />
+                    <div class="tesco-product-size-badge">70cl</div>
+                  </div>
+                  <div class="tesco-product-card-body">
+                    <div class="tesco-product-name">Singleton of Dufftown 12 Year 40% Vol 70cl</div>
+                    <div class="tesco-product-rating"><span class="stars">★★★★★</span> <span>4.8 (57)</span></div>
+                    <div class="tesco-product-more">More like this &rsaquo;</div>
+                    <div class="tesco-clubcard-pill">
+                      <div class="tesco-clubcard-pill-label">Clubcard<br/>Price</div>
+                      <div class="tesco-clubcard-pill-price">£29.50 (£42.14/litre) <span>&rsaquo;</span></div>
+                    </div>
+                    <div class="tesco-clubcard-validity">Offer valid 19/05/2026 – 22/06/2026</div>
+                    <div class="tesco-product-bottom">
+                      <div>
+                        <div class="tesco-product-price">£41.00</div>
+                        <div class="tesco-product-price-unit">£58.57/litre</div>
+                      </div>
+                      <button class="tesco-product-add-btn">Add</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cell 6: The Ardmore Highland Single Malt 70cl -->
+                <div class="tesco-product-card">
+                  <div class="tesco-product-image">
+                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/1da008c3-a716-4666-883e-52e8648660fe/875d72a2-8b53-44e1-b4ac-191bd91414c4.jpeg?h=960&w=960" alt="The Ardmore Highland Single Malt Scotch Whisky 70cl" loading="lazy" />
+                    <div class="tesco-product-size-badge">70cl</div>
+                  </div>
+                  <div class="tesco-product-card-body">
+                    <div class="tesco-product-name">The Ardmore Highland Single Malt 70cl</div>
+                    <div class="tesco-product-rating"><span class="stars">★★★☆☆</span> <span>3.3 (11)</span></div>
+                    <div class="tesco-product-more">More like this &rsaquo;</div>
+                    <div class="tesco-product-bottom">
+                      <div>
+                        <div class="tesco-product-price">£34.00</div>
+                        <div class="tesco-product-price-unit">£48.57/litre</div>
+                      </div>
+                      <button class="tesco-product-add-btn">Add</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- /cat-grid -->
+            </div><!-- /cat-content -->
+          </div>
+        </div><!-- /mockup-frame -->
+
+        <!-- Why position 2 annotation -->
+        <div class="mockup-annotation reveal">
+          <strong>Why position two</strong>
+          The sponsored creator card sits in the second slot rather than the first. Eye-tracking research consistently shows attention reset to the centre of the screen after initial scan, so position 2 collects higher dwell on retailer category grids than the lead position. Native rather than dominant.
+        </div>
+
+        <div class="surface-callouts reveal-stagger">
+          <div class="callout">
+            <div class="stat">Brand-funded</div>
+            <div class="stat-label">Diageo-approved · Spark pool</div>
+            <p>Diageo funds and approves the sponsored unit on the category and search pages because Diageo owns the spend. Content is gated to the Spark Ads authorisation pool — only creators Diageo has pre-cleared for the Pimm's brand.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">9:16 native</div>
+            <div class="stat-label">Vertical creative — no reformatting</div>
+            <p>The format that already works on TikTok works on the Tesco Spirits browse page. No reformatting, no extra production cost for the brand. The creative was made once for TikTok and runs across both surfaces.</p>
+          </div>
+          <div class="callout">
+            <div class="stat">Category + search</div>
+            <div class="stat-label">Two placement types, one pool</div>
+            <p>The same Spark-authorised creator unit runs on category browse pages and on relevant search queries — "gin", "summer drinks", "Pimm's" — from a single approved content pool. One activation, two surfaces.</p>
+          </div>
+        </div>
+
+        <div class="sources">
+          <div class="sources-label">Sources</div>
+          <ol>
+            <li id="fn-cat-1"><a href="https://www.tiktok.com/business/en/blog/spark-ads-supercharging-tiktok-marketing" target="_blank" rel="noopener noreferrer">TikTok for Business — Spark Ads performance benchmarks</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Surface 02 — CAN PDP -->
     <section id="surface-pdp" class="section-divider">
       <div class="container">
         <div class="surface-marker reveal">
@@ -518,7 +767,7 @@
           </div>
         </div>
         <div class="surface-header reveal">
-          <span class="surface-counter">Surface 01 of 02</span>
+          <span class="surface-counter">Surface 02 of 02</span>
           <h2 class="display has-accent-stroke">Pimm's No.1 &amp; Lemonade.<br />The product page.</h2>
           <p class="lead" style="color: var(--text-muted);">
             The TikTok creator video sits as one of the product gallery images, between the can photography. A small "as served on TikTok" caption marks it as creator content. Tesco owns the surface and approves which creator content runs per SKU. Scroll the mockup.
@@ -716,210 +965,6 @@
     </section>
 
 
-    <!-- SURFACE 02 — SPIRITS CATEGORY PAGE -->
-    <section id="surface-category" class="section-divider">
-      <div class="container">
-        <div class="surface-marker reveal">
-          <div class="surface-marker-eyebrow">
-            <span class="marker-num">Surface 02</span>
-            <span class="marker-divider"></span>
-            <span class="marker-title">The Spirits category page</span>
-          </div>
-        </div>
-        <div class="surface-header reveal">
-          <span class="surface-counter">Surface 02 of 02</span>
-          <h2 class="display has-accent-stroke">The Spirits category page.</h2>
-          <p class="lead" style="color: var(--text-muted);">
-            A brand-funded sponsored creator unit, slotted into the standard Tesco Spirits category browse at position two. Diageo approves the creative because Diageo funds the placement. The unit runs on category and search pages alike. No price, no offer on the creative — alcohol advertising rules met at the point of delivery.
-          </p>
-        </div>
-
-        <div class="mockup-frame reveal">
-          <div class="mockup-frame-header">
-            <div class="mockup-frame-traffic"><span></span><span></span><span></span></div>
-            <div class="mockup-frame-url">https://www.tesco.com/groceries/en-GB/shop/drinks/spirits/all</div>
-          </div>
-
-          <div style="background: #fff; color: #1c1c1c; font-family: var(--font-body);">
-
-            <!-- Tesco header -->
-            <div class="tesco-header">
-              <div class="tesco-wordmark">tesco</div>
-              <div class="tesco-search-field">
-                <span class="magnifier">⌕</span>
-                <span style="color: #aaa; font-size: 13px;">Search products, brands and more…</span>
-              </div>
-              <div class="tesco-header-icons">
-                <span>👤 Account</span>
-                <span>🛒 Trolley</span>
-              </div>
-            </div>
-
-            <!-- Subnav -->
-            <div class="tesco-subnav">
-              <span class="tesco-subnav-item">Groceries</span>
-              <span class="tesco-subnav-item">Food Cupboard</span>
-              <span class="tesco-subnav-item is-active">Drinks</span>
-              <span class="tesco-subnav-item">Fresh</span>
-              <span class="tesco-subnav-item">Frozen</span>
-              <span class="tesco-subnav-item">Bakery</span>
-              <span class="tesco-subnav-item">Home</span>
-            </div>
-
-            <!-- Category content -->
-            <div class="tesco-cat-content">
-
-              <!-- Breadcrumb -->
-              <div class="tesco-cat-breadcrumb">
-                <span class="crumb">Drinks</span>
-                <span> &rsaquo; </span>
-                <span style="color: #1c1c1c; font-weight: 600;">Spirits</span>
-              </div>
-
-              <h2 class="tesco-cat-heading">Spirits</h2>
-
-              <p class="tesco-cat-note">
-                Sponsored creator units run on both category and search pages. The unit in position two is brand-funded: Diageo places the Pimm's creator video against the Spirits category browse and relevant search queries.
-              </p>
-
-              <!-- Sort bar -->
-              <div class="tesco-sort-bar">
-                <div class="tesco-sort-select">
-                  Sort By: <span style="font-weight: 400;">Relevance</span> <span>▾</span>
-                </div>
-                <div style="font-size: 12px; color: #777;">Showing 1–6 of 248 products</div>
-              </div>
-
-              <!-- Product grid: 3 columns, 6 cells -->
-              <div class="tesco-cat-grid">
-
-                <!-- Cell 1: Au Vodka Blue Raspberry 70cl -->
-                <div class="tesco-product-card">
-                  <div class="tesco-product-image">
-                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/89b543c9-31fb-474c-81dd-6ff3c11d19b1/eb0abee0-555d-46bd-a940-635a8dcb0f7a.jpeg?h=960&w=960" alt="Au Vodka Blue Raspberry 70cl" loading="lazy" />
-                  </div>
-                  <div class="tesco-product-name">Au Vodka Blue Raspberry 70cl</div>
-                  <div class="tesco-product-price">£34.00</div>
-                  <div class="tesco-product-price-unit">£48.57/litre</div>
-                </div>
-
-                <!-- Cell 2: SPONSORED TIKTOK UNIT -->
-                <!-- Backup video: @ao, id 7518077457488973078 -->
-                <div class="tesco-product-card is-sponsored" id="cat-sponsored-tiktok">
-                  <div class="tesco-product-image" style="position: relative;">
-                    <div class="tesco-sponsored-overlay">Sponsored · TikTok</div>
-                    <div class="cat-embed-wrap">
-                      <blockquote class="tiktok-embed"
-                        cite="https://www.tiktok.com/@pinchofnom/video/7099790755656404229"
-                        data-video-id="7099790755656404229">
-                        <section>
-                          <a target="_blank" title="@pinchofnom" href="https://www.tiktok.com/@pinchofnom?refer=embed">@pinchofnom</a>
-                        </section>
-                      </blockquote>
-                    </div>
-                  </div>
-                  <!-- No price, no offer on sponsored unit -->
-                </div>
-
-                <!-- Cell 3: Pimm's No.1 Cup Bottle 70cl — real image provided -->
-                <div class="tesco-product-card">
-                  <div class="tesco-product-image">
-                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/bf70a9c2-d823-4d2f-80ba-47969ee4ac4d/dfe62c79-a4ca-42cf-b066-56f69736cd2d.jpeg" alt="Pimm's The Original No.1 Cup Bottle 22% Vol 70cl" loading="lazy" />
-                  </div>
-                  <div class="tesco-product-name">Pimm's The Original No.1 Cup Bottle 22% Vol 70cl</div>
-                  <div class="tesco-product-rating">
-                    <span class="stars">★★★★★</span>
-                    <span>5.0 (2)</span>
-                  </div>
-                  <div class="tesco-product-price">£19.50</div>
-                  <div class="tesco-product-price-unit">£27.86/litre</div>
-                  <div class="tesco-product-clubcard">Clubcard £14.00 (£20.00/litre)</div>
-                  <div class="tesco-product-clubcard-valid">Clubcard valid to 15/06/2026</div>
-                </div>
-
-                <!-- Cell 4: Brecon Botanicals 70cl -->
-                <div class="tesco-product-card">
-                  <div class="tesco-product-image">
-                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/0a6b8b98-afad-436a-bf87-cf3178edf36e/54520a51-3451-46d1-b7d2-f84265ea0709.jpeg?h=960&w=960" alt="Brecon Botanicals 70cl" loading="lazy" />
-                  </div>
-                  <div class="tesco-product-name">Brecon Botanicals 70cl</div>
-                  <div class="tesco-product-rating">
-                    <span class="stars">★★★★★</span>
-                    <span>5.0 (9)</span>
-                  </div>
-                  <div class="tesco-product-price">£27.75</div>
-                  <div class="tesco-product-price-unit">£39.64/litre</div>
-                </div>
-
-                <!-- Cell 5: Singleton of Dufftown 12 Year -->
-                <div class="tesco-product-card">
-                  <div class="tesco-product-image">
-                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/715ec85f-775a-4959-8397-4d80a6617424/30374d80-af7f-46bf-86a3-f86b8e531133.jpeg?h=960&w=960" alt="Singleton of Dufftown 12 Year Whisky Bottle 40% Vol 70cl" loading="lazy" />
-                  </div>
-                  <div class="tesco-product-name">Singleton of Dufftown 12 Year Whisky Bottle 40% Vol 70cl</div>
-                  <div class="tesco-product-rating">
-                    <span class="stars">★★★★★</span>
-                    <span>4.8 (57)</span>
-                  </div>
-                  <div class="tesco-product-price">£41.00</div>
-                  <div class="tesco-product-price-unit">£58.57/litre</div>
-                  <div class="tesco-product-clubcard">Clubcard £29.50 (£42.14/litre)</div>
-                  <div class="tesco-product-clubcard-valid">Clubcard 19/05/2026 – 22/06/2026</div>
-                </div>
-
-                <!-- Cell 6: The Ardmore Highland Single Malt Scotch Whisky 70cl -->
-                <div class="tesco-product-card">
-                  <div class="tesco-product-image">
-                    <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/1da008c3-a716-4666-883e-52e8648660fe/875d72a2-8b53-44e1-b4ac-191bd91414c4.jpeg?h=960&w=960" alt="The Ardmore Highland Single Malt Scotch Whisky 70cl" loading="lazy" />
-                  </div>
-                  <div class="tesco-product-name">The Ardmore Highland Single Malt Scotch Whisky 70cl</div>
-                  <div class="tesco-product-rating">
-                    <span class="stars">★★★☆☆</span>
-                    <span>3.3 (11)</span>
-                  </div>
-                  <div class="tesco-product-price">£34.00</div>
-                  <div class="tesco-product-price-unit">£48.57/litre</div>
-                </div>
-
-              </div><!-- /cat-grid -->
-            </div><!-- /cat-content -->
-          </div>
-        </div><!-- /mockup-frame -->
-
-        <!-- Why position 2 annotation -->
-        <div class="mockup-annotation reveal">
-          <strong>Why position two</strong>
-          The sponsored creator card sits in the second slot rather than the first. Eye-tracking research consistently shows attention reset to the centre of the screen after initial scan, so position 2 collects higher dwell on retailer category grids than the lead position. Native rather than dominant.
-        </div>
-
-        <div class="surface-callouts reveal-stagger">
-          <div class="callout">
-            <div class="stat">Brand-funded</div>
-            <div class="stat-label">Diageo-approved · Spark pool</div>
-            <p>Diageo funds and approves the sponsored unit on the category and search pages because Diageo owns the spend. Content is gated to the Spark Ads authorisation pool — only creators Diageo has pre-cleared for the Pimm's brand.</p>
-          </div>
-          <div class="callout">
-            <div class="stat">9:16 native</div>
-            <div class="stat-label">Vertical creative — no reformatting</div>
-            <p>The format that already works on TikTok works on the Tesco Spirits browse page. No reformatting, no extra production cost for the brand. The creative was made once for TikTok and runs across both surfaces.</p>
-          </div>
-          <div class="callout">
-            <div class="stat">Category + search</div>
-            <div class="stat-label">Two placement types, one pool</div>
-            <p>The same Spark-authorised creator unit runs on category browse pages and on relevant search queries — "gin", "summer drinks", "Pimm's" — from a single approved content pool. One activation, two surfaces.</p>
-          </div>
-        </div>
-
-        <div class="sources">
-          <div class="sources-label">Sources</div>
-          <ol>
-            <li id="fn-cat-1"><a href="https://www.tiktok.com/business/en/blog/spark-ads-supercharging-tiktok-marketing" target="_blank" rel="noopener noreferrer">TikTok for Business — Spark Ads performance benchmarks</a></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-
     <!-- APPROVAL AND ALCOHOL COMPLIANCE -->
     <section id="approval" class="section-divider">
       <div class="container">
@@ -1024,8 +1069,8 @@
       if (stickyEyebrow && stickyEyebrowLabel) {
         const sectionMap = [
           { id: 'retailer-panel', label: '01 · Tesco Media and Insight Platform' },
-          { id: 'surface-pdp',    label: 'Surface 01 · The can PDP' },
-          { id: 'surface-category', label: 'Surface 02 · The Spirits category page' },
+          { id: 'surface-category', label: 'Surface 01 · The Spirits category page' },
+          { id: 'surface-pdp',    label: 'Surface 02 · The can PDP' },
           { id: 'approval',       label: 'Approval and alcohol compliance' }
         ];
         const updateEyebrow = () => {
