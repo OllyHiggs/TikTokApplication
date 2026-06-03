@@ -305,8 +305,8 @@
     .tesco-product-add-btn { background: #00539f; color: #fff; border: 0; border-radius: 20px; font-size: 13px; font-weight: 700; padding: 7px 18px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 
     /* SPONSORED CATEGORY CARD */
-    .tesco-product-card.is-sponsored { background: #fff; border: 1px solid #e5e5e5; }
-    .tesco-product-card.is-sponsored .tesco-product-image { aspect-ratio: 1/1; background: #000; overflow: hidden; }
+    .tesco-product-card.is-sponsored { background: #fff; border: 1px solid #e5e5e5; align-self: start; }
+    .tesco-product-card.is-sponsored .tesco-product-image { aspect-ratio: 9/16; background: #000; overflow: hidden; }
     .tesco-product-card.is-sponsored .cat-embed-wrap { position: absolute; top: 0; left: 0; width: 325px; transform-origin: top left; transform: scale(var(--embed-scale, 0.7)); }
     .tesco-product-card.is-sponsored .cat-embed-wrap blockquote.tiktok-embed { max-width: 325px !important; min-width: 325px !important; margin: 0 !important; width: 325px !important; }
     .tesco-product-card.is-sponsored .cat-embed-wrap iframe { max-width: 325px !important; width: 325px !important; border: 0; display: block; }
@@ -352,22 +352,6 @@
     .compliance-list li strong { color: var(--text); font-weight: 600; }
 
     /* PAGE ALCOHOL NOTICE */
-    .page-alcohol-notice {
-      background: #111118;
-      border-top: 1px solid var(--rule);
-      padding: 14px var(--gutter);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: var(--type-small);
-      color: var(--text-muted);
-    }
-    .page-alcohol-notice .age-badge {
-      font-size: 11px;
-      padding: 3px 7px;
-    }
-
     /* FOOTER */
     footer.site-footer { padding: var(--space-12) var(--gutter) var(--space-6); border-top: 1px solid var(--rule); margin-top: var(--space-12); }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: var(--space-6); max-width: var(--max-w); margin: 0 auto; }
@@ -620,6 +604,10 @@
                         </section>
                       </blockquote>
                     </div>
+                    <div class="tiktok-alcohol-notice">
+                      <span class="age-badge">18+</span>
+                      <span>Please drink responsibly. drinkaware.co.uk</span>
+                    </div>
                   </div>
                   <div class="tesco-product-card-body">
                     <div class="tesco-sponsored-label">Sponsored</div>
@@ -838,6 +826,10 @@
                       </section>
                     </blockquote>
                   </div>
+                  <div class="tiktok-alcohol-notice">
+                    <span class="age-badge">18+</span>
+                    <span>Please drink responsibly. drinkaware.co.uk</span>
+                  </div>
                 </div>
 
                 <!-- Image 2 -->
@@ -1021,11 +1013,6 @@
     </section>
 
   </main>
-
-  <div class="page-alcohol-notice">
-    <span class="age-badge">18+</span>
-    <span>Please drink responsibly. drinkaware.co.uk</span>
-  </div>
 
   <footer class="site-footer">
     <div class="footer-grid">
