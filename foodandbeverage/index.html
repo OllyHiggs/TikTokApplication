@@ -310,7 +310,6 @@
     .tesco-product-card.is-sponsored .cat-embed-wrap { position: absolute; top: 0; left: 0; width: 325px; transform-origin: top left; transform: scale(var(--embed-scale, 0.7)); }
     .tesco-product-card.is-sponsored .cat-embed-wrap blockquote.tiktok-embed { max-width: 325px !important; min-width: 325px !important; margin: 0 !important; width: 325px !important; }
     .tesco-product-card.is-sponsored .cat-embed-wrap iframe { max-width: 325px !important; width: 325px !important; border: 0; display: block; }
-    .tiktok-click-block { position: absolute; inset: 0; z-index: 15; cursor: default; }
 
     /* CALLOUTS */
     .surface-callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-top: var(--space-6); }
@@ -606,7 +605,6 @@
                         </section>
                       </blockquote>
                     </div>
-                    <div class="tiktok-click-block"></div>
                     <div class="tiktok-alcohol-notice">
                       <span class="age-badge">18+</span>
                       <span>Please drink responsibly. drinkaware.co.uk</span>
@@ -830,7 +828,6 @@
                       </section>
                     </blockquote>
                   </div>
-                  <div class="tiktok-click-block"></div>
                   <div class="tiktok-alcohol-notice">
                     <span class="age-badge">18+</span>
                     <span>Please drink responsibly. drinkaware.co.uk</span>
@@ -1159,6 +1156,23 @@
     })();
   </script>
 
+  <!-- Force TikTok embeds to start muted by appending muted=1 to the player URL -->
+  <script>
+    (function () {
+      var desc = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, 'src');
+      if (!desc) return;
+      Object.defineProperty(HTMLIFrameElement.prototype, 'src', {
+        set: function (val) {
+          if (val && val.indexOf('tiktok.com/embed') !== -1) {
+            val += (val.indexOf('?') !== -1 ? '&' : '?') + 'muted=1';
+          }
+          desc.set.call(this, val);
+        },
+        get: desc.get,
+        configurable: true
+      });
+    })();
+  </script>
   <!-- TikTok official embed script -->
   <script async src="https://www.tiktok.com/embed.js"></script>
 
