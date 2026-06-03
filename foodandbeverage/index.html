@@ -264,7 +264,7 @@
 
     /* TESCO HEADER (shared between PDP and category mockups) */
     .tesco-header { background: #00539f; padding: 12px 20px; display: flex; align-items: center; gap: 12px; }
-    .tesco-wordmark { font-family: var(--font-body); font-weight: 900; font-size: 20px; color: #fff; letter-spacing: -0.02em; text-transform: lowercase; flex-shrink: 0; }
+    .tesco-logo { height: 28px; width: auto; flex-shrink: 0; display: block; }
     .tesco-search-field { flex: 1; display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 4px; padding: 7px 12px; font-size: 13px; color: #555; }
     .tesco-search-field .magnifier { color: #00539f; font-size: 14px; font-weight: 700; }
     .tesco-header-icons { display: flex; gap: 14px; align-items: center; color: #fff; font-size: 11px; flex-shrink: 0; }
@@ -287,7 +287,6 @@
     .tesco-product-card { display: flex; flex-direction: column; gap: 0; position: relative; background: #fff; border: 1px solid #e5e5e5; border-radius: 6px; overflow: hidden; }
     .tesco-product-image { aspect-ratio: 1/1; background: #f9f9f9; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
     .tesco-product-image img { width: 100%; height: 100%; object-fit: contain; padding: 10px; display: block; }
-    .tesco-product-size-badge { position: absolute; top: 6px; right: 6px; background: #fff; border: 1px solid #e5e5e5; border-radius: 2px; font-size: 10px; font-weight: 600; color: #333; padding: 2px 5px; line-height: 1.3; z-index: 2; }
     .tesco-product-card-body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
     .tesco-sponsored-label { font-size: 10px; color: #777; }
     .tesco-product-name { font-size: 12px; color: #006bb7; line-height: 1.35; font-weight: 400; cursor: pointer; }
@@ -523,7 +522,16 @@
 
             <!-- Tesco header -->
             <div class="tesco-header">
-              <div class="tesco-wordmark">tesco</div>
+              <svg class="tesco-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 36" aria-label="Tesco">
+                <defs><clipPath id="tc"><ellipse cx="18" cy="18" rx="15" ry="11"/></clipPath></defs>
+                <ellipse cx="18" cy="18" rx="15" ry="11" fill="#fff"/>
+                <rect x="3" y="8"  width="30" height="4" fill="#00539f" clip-path="url(#tc)"/>
+                <rect x="3" y="12" width="30" height="3" fill="#e51b24" clip-path="url(#tc)"/>
+                <rect x="3" y="15" width="30" height="6" fill="#fff"    clip-path="url(#tc)"/>
+                <rect x="3" y="21" width="30" height="3" fill="#e51b24" clip-path="url(#tc)"/>
+                <rect x="3" y="24" width="30" height="4" fill="#00539f" clip-path="url(#tc)"/>
+                <text x="38" y="26" font-family="'Arial Black',Arial,sans-serif" font-size="22" font-weight="900" fill="#fff" letter-spacing="-0.5">tesco</text>
+              </svg>
               <div class="tesco-search-field">
                 <span class="magnifier">⌕</span>
                 <span style="color: #aaa; font-size: 13px;">Search products, brands and more…</span>
@@ -576,7 +584,6 @@
                 <div class="tesco-product-card">
                   <div class="tesco-product-image">
                     <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/89b543c9-31fb-474c-81dd-6ff3c11d19b1/eb0abee0-555d-46bd-a940-635a8dcb0f7a.jpeg?h=960&w=960" alt="Au Vodka Blue Raspberry 70cl" loading="lazy" />
-                    <div class="tesco-product-size-badge">70cl</div>
                   </div>
                   <div class="tesco-product-card-body">
                     <div class="tesco-product-name">Au Vodka Blue Raspberry 70cl</div>
@@ -620,7 +627,6 @@
                 <div class="tesco-product-card">
                   <div class="tesco-product-image">
                     <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/bf70a9c2-d823-4d2f-80ba-47969ee4ac4d/dfe62c79-a4ca-42cf-b066-56f69736cd2d.jpeg" alt="Pimm's The Original No.1 Cup Bottle 22% Vol 70cl" loading="lazy" />
-                    <div class="tesco-product-size-badge">70cl</div>
                   </div>
                   <div class="tesco-product-card-body">
                     <div class="tesco-product-name">Pimm&rsquo;s The Original No.1 Cup 22% Vol 70cl</div>
@@ -645,7 +651,6 @@
                 <div class="tesco-product-card">
                   <div class="tesco-product-image">
                     <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/0a6b8b98-afad-436a-bf87-cf3178edf36e/54520a51-3451-46d1-b7d2-f84265ea0709.jpeg?h=960&w=960" alt="Brecon Botanicals 70cl" loading="lazy" />
-                    <div class="tesco-product-size-badge">70cl</div>
                   </div>
                   <div class="tesco-product-card-body">
                     <div class="tesco-product-name">Brecon Botanicals 70cl</div>
@@ -665,7 +670,6 @@
                 <div class="tesco-product-card">
                   <div class="tesco-product-image">
                     <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/715ec85f-775a-4959-8397-4d80a6617424/30374d80-af7f-46bf-86a3-f86b8e531133.jpeg?h=960&w=960" alt="Singleton of Dufftown 12 Year Whisky Bottle 40% Vol 70cl" loading="lazy" />
-                    <div class="tesco-product-size-badge">70cl</div>
                   </div>
                   <div class="tesco-product-card-body">
                     <div class="tesco-product-name">Singleton of Dufftown 12 Year 40% Vol 70cl</div>
@@ -690,7 +694,6 @@
                 <div class="tesco-product-card">
                   <div class="tesco-product-image">
                     <img src="https://digitalcontent.api.tesco.com/v2/media/ghs/1da008c3-a716-4666-883e-52e8648660fe/875d72a2-8b53-44e1-b4ac-191bd91414c4.jpeg?h=960&w=960" alt="The Ardmore Highland Single Malt Scotch Whisky 70cl" loading="lazy" />
-                    <div class="tesco-product-size-badge">70cl</div>
                   </div>
                   <div class="tesco-product-card-body">
                     <div class="tesco-product-name">The Ardmore Highland Single Malt 70cl</div>
@@ -773,7 +776,16 @@
 
             <!-- Tesco header -->
             <div class="tesco-header" style="position: sticky; top: 0; z-index: 6;">
-              <div class="tesco-wordmark">tesco</div>
+              <svg class="tesco-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 36" aria-label="Tesco">
+                <defs><clipPath id="tc"><ellipse cx="18" cy="18" rx="15" ry="11"/></clipPath></defs>
+                <ellipse cx="18" cy="18" rx="15" ry="11" fill="#fff"/>
+                <rect x="3" y="8"  width="30" height="4" fill="#00539f" clip-path="url(#tc)"/>
+                <rect x="3" y="12" width="30" height="3" fill="#e51b24" clip-path="url(#tc)"/>
+                <rect x="3" y="15" width="30" height="6" fill="#fff"    clip-path="url(#tc)"/>
+                <rect x="3" y="21" width="30" height="3" fill="#e51b24" clip-path="url(#tc)"/>
+                <rect x="3" y="24" width="30" height="4" fill="#00539f" clip-path="url(#tc)"/>
+                <text x="38" y="26" font-family="'Arial Black',Arial,sans-serif" font-size="22" font-weight="900" fill="#fff" letter-spacing="-0.5">tesco</text>
+              </svg>
               <div class="tesco-search-field">
                 <span class="magnifier">⌕</span>
                 <span style="color: #aaa; font-size: 13px;">Search products, brands and more…</span>
