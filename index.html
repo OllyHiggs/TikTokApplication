@@ -4308,11 +4308,21 @@
   <!-- Visit tracking -->
   <script>
     (function () {
-      var url = 'https://script.google.com/macros/s/AKfycbyxEUGcr94QxXnF_Tp2BiWSayA9I-Au0b3V-EtyHZ3wqDFwvXy7zu4KPn0JgwIv3RmgPA/exec'
-        + '?page=' + encodeURIComponent(location.pathname)
-        + '&ref='  + encodeURIComponent(document.referrer)
-        + '&ua='   + encodeURIComponent(navigator.userAgent);
-      fetch(url).catch(function () {});
+      var GAS = 'https://script.google.com/macros/s/AKfycbyxEUGcr94QxXnF_Tp2BiWSayA9I-Au0b3V-EtyHZ3wqDFwvXy7zu4KPn0JgwIv3RmgPA/exec';
+      var base = '?page=' + encodeURIComponent(location.pathname)
+               + '&ref='  + encodeURIComponent(document.referrer)
+               + '&ua='   + encodeURIComponent(navigator.userAgent);
+      fetch('https://ipinfo.io/json')
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          fetch(GAS + base
+            + '&org='     + encodeURIComponent(d.org     || '')
+            + '&country=' + encodeURIComponent(d.country || '')
+          ).catch(function () {});
+        })
+        .catch(function () {
+          fetch(GAS + base).catch(function () {});
+        });
     })();
   </script>
 
