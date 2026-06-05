@@ -1237,5 +1237,16 @@
   <!-- TikTok official embed script -->
   <script async src="https://www.tiktok.com/embed.js"></script>
 
+  <!-- Visit tracking -->
+  <script>
+    (function () {
+      var url = 'https://script.google.com/macros/s/AKfycbyxEUGcr94QxXnF_Tp2BiWSayA9I-Au0b3V-EtyHZ3wqDFwvXy7zu4KPn0JgwIv3RmgPA/exec'
+        + '?page=' + encodeURIComponent(location.pathname)
+        + '&ref='  + encodeURIComponent(document.referrer)
+        + '&ua='   + encodeURIComponent(navigator.userAgent);
+      fetch(url).catch(function () {});
+    })();
+  </script>
+
 </body>
 </html>
