@@ -287,6 +287,14 @@
       fetch(GATE_SCRIPT_URL + '?' + new URLSearchParams({ ...params, secret: GATE_SECRET }).toString())
         .then(r => r.json());
 
+    // --- Device type detection ---
+    const getDeviceType = () => {
+      const ua = navigator.userAgent;
+      if (/Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) return 'Mobile';
+      if (/iPad|Tablet|PlayBook/i.test(ua) || (navigator.maxTouchPoints > 1 && /Mac/i.test(ua))) return 'Tablet';
+      return 'Desktop';
+    };
+
     // --- Geo lookup (best-effort, silent on failure) ---
     const getGeo = () =>
       fetch('https://ipinfo.io/json')
@@ -328,6 +336,7 @@
           country : geo.country  || '',
           city    : geo.city     || '',
           org     : geo.org      || '',
+          device  : getDeviceType(),
         };
 
         if (status === 'approved') {
@@ -397,10 +406,10 @@
  *        Access Requests   — one row per person, with approval status
  *        Gate Visits       — one row per verified access event (DO NOT rename your
  *                            existing Sheet1 / anonymous visits tab — leave it alone)
- *   3. Access Requests headers in row 1 (columns A–H):
- *        Email | Name | Status | Requested | Country | City | Organisation | Notes
- *   4. Gate Visits headers in row 1 (columns A–F):
- *        Email | Timestamp | Page | Country | City | Organisation
+ *   3. Access Requests headers in row 1 (columns A–I):
+ *        Email | Name | Status | Requested | Country | City | Organisation | Device | Notes
+ *   4. Gate Visits headers in row 1 (columns A–G):
+ *        Email | Timestamp | Page | Country | City | Organisation | Device
  *   5. Go to Extensions → Apps Script.
  *   6. Replace any existing code with the function below.
  *   7. Click Deploy → New deployment.
@@ -432,6 +441,7 @@
  *     const country = (e.parameter.country || '').trim();
  *     const city    = (e.parameter.city    || '').trim();
  *     const org     = (e.parameter.org     || '').trim();
+ *     const device  = (e.parameter.device  || '').trim();
  *     const page    = (e.parameter.page    || '').trim();
  *     const now     = new Date().toISOString();
  *
@@ -460,7 +470,7 @@
  *         }
  *       }
  *       if (!output) {
- *         requestSheet.appendRow([email, name, 'Pending', now, country, city, org, '']);
+ *         requestSheet.appendRow([email, name, 'Pending', now, country, city, org, device, '']);
  *         MailApp.sendEmail({
  *           to: 'olly.higgs93@gmail.com',
  *           subject: 'Access request: ' + (name || email),
@@ -480,7 +490,7 @@
  *
  *     } else if (action === 'visit') {
  *       // Log a verified access by an approved user
- *       visitSheet.appendRow([email, now, page, country, city, org]);
+ *       visitSheet.appendRow([email, now, page, country, city, org, device]);
  *       output = { ok: true };
  *
  *     } else {
