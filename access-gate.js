@@ -195,7 +195,7 @@
           <input id="ohg-email" type="email" placeholder="you@company.com" autocomplete="email" />
         </div>
         <div class="ohg-error" id="ohg-error" aria-live="polite"></div>
-        <button class="ohg-btn" id="ohg-btn">Request Access</button>
+        <button class="ohg-btn" id="ohg-btn">Access</button>
         <p class="ohg-hint">
           Already been granted access? Entering your approved email will unlock this page immediately.
         </p>
@@ -344,7 +344,7 @@
           setLoading(false);
           showStatus(
             'Request under review.',
-            'Your access request is being reviewed. You\'ll hear back once it\'s been approved.',
+            'Your access request is being reviewed. I\'ll be in touch once I\'ve approved it.',
             false
           );
           return;
@@ -358,7 +358,7 @@
             setLoading(false);
             showStatus(
               'Request submitted.',
-              `Thanks${name ? ', ' + name.split(' ')[0] : ''}. We'll review your request and be in touch.`,
+              `Thanks${name ? ', ' + name.split(' ')[0] : ''}. I'll review your request and be in touch.`,
               true
             );
           })
