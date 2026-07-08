@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>YouTube for the Digital Shelf</title>
+  <script src="/tracker.js" defer></script>
+  <meta name="description" content="A pitch document. Concept prototype. Not affiliated with or endorsed by Google LLC or YouTube." />
+
+<style>
+  :root {
+    --paper: #ffffff;
+    --surface: #f9f9f9;
+    --surface-2: #f1f1f1;
+    --ink: #0f0f0f;
+    --ink-2: #606060;
+    --ink-3: #8a8a8a;
+    --line: #e1e1e1;
+    --red: #ff0000;
+    --red-deep: #cc0000;
+    --red-wash: #fff1f1;
+    --focus: #065fd4;
+    --shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.05);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  /* YouTube itself defaults to its light theme regardless of OS preference —
+     matched here: light is the default ground, dark is opt-in via the toggle only. */
+  :root[data-theme="dark"] {
+    --paper: #0f0f0f;
+    --surface: #181818;
+    --surface-2: #212121;
+    --ink: #f1f1f1;
+    --ink-2: #aaaaaa;
+    --ink-3: #909090;
+    --line: #303030;
+    --red: #ff0a0a;
+    --red-deep: #ff5c54;
+    --red-wash: #2a1414;
+    --focus: #3ea6ff;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"] {
+    --paper: #ffffff;
+    --surface: #f9f9f9;
+    --surface-2: #f1f1f1;
+    --ink: #0f0f0f;
+    --ink-2: #606060;
+    --ink-3: #8a8a8a;
+    --line: #e1e1e1;
+    --red: #ff0000;
+    --red-deep: #cc0000;
+    --red-wash: #fff1f1;
+    --focus: #065fd4;
+    --shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.05);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Roboto, "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  .mono { font-family: "Roboto Mono", Consolas, "SFMono-Regular", Menlo, monospace; }
+
+  h1, h2, h3, h4 { text-wrap: balance; margin: 0; font-family: Roboto, "Segoe UI", -apple-system, sans-serif; }
+
+  .eyebrow {
+    font-family: "Roboto Mono", Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.55em;
+  }
+
+  /* play glyph — decorative, generic, not a trademark reproduction */
+  .glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.15em;
+    height: 0.82em;
+    background: var(--red);
+    border-radius: 0.22em;
+    flex: none;
+  }
+  .glyph::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 0.24em solid transparent;
+    border-bottom: 0.24em solid transparent;
+    border-left: 0.34em solid #fff;
+    margin-left: 0.1em;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .navlinks {
+    display: flex;
+    gap: clamp(10px, 2vw, 22px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .navlinks::-webkit-scrollbar { display: none; }
+  .navlinks a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    white-space: nowrap;
+    padding: 4px 2px;
+    border-bottom: 2px solid transparent;
+  }
+  .navlinks a:hover { color: var(--ink); border-bottom-color: var(--red); }
+
+  /* ---------- layout scaffolding ---------- */
+  .band { border-bottom: 1px solid var(--line); }
+  .band.alt { background: var(--surface); }
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 96px) clamp(20px, 4vw, 40px);
+  }
+  .prose {
+    max-width: 700px;
+  }
+  .prose p { margin: 0 0 1.1em; color: var(--ink); }
+  .prose p:last-child { margin-bottom: 0; }
+  .lede { font-size: 1.15rem; color: var(--ink-2); font-weight: 400; }
+
+  h2.section-title {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 14px 0 0;
+  }
+  .section-head { margin-bottom: 40px; }
+  .section-head .eyebrow { margin-bottom: 12px; }
+
+  /* ---------- hero ---------- */
+  .hero .wrap { padding-top: clamp(72px, 11vw, 128px); padding-bottom: clamp(64px, 9vw, 100px); }
+  .hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    max-width: 16ch;
+    margin-top: 18px;
+  }
+  .hero .lede { max-width: 620px; margin-top: 22px; }
+  .hero .thesis {
+    margin-top: 28px;
+    max-width: 720px;
+    font-size: 1rem;
+    color: var(--ink-2);
+  }
+  .pillrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .pill b { color: var(--red-deep); font-weight: 700; }
+  .pill.pay { background: var(--red-wash); border-color: color-mix(in srgb, var(--red) 30%, var(--line)); }
+
+  /* ---------- flow diagram ---------- */
+  .flow {
+    display: grid;
+    gap: 14px;
+    margin-top: 36px;
+  }
+  .flow-row {
+    display: grid;
+    grid-template-columns: minmax(140px,220px) 1fr minmax(140px,220px);
+    align-items: center;
+    gap: 14px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .flow-row.new { border-color: color-mix(in srgb, var(--red) 45%, var(--line)); box-shadow: var(--shadow); }
+  .flow-node {
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .flow-node span { display: block; font-weight: 400; font-size: 0.76rem; color: var(--ink-2); margin-top: 3px; }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .flow-arrow .line { flex: 1; height: 2px; background: var(--line); position: relative; }
+  .flow-row.new .flow-arrow .line { background: color-mix(in srgb, var(--red) 55%, var(--line)); }
+  .flow-arrow .line::after {
+    content: "";
+    position: absolute; right: -1px; top: 50%; transform: translateY(-50%);
+    width: 0; height: 0;
+    border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+    border-left: 8px solid var(--line);
+  }
+  .flow-row.new .flow-arrow .line::after { border-left-color: color-mix(in srgb, var(--red) 55%, var(--line)); }
+  .flow-arrow .label {
+    font-size: 0.72rem;
+    font-family: "Roboto Mono", monospace;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+  .flow-tag {
+    justify-self: start;
+    font-size: 0.68rem;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  .flow-row.new .flow-tag { color: var(--red-deep); }
+
+  /* ---------- mechanic mockups ---------- */
+  .mech {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.15fr);
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+    margin-top: 30px;
+  }
+  .mech + .mech { margin-top: 64px; }
+  .mech-copy h3 { font-size: 1.2rem; font-weight: 700; }
+  .mech-copy .paytag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.72rem;
+    font-family: "Roboto Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--red-deep);
+    background: var(--red-wash);
+    border-radius: 999px;
+    padding: 5px 12px;
+  }
+  .mech-copy p { margin-top: 14px; color: var(--ink-2); font-size: 0.95rem; }
+
+  .mockup {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .mockup-chrome {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .mockup-chrome .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .mockup-chrome .urlbar {
+    margin-left: 10px;
+    flex: 1;
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.68rem;
+    color: var(--ink-3);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .mockup-body { padding: 18px; }
+
+  /* PDP mockup */
+  .pdp-grid { display: grid; grid-template-columns: 64px 1fr; gap: 12px; }
+  .pdp-thumbs { display: flex; flex-direction: column; gap: 8px; }
+  .thumb {
+    width: 64px; height: 64px; border-radius: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+  }
+  .thumb.creator {
+    background: repeating-linear-gradient(135deg, var(--red-wash), var(--red-wash) 5px, var(--paper) 5px, var(--paper) 10px);
+    border: 1.5px dashed var(--red);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pdp-main {
+    aspect-ratio: 4/3;
+    border-radius: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+  }
+  .pdp-info { margin-top: 12px; }
+  .pdp-info .bar { height: 9px; border-radius: 5px; background: var(--surface-2); margin-bottom: 8px; }
+  .pdp-info .bar.w60 { width: 60%; }
+  .pdp-info .bar.w40 { width: 40%; background: var(--red-wash); }
+  .pdp-note {
+    margin-top: 14px;
+    font-size: 0.72rem;
+    color: var(--red-deep);
+    font-family: "Roboto Mono", monospace;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* search grid mockup */
+  .search-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .tile {
+    aspect-ratio: 3/4;
+    border-radius: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 8px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .tile .img { flex: 1; border-radius: 6px; background: color-mix(in srgb, var(--surface-2) 60%, var(--line)); }
+  .tile .bar { height: 6px; border-radius: 4px; background: var(--paper); }
+  .tile.creator {
+    background: repeating-linear-gradient(135deg, var(--red-wash), var(--red-wash) 5px, var(--paper) 5px, var(--paper) 10px);
+    border: 1.5px dashed var(--red);
+    align-items: center; justify-content: center;
+    text-align: center;
+    gap: 8px;
+  }
+  .tile.creator .imp {
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.6rem;
+    color: var(--red-deep);
+    letter-spacing: 0.04em;
+  }
+  .playdot {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .playdot::after {
+    content: ""; width: 0; height: 0;
+    border-top: 6px solid transparent; border-bottom: 6px solid transparent;
+    border-left: 9px solid #fff; margin-left: 3px;
+  }
+  .ph-label {
+    font-size: 0.64rem;
+    color: var(--ink-3);
+    font-family: "Roboto Mono", monospace;
+    line-height: 1.35;
+    padding: 0 6px;
+  }
+
+  /* shelf-edge device mockup — fixed e-ink tones, not theme tokens: it's hardware, not a webpage */
+  .shelf-device {
+    background: #e9e7df;
+    border: 1px solid #cfcdc2;
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .shelf-device .info { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .shelf-device .info .bar { height: 8px; border-radius: 4px; background: #cfcdc2; }
+  .shelf-device .video {
+    width: 72px; height: 72px; flex: none;
+    border-radius: 6px;
+    border: 1.5px dashed var(--red);
+    background: repeating-linear-gradient(135deg, var(--red-wash), var(--red-wash) 5px, #e9e7df 5px, #e9e7df 10px);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .paytag.roadmap { background: var(--surface); color: var(--ink-2); border: 1px solid var(--line); }
+
+  /* ---------- stat tiles ---------- */
+  .cluster { margin-top: 44px; }
+  .cluster:first-child { margin-top: 0; }
+  .cluster-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cluster-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .stat-tile {
+    background: var(--paper);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .stat-num {
+    font-family: "Roboto Mono", Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1.7rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-num em { color: var(--red-deep); font-style: normal; }
+  .stat-desc { font-size: 0.86rem; color: var(--ink); }
+  .stat-meta { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .stat-src { font-size: 0.68rem; color: var(--ink-3); font-family: "Roboto Mono", monospace; }
+  .scope-tag {
+    font-size: 0.62rem;
+    font-family: "Roboto Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+  .quote-tile {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    padding: 22px 24px;
+  }
+  .quote-tile p { margin: 0; font-size: 0.98rem; font-style: italic; color: var(--ink); max-width: 62ch; }
+  .quote-tile .stat-src { margin-top: 10px; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--surface); }
+  footer .wrap { padding-top: 48px; padding-bottom: 48px; }
+  .disclaimer {
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    max-width: 760px;
+    line-height: 1.6;
+  }
+  .disclaimer + .disclaimer { margin-top: 10px; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-weight: 700; }
+
+  /* ---------- motion: hero load-in ---------- */
+  .hero-anim-eyebrow { opacity: 0; animation: fadeInUp 700ms var(--ease-out) 200ms forwards; }
+  .hero-anim-eyebrow .glyph { animation: pulse 2.4s var(--ease-in-out) infinite; }
+  .hero-anim-headline { opacity: 0; animation: fadeInUp 900ms var(--ease-out) 350ms forwards; }
+  .hero-anim-lede { opacity: 0; animation: fadeInUp 900ms var(--ease-out) 550ms forwards; }
+  .hero-anim-thesis { opacity: 0; animation: fadeInUp 900ms var(--ease-out) 700ms forwards; }
+  .hero-anim-pills { opacity: 0; animation: fadeInUp 900ms var(--ease-out) 900ms forwards; }
+  .hero { position: relative; }
+  .hero-scroll-cue {
+    position: absolute;
+    bottom: 18px;
+    left: clamp(20px, 4vw, 40px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeIn 1200ms var(--ease-out) 1500ms forwards;
+  }
+  .hero-scroll-cue span {
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .hero-scroll-cue .line {
+    width: 1px;
+    height: 30px;
+    background: linear-gradient(180deg, var(--ink-3), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-cue .line::after {
+    content: "";
+    position: absolute;
+    left: 0; top: -12px;
+    width: 1px; height: 12px;
+    background: var(--red);
+    animation: scrollHint 2.2s var(--ease-in-out) infinite;
+  }
+
+  /* ---------- motion: scroll reveals ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  }
+  .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 70ms; }
+  .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 140ms; }
+  .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 210ms; }
+  .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 280ms; }
+  .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 350ms; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(0.9); }
+  }
+  @keyframes scrollHint {
+    0% { transform: translateY(-4px); opacity: 0; }
+    40% { opacity: 1; }
+    100% { transform: translateY(30px); opacity: 0; }
+  }
+
+  @media (max-width: 760px) {
+    .mech { grid-template-columns: 1fr; }
+    .flow-row { grid-template-columns: 1fr; text-align: left; }
+    .flow-arrow { transform: rotate(90deg); width: 60px; margin: 4px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="glyph" aria-hidden="true"></span> Digital Shelf</div>
+    <nav class="navlinks" aria-label="Section navigation">
+      <a href="#why-now">Why now</a>
+      <a href="#mechanic">The mechanic</a>
+      <a href="#evidence">Evidence</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero band">
+    <div class="wrap">
+      <p class="eyebrow hero-anim-eyebrow"><span class="glyph" aria-hidden="true"></span> Internal proposal — commerce media</p>
+      <h1 class="hero-anim-headline">Put licensed YouTube creator content where the sale actually happens: the product page.</h1>
+      <p class="lede hero-anim-lede">A retail media product that licenses YouTube creator videos and places them natively inside merchant e-commerce environments — on product detail pages and on search &amp; category pages.</p>
+      <p class="thesis hero-anim-thesis">On product pages, a licensed creator video sits inside the product's own media gallery, presented natively alongside product photography — not as an ad unit — and the creator is paid on sales attributed post-view. On retailer search and category pages, licensed creator content appears natively within the results grid, and the creator is paid on impressions. The content is paid for by the brand or retailer; it is not organic embedding. It extends the closed-loop logic Google is already building through the Commerce Media Suite and YouTube Creator Partnerships to a surface neither currently touches: the retailer's own digital shelf. A second phase extends the same model into physical retail via shelf-edge displays.</p>
+      <div class="pillrow hero-anim-pills">
+        <span class="pill">Surface 1 · Product detail page</span>
+        <span class="pill pay">Creator paid on <b>attributed sales</b></span>
+        <span class="pill">Surface 2 · Search &amp; category grid</span>
+        <span class="pill pay">Creator paid on <b>impressions</b></span>
+      </div>
+    </div>
+    <div class="hero-scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <section class="band alt" id="why-now">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="eyebrow reveal"><span class="glyph" aria-hidden="true"></span> Why now</p>
+        <h2 class="section-title reveal">Google built the plumbing this needs — pointed the other way</h2>
+      </div>
+      <div class="prose reveal">
+        <p>H1 2026 has been the busiest stretch yet for Google's commerce-media build-out. The <strong>Commerce Media Suite</strong> added Kroger in March (with SKU-level sales reporting), Best Buy and Shipt the same month, and Costco and Dollar General at Brandcast in May. On 11 June, <strong>Walmart Connect</strong> data became activatable inside DV360 — starting with YouTube — with closed-loop measurement tying video impressions directly to Walmart sales.</p>
+        <p>Every one of those deals moves retailer data <em>into</em> Google's buying tools. None of them moves YouTube content <em>onto</em> retailer surfaces. That reverse flow is the white space this proposal fills — the complementary second half of the Commerce Media Suite, not a competitor to it.</p>
+      </div>
+
+      <div class="flow reveal-stagger" role="img" aria-label="Diagram: existing Commerce Media Suite deals move retailer data into Google's buying tools; this proposal moves YouTube creator content onto retailer surfaces, the reverse direction.">
+        <div>
+          <div class="flow-tag">Already built — 2026</div>
+          <div class="flow-row">
+            <div class="flow-node">Retailer sales &amp; audience data<span>Walmart, Kroger, Costco, Best Buy, Shipt, Dollar General</span></div>
+            <div class="flow-arrow"><span class="label">flows into</span><span class="line"></span></div>
+            <div class="flow-node">DV360 / YouTube buying tools<span>Commerce Media Suite, closed-loop measurement</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="flow-tag">This proposal — the reverse flow</div>
+          <div class="flow-row new">
+            <div class="flow-node">Licensed YouTube creator content<span>via Creator Partnerships</span></div>
+            <div class="flow-arrow"><span class="label">flows onto</span><span class="line"></span></div>
+            <div class="flow-node">Retailer PDP &amp; search surfaces<span>the digital shelf itself</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose reveal" style="margin-top:36px;">
+        <p><strong>YouTube Creator Partnerships</strong> (unified from BrandConnect on 24 March 2026) already launched in seven markets including the UK, giving brands creator discovery, deal management, content approvals, rights to amplify creator videos as ads, and unified measurement inside Google Ads and DV360. That licensing spine partly exists — this proposal extends its amplification surface from YouTube itself to retailer inventory. YouTube's Content ID heritage means it is the only platform with industrial-scale rights infrastructure to do this; no other platform has an equivalent.</p>
+        <p>The model isn't hypothetical, either. The <strong>YouTube Shopping affiliate programme</strong> already pays creators on retailer-attributed sales when a viewer clicks a tagged product on a YouTube video and buys on the retailer's site. This proposal inverts the direction of travel: instead of the viewer moving from YouTube to the retailer, the licensed content moves to the retailer, with the same commission logic applied at the destination.</p>
+        <p>The white space is also geographic: every Commerce Media Suite retailer today is US. No UK retailer — Tesco, Sainsbury's Nectar360, Boots, Asda, Ocado, Co-op — has an equivalent YouTube integration.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="mechanic">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="eyebrow reveal"><span class="glyph" aria-hidden="true"></span> The mechanic</p>
+        <h2 class="section-title reveal">Two surfaces, two ways to get paid</h2>
+      </div>
+
+      <div class="mech reveal">
+        <div class="mech-copy">
+          <h3>Product detail page</h3>
+          <span class="paytag">Paid on attributed sales</span>
+          <p>The licensed creator video sits inside the product's own media gallery — native to the page design, not a bolted-on ad unit. No YouTube chrome, no end screens, no recommended videos.</p>
+          <p>The retailer's server reports purchase events back server-to-server, keyed by creator and SKU — the same pattern as Google's Enhanced Conversions, with Ads Data Hub as the clean room. Viewer watches the creator's video on the PDP, buys the SKU, the creator earns a commission on that sale.</p>
+        </div>
+        <div class="mockup">
+          <div class="mockup-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="urlbar">merchant.example/product/…</span>
+          </div>
+          <div class="mockup-body">
+            <div class="pdp-grid">
+              <div class="pdp-thumbs">
+                <div class="thumb"></div>
+                <div class="thumb"></div>
+                <div class="thumb creator"><span class="playdot" aria-hidden="true"></span></div>
+                <div class="thumb"></div>
+              </div>
+              <div class="pdp-main"></div>
+            </div>
+            <div class="pdp-info">
+              <div class="bar w60"></div>
+              <div class="bar w40"></div>
+            </div>
+            <div class="pdp-note"><span class="glyph" aria-hidden="true"></span> gallery tile — creator video placeholder, sourced separately</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mech reveal">
+        <div class="mech-copy">
+          <h3>Search &amp; category page</h3>
+          <span class="paytag">Paid on impressions</span>
+          <p>Licensed creator content appears natively within the results grid — a creator tile sitting among product tiles, not a display banner interrupting them.</p>
+          <p>Search pages are discovery moments, not purchase moments, so per-creator sales attribution here is noisy. Impression-based pay is the defensible model — which is exactly why it needs agreed viewability standards and MRC-style accreditation before money moves.</p>
+        </div>
+        <div class="mockup">
+          <div class="mockup-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="urlbar">merchant.example/search?q=…</span>
+          </div>
+          <div class="mockup-body">
+            <div class="search-grid">
+              <div class="tile"><div class="img"></div><div class="bar" style="width:70%"></div><div class="bar" style="width:40%"></div></div>
+              <div class="tile creator">
+                <span class="playdot" aria-hidden="true"></span>
+                <span class="ph-label">creator tile — placeholder</span>
+                <span class="imp">impression-paid</span>
+              </div>
+              <div class="tile"><div class="img"></div><div class="bar" style="width:70%"></div><div class="bar" style="width:40%"></div></div>
+              <div class="tile"><div class="img"></div><div class="bar" style="width:70%"></div><div class="bar" style="width:40%"></div></div>
+              <div class="tile"><div class="img"></div><div class="bar" style="width:70%"></div><div class="bar" style="width:40%"></div></div>
+              <div class="tile"><div class="img"></div><div class="bar" style="width:70%"></div><div class="bar" style="width:40%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mech reveal">
+        <div class="mech-copy">
+          <h3>In-store: the physical shelf</h3>
+          <span class="paytag roadmap">Phase 2 — roadmap, not the pilot</span>
+          <p>The same licensed content, extended onto electronic shelf-edge displays — Vusion's in-store screens replace the paper price label with a small display capable of carrying the same creator clip that runs on the PDP.</p>
+          <p>Small-format, high-frequency stores are the natural fit: the same research-heavy categories that make YouTube content valuable online carry the same value standing at the physical shelf.</p>
+        </div>
+        <div class="mockup">
+          <div class="mockup-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="urlbar">in-store · vusion shelf-edge display</span>
+          </div>
+          <div class="mockup-body">
+            <div class="shelf-device">
+              <div class="info">
+                <div class="bar" style="width:70%"></div>
+                <div class="bar" style="width:45%"></div>
+                <div class="bar" style="width:55%"></div>
+              </div>
+              <div class="video"><span class="playdot" aria-hidden="true"></span></div>
+            </div>
+            <div class="pdp-note"><span class="glyph" aria-hidden="true"></span> shelf-edge tile — creator video placeholder, phase 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="evidence">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="eyebrow reveal"><span class="glyph" aria-hidden="true"></span> Evidence</p>
+        <h2 class="section-title reveal">Why creator content belongs at the point of sale</h2>
+        <p class="lede reveal" style="margin-top:14px;">Google and YouTube first-party data, or Google-commissioned third-party research. Scope caveats are on-tile, not buried.</p>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-title reveal">Creator trust</div>
+        <div class="stat-grid reveal-stagger">
+          <div class="stat-tile">
+            <div class="stat-num"><em>79%</em></div>
+            <div class="stat-desc">of surveyed US Gen Z viewers trust recommendations from creators on YouTube.</div>
+            <div class="stat-meta"><span class="scope-tag">US sample</span></div>
+            <div class="stat-src">Google/Kantar, Future of Video, Dec 2025–Jan 2026</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>74%</em></div>
+            <div class="stat-desc">say YouTube creators provide helpful context or expertise enabling more confident purchase decisions.</div>
+            <div class="stat-meta"><span class="scope-tag">US sample</span></div>
+            <div class="stat-src">Google/Kantar, Future of Video</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>78%</em></div>
+            <div class="stat-desc">of viewers agree YouTube has the most trusted creators for product recommendations.</div>
+            <div class="stat-meta"><span class="scope-tag">US sample</span></div>
+            <div class="stat-src">Google/Kantar, Future of Video</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>98%</em></div>
+            <div class="stat-desc">more likely to trust recommendations from creators on YouTube versus other platforms.</div>
+            <div class="stat-meta"><span class="scope-tag">Google-commissioned</span></div>
+            <div class="stat-src">Ipsos study, via Think with Google</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>80%</em></div>
+            <div class="stat-desc">of US viewers agree YouTube helps them make more confident shopping decisions than social platforms do.</div>
+            <div class="stat-meta"><span class="scope-tag">US sample</span></div>
+            <div class="stat-src">Think with Google, "The YouTube Formula 2026"</div>
+          </div>
+          <div class="quote-tile">
+            <p>"Shoppers ranked their most recent purchases higher on quality, brand trust, and reputation when they used YouTube to research those purchases than when they used TikTok."</p>
+            <div class="stat-src">Ipsos survey, Google-commissioned, via Think with Google — direct YouTube-vs-TikTok comparison from Google's own publication.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-title reveal">Purchase influence</div>
+        <div class="stat-grid reveal-stagger">
+          <div class="stat-tile">
+            <div class="stat-num"><em>13x</em></div>
+            <div class="stat-desc">more likely to make a branded search after viewing an organic brand video on YouTube.</div>
+            <div class="stat-meta"><span class="scope-tag">n=60</span></div>
+            <div class="stat-src">Google internal data, global, Feb 2026</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>5x</em></div>
+            <div class="stat-desc">more likely to make a purchase after viewing an organic brand video on YouTube.</div>
+            <div class="stat-meta"><span class="scope-tag">n=60</span></div>
+            <div class="stat-src">Google internal data, global, Feb 2026</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>1.7x</em></div>
+            <div class="stat-desc">more likely to positively influence brand consideration than social platforms.</div>
+            <div class="stat-meta"><span class="scope-tag">Google-commissioned</span></div>
+            <div class="stat-src">BCG study, via Think with Google</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>1.6x</em></div>
+            <div class="stat-desc">more likely to positively influence purchase decisions than social platforms.</div>
+            <div class="stat-meta"><span class="scope-tag">Google-commissioned</span></div>
+            <div class="stat-src">BCG study, via Think with Google</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>2.3x</em></div>
+            <div class="stat-desc">higher long-term ROAS on YouTube than paid social.</div>
+            <div class="stat-meta"><span class="scope-tag">20 CPG brands</span><span class="scope-tag">2021–23</span></div>
+            <div class="stat-src">Google-commissioned MMM meta-analysis</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>30%</em></div>
+            <div class="stat-desc">average increase in conversion lift for creator-led Shorts run as paid amplification versus organic only.</div>
+            <div class="stat-meta"></div>
+            <div class="stat-src">YouTube, NewFronts 2026 Creator Partnerships</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-title reveal">Content durability — why a gallery placement suits YouTube</div>
+        <div class="stat-grid reveal-stagger">
+          <div class="stat-tile">
+            <div class="stat-num"><em>~40%</em> / <em>~30%</em></div>
+            <div class="stat-desc">of views and clicks on a sponsored video happen more than 30 days after it goes live.</div>
+            <div class="stat-meta"><span class="scope-tag">US, Q1 2026</span></div>
+            <div class="stat-src">Agentio, 2026 YouTube Creator Marketing Playbook, via Google</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>2x</em></div>
+            <div class="stat-desc">conversion rate for advertisers between their first and sixth integration with the same YouTube creator.</div>
+            <div class="stat-meta"></div>
+            <div class="stat-src">Agentio, same playbook, via Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-title reveal">Consideration behaviour — why the PDP is YouTube's natural home</div>
+        <div class="stat-grid reveal-stagger">
+          <div class="stat-tile">
+            <div class="stat-num"><em>90%</em> / <em>88%</em> / <em>87%</em></div>
+            <div class="stat-desc">rate YouTube No. 1 for going deeper on a topic (90%), exploring passions (88%), and learning &amp; growing (87%).</div>
+            <div class="stat-meta"><span class="scope-tag">US sample</span></div>
+            <div class="stat-src">Google/Kantar, via Think with Google</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>89%</em></div>
+            <div class="stat-desc">of US Gen Z viewers intentionally seek out videos from specific creators they enjoy.</div>
+            <div class="stat-meta"><span class="scope-tag">US sample</span></div>
+            <div class="stat-src">Google/Kantar, Future of Video</div>
+          </div>
+          <div class="quote-tile">
+            <p>YouTube ranks No. 1 for product reviews and product information across all consumers, including Gen Z — ahead of TikTok, Instagram, and Facebook.</p>
+            <div class="stat-src">Traackr survey, via Think with Google, "How YouTube videos shape the shopping journey"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster">
+        <div class="cluster-title reveal">Ecosystem scale</div>
+        <div class="stat-grid reveal-stagger">
+          <div class="stat-tile">
+            <div class="stat-num"><em>3M+</em></div>
+            <div class="stat-desc">creators reachable through YouTube Creator Partnerships and the YouTube Partner Program.</div>
+            <div class="stat-meta"></div>
+            <div class="stat-src">YouTube, NewFronts 2026</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-num"><em>150M</em></div>
+            <div class="stat-desc">weekly US customers reachable via Walmart Connect's DV360 integration, with closed-loop sales measurement.</div>
+            <div class="stat-meta"></div>
+            <div class="stat-src">Google, 11 June 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-brand"><span class="glyph" aria-hidden="true"></span> Digital Shelf — an independent proposal</div>
+    <p class="disclaimer">This is an unsolicited concept prepared by Olly Higgs and is not affiliated with, endorsed by, or produced on behalf of Google LLC or YouTube. Product, service, and company names, logos, and brand references are used illustratively, under nominative fair use, to demonstrate product fit and are the property of their respective owners.</p>
+    <p class="disclaimer">Creator-content tiles shown in the mechanic mockups are structural placeholders pending sourced, licensed video examples — they are not real screenshots or actual creator content. Statistics are drawn from named Google, YouTube, and Google-commissioned third-party sources as cited on each tile; scope qualifications (sample country, base size) are shown on the tile rather than in a footnote.</p>
+  </div>
+</footer>
+
+<script>
+  var reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+</script>
+
+<!-- Access gate -->
+<script src="/access-gate.js"></script>
+
+</body>
+</html>
