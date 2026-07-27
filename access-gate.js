@@ -10,22 +10,20 @@
   const GATE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfXwcECV817c3mTUdCHY9KX3T1eOfB_sSMuQsh4qNS8wpbwm_R-K2A74iWbJZwQuvGew/exec';
   const GATE_SECRET     = '49474cc761db5dc1d575866103e67aae669eaf5d1222bfe5'; // must match Apps Script
   const STORAGE_KEY     = 'ohAccess';
-  const SCROLL_TRIGGER  = 320;   // px scrolled before gate appears
-  const EXPIRY_MS       = 30 * 24 * 60 * 60 * 1000; // 30 days
 
-  // --- localStorage helpers ---
+  // --- sessionStorage helpers ---
+  // Per-browser-session only: cleared when the tab/browser closes, so every
+  // new session re-prompts for credentials regardless of prior approval.
   const getStored = () => {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = sessionStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
-      const d = JSON.parse(raw);
-      if (Date.now() - d.ts > EXPIRY_MS) { localStorage.removeItem(STORAGE_KEY); return null; }
-      return d;
+      return JSON.parse(raw);
     } catch { return null; }
   };
 
   const setStored = (email, status) => {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, status, ts: Date.now() })); } catch {}
+    try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ email, status, ts: Date.now() })); } catch {}
   };
 
   // If already approved and cache is fresh, do nothing
@@ -248,20 +246,9 @@
       setTimeout(unlockScroll, 420);
     };
 
-    // Trigger on scroll
-    const onScroll = () => {
-      if (window.pageYOffset > SCROLL_TRIGGER) {
-        showGate();
-        window.removeEventListener('scroll', onScroll);
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // If already pending from a previous visit, show the gate on load so they
-    // can re-check (in case they've since been approved)
-    if (stored?.status === 'pending') {
-      setTimeout(showGate, 600);
-    }
+    // Show immediately on load — every new browser session re-prompts,
+    // since approval is only remembered for the current session (see above).
+    setTimeout(showGate, 200);
 
     // --- Form helpers ---
     const setError = (msg) => {
